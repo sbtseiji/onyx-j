@@ -82,7 +82,7 @@ public class FenjaPatrickWindow extends View implements ViewListener,
 		this.desktop = dockedView.desktop;
 		dockedView.addViewListener(this);
 		
-		//am Anfang haben wir noch kein Clustering, wenn das DP Clustering durchgeführt wurde,
+		//am Anfang haben wir noch kein Clustering, wenn das DP Clustering durchgefuhrt wurde,
 		//muss die dort ermittelte fullDistribution in diese Variable rein (siehe Datei dirichletProcess.DirichletProcess.java)
 		clusteringDistribution = null; 
 		
@@ -231,7 +231,7 @@ public class FenjaPatrickWindow extends View implements ViewListener,
 			
 			////////////////////////////////////////////////////////////////////////////////
 			
-			// hier wird geprüft ob schon ein DP Clustering Result vorliegt
+			// hier wird gepruft ob schon ein DP Clustering Result vorliegt
 			
 			int numOfClusters = -1;
 			double[][] result;
@@ -243,14 +243,14 @@ public class FenjaPatrickWindow extends View implements ViewListener,
 					for(int i = 1; i <= numOfClusters; i++)
 						tableModel.addColumn("Cluster" + i);
 				}
-				//hier jetzt die results über die clusteringDistribution berechnen.
-				//Also für jede Variable und jede ClusterID 
-				//die Werte entsprechenden Werte aus den Datenpunkten in eine Varianzberechnung einfließen lassen
+				//hier jetzt die results uber die clusteringDistribution berechnen.
+				//Also fur jede Variable und jede ClusterID 
+				//die Werte entsprechenden Werte aus den Datenpunkten in eine Varianzberechnung einfliessen lassen
 			} else {
 				panel.setText("Dirichlet Clustering: Mean Partition\n Cluster: -");
 			}
 			
-			//diese Zeilen sind erstmal nur dummies damit die nachfolgende Befüllung der Tabelle funktioniert
+			//diese Zeilen sind erstmal nur dummies damit die nachfolgende Befullung der Tabelle funktioniert
 			result = new double[3][3];			
 			result[0][0] = 7.356;
 			result[0][1] = 9.648;

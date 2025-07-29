@@ -31,7 +31,7 @@ public class LinkStep extends UndoStep {
 	private ModelRequestInterface mri;
 	//private String containerName;
 	public LinkStep(VariableContainer container, ModelRequestInterface mri) {
-		this.title = "link ";
+		this.title = "リンク ";
 		//this.containerName = container.getUniqueName();
 		this.container = container;
 		this.mri = mri;

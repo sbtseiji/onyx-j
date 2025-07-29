@@ -50,7 +50,7 @@ public class Polynomial implements Ring, GcdAble
 			co[i] = copy.co[i];
 		ringSpecified = copy.ringSpecified;
 	}
-	Polynomial (Ring f, int degree) // Constructor nur mit Ring ist gefährlich in
+	Polynomial (Ring f, int degree) // Constructor nur mit Ring ist gefahrlich in
 									// Verwechslung mit Polynomial.
 	{
 		co = new Ring[degree+1];
@@ -90,8 +90,8 @@ public class Polynomial implements Ring, GcdAble
 		erg.clean();
 		return erg;
 	}
-	// Löscht alle hohen Grade mit Koeffizient 0, außer Nulldarstellung, die ein 0 im Koeffizientvektor hat.
-	// Ändert this.
+	// Loscht alle hohen Grade mit Koeffizient 0, ausser Nulldarstellung, die ein 0 im Koeffizientvektor hat.
+	// Andert this.
 	private Polynomial clean()
 	{
 		int c = co.length-1;
@@ -145,7 +145,7 @@ public class Polynomial implements Ring, GcdAble
 		return erg;
 	}
 	// euklidischer Algorithmus mit Pseudodivision.
-	// Funktioniert auch für Multivariate, wobei aufgepasst werden muss, dass die gleiche Rekursionstiefe
+	// Funktioniert auch fur Multivariate, wobei aufgepasst werden muss, dass die gleiche Rekursionstiefe
 	// der Polynome mit den gleichen Variablen belegt ist (von unten beginnend; die Tiefe muss nicht gleich sein).
 	public Polynomial gcd(Polynomial arg2)
 	{
@@ -217,7 +217,7 @@ public Polynomial getX()
 {
 	return getXStatic(getRing());
 }
-	// Interpoliert ein Polynom, dass an gleichmäßigen Knoten zwischen 0 und 1
+	// Interpoliert ein Polynom, dass an gleichmassigen Knoten zwischen 0 und 1
 	// die Werte von v annimmt. Der Vektor muss UnitRootComplete sein, da hier das
 	// Fourierverfahren angewendet wird.
 	public static Polynomial interpolate(RingVector v)
@@ -350,7 +350,7 @@ public Polynomial getX()
 	Polynomial sqr() {return multiply(this);}
 	Polynomial subtract (Polynomial arg2) {return add(arg2.negate());}
 	public QPolynomial toQPolynomial() {return toQPolynomial(0);}
-	// Geht nur mit Multivariaten Polynom über Qelement
+	// Geht nur mit Multivariaten Polynom uber Qelement
 	public QPolynomial toQPolynomial(int identifierNr)
 	{
 		Ring r = getRing();
@@ -495,7 +495,7 @@ public Polynomial multiplyMultivariateCoefficients(Ring r)
 }
 
 /**
- * Normalisiert den ersten nicht-Polynom-Level, wenn er ein Körper ist. 
+ * Normalisiert den ersten nicht-Polynom-Level, wenn er ein Korper ist. 
  * Creation date: (25.05.2002 15:33:38)
  * @return arithmetik.Polynomial
  */

@@ -64,62 +64,65 @@ public class LDEWizard extends Dialog implements ChangeListener {
 	
 	public LDEWizard(Desktop desktop)
 	{
-		super("Latent Differential Equation Wizard");
+		super("潜在微分方程式モデルウィザード");
 		this.desktop = desktop;
-	
+
 		Dimension d = new Dimension(150,30);
-		
+
 		// # of observations
-		 numObsInput = new JSpinner(new SpinnerNumberModel(5,2,50,1));
-		 numObsInput.addChangeListener(this);
-		this.addElement("Observed time points (Embedding Dimension)",numObsInput);
-		
+		numObsInput = new JSpinner(new SpinnerNumberModel(5,2,50,1));
+		numObsInput.addChangeListener(this);
+		this.addElement("観測時点数（埋め込み次元）", numObsInput);
+
 		centerModel = new SpinnerNumberModel(1,1,10,1);
 		tauSpinner = new JSpinner(centerModel);
-		this.addElement("Tau (Time-delay)  ", tauSpinner);
-		
+		this.addElement("τ（時間遅延）", tauSpinner);
+
 		/*embedModel = new SpinnerNumberModel(1,1,20,1);
 		numEmbedding = new JSpinner(embedModel);
-		this.addElement("Embedding dimension  ", numEmbedding);
-*/
-		// observation name
+		this.addElement("埋め込み次元", numEmbedding);
+		*/
+
+		// 経過時間
 		timeElapInput = new JTextArea("x");
 		timeElapInput.setSize(d);
 		timeElapInput.setText(".3");
-		this.addElement("Time elapsed",timeElapInput);
-	
-		
-		// observation name
+		this.addElement("経過時間", timeElapInput);
+
+		// 観測変数名
 		nameObsInput = new JTextArea("x");
 		nameObsInput.setSize(d);
-		this.addElement("Name of observed variable",nameObsInput);
-		
-		// error term name
+		this.addElement("観測変数名", nameObsInput);
+
+		// 残差分散項名
 		nameErrInput = new JTextArea("e");
 		nameErrInput.setSize(d);
-		this.addElement("Name of residual variance term ",nameErrInput);
-		
-		// icept - slope correlation
-		/*nameSlopeInput = new JTextArea("slope");
+		this.addElement("残差分散項名", nameErrInput);
+
+		// 傾き・切片項名（コメントアウト部分は必要に応じて）
+		/*
+		nameSlopeInput = new JTextArea("傾き");
 		nameSlopeInput.setSize(d);
-		this.addElement("Name of slope term ",nameSlopeInput);
-		nameIceptInput = new JTextArea("icept");
+		this.addElement("傾き項名", nameSlopeInput);
+		nameIceptInput = new JTextArea("切片");
 		nameIceptInput.setSize(d);
-		this.addElement("Name of intercept term ",nameIceptInput);
-*/
-		uniqueResiduals = new JCheckBox("unique variances across time");
-		this.addElement("Residual variances", uniqueResiduals);
-	/*	
-		latentCovariance = new JCheckBox("estimate covariance");
-		this.addElement("covariance between icept and slope", latentCovariance);
+		this.addElement("切片項名", nameIceptInput);
 		*/
-		
-		this.addSendButton("Create");
-		
+
+		uniqueResiduals = new JCheckBox("時間ごとの固有分散");
+		this.addElement("残差分散", uniqueResiduals);
+
+		/*
+		latentCovariance = new JCheckBox("共分散を推定");
+		this.addElement("切片と傾きの共分散", latentCovariance);
+		*/
+
+		this.addSendButton("作成");
+
 		this.pack();
-		
+
 		this.setVisible(true);
-	
+
 	}
 
 	@Override

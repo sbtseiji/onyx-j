@@ -61,18 +61,17 @@ public class ContextHelpPanel extends JLabel {
 		switch(id)
 		{
 		case CTXT_EMPTY_DESKTOP:
-		    // DEBUG
-            txt = "Welcome to Onyx! Double-click on the desktop to start a new model. Right-click anywhere to access context menus for actions.";
-//            txt = "Welcome to Onyx! Left-click on the desktop to start a new model!";
+			// DEBUG
+			txt = "Onyxへようこそ！ デスクトップをダブルクリックして新しいモデルを開始してください。右クリックで各種操作のコンテキストメニューが開きます。";
 			break;
 		case CTXT_EMPTY_MODEL:
-			txt = "Double left-click to create a new latent variable. Shift+Double-click to create a new manifest variable";
+			txt = "モデルパネル上でダブルクリックすると潜在変数を作成できます。シフトキー＋ダブルクリックで観測変数を作成できます。";
 			break;
 		case 2:
-			txt = "Left-drag to move model panel on desktop.";
+			txt = "デスクトップ上で左ドラッグするとモデルパネルを移動できます。";
 		break;
 		case 3:
-			txt = "Left click to show estimated parameters";
+			txt = "左クリックで推定されたパラメータを表示します。";
 		break;
 		}
 		

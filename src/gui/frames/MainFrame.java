@@ -353,7 +353,7 @@ public class MainFrame extends JFrame implements ActionListener, KeyListener,
 	 * @param y
 	 */
 	public JMenu getLoadRecent(int x, int y) {
-		JMenu loadRecent = new JMenu("Recent Files");
+		JMenu loadRecent = new JMenu("最近使ったファイル");
 
 		for (int i = 0; i < recentFiles.size(); i++) {
 			LoadFileAction lfa = new LoadFileAction(desktop,
@@ -388,14 +388,14 @@ public class MainFrame extends JFrame implements ActionListener, KeyListener,
 
 		menuBar.add(Box.createHorizontalGlue());
 
-		JMenu helpMenu = new JMenu("Help");
+		JMenu helpMenu = new JMenu("ヘルプ");
 		menuBar.add(helpMenu);
 
-		helpDocumentation = new JMenuItem("Manual");
+		helpDocumentation = new JMenuItem("マニュアル");
 		helpDocumentation.addActionListener(this);
 
 
-		JMenu loadTutorial = new JMenu("Load Tutorial Data");
+		JMenu loadTutorial = new JMenu("チュートリアル・データセット");
 
 		loadTutorialX = new JMenuItem[tutorialNum];
 		for (int i = 0; i < tutorialNum; i++)
@@ -405,7 +405,7 @@ public class MainFrame extends JFrame implements ActionListener, KeyListener,
 			loadTutorialX[i].addActionListener(this);
 		}
 		
-		loadRecent = new JMenu("Recent Files");
+		loadRecent = new JMenu("最近使ったファイル");
 
 
 
@@ -428,14 +428,14 @@ public class MainFrame extends JFrame implements ActionListener, KeyListener,
 		 * editUndo.addActionListener(this);
 		 */
 		
-		menuUpdates = new JCheckBoxMenuItem("Check For Updates On Startup");
+		menuUpdates = new JCheckBoxMenuItem("起動時に更新をチェック");
 		menuUpdates.addActionListener(this);
 		updateMenuUpdates();
 		
-		menuTutorial = new JMenuItem("Interactive Tutorial");
+		menuTutorial = new JMenuItem("インタラクティブ・チュートリアル");
 		menuTutorial.addActionListener(this);
 		
-		menuTip = new JMenuItem("Show Tip Of The Day");
+		menuTip = new JMenuItem("日替わりヒントを表示");
 		menuTip.addActionListener(this);
 		
 		helpMenu.add(helpDocumentation);
@@ -529,14 +529,14 @@ public class MainFrame extends JFrame implements ActionListener, KeyListener,
 				JOptionPane
 						.showMessageDialog(
 								this,
-								"An error has occured! You can manually access the documentation at out website: onyx.brandmaier.de");
+								"エラーが発生しました。マニュアルはウェブサイト（onyx.brandmaier.de）でもご覧いただけます。");
 				e.printStackTrace();
 			} catch (URISyntaxException e) {
 				
 				JOptionPane
 						.showMessageDialog(
 								this,
-								"An error has occured! You can manually access the documentation at out website: onyx.brandmaier.de");
+								"エラーが発生しました。マニュアルはウェブサイト（onyx.brandmaier.de）でもご覧いただけます。");
 
 				e.printStackTrace();
 			}
@@ -655,7 +655,7 @@ public class MainFrame extends JFrame implements ActionListener, KeyListener,
 		boolean hasUnsavedChanges = desktop.hasUnsavedChanges();
 		if (hasUnsavedChanges) {
 			int result = JOptionPane.showConfirmDialog(this,
-					"Do you want to save all changes?", "Exit Onyx",
+					"変更内容をすべて保存しますか？", "Onyxの終了",
 					JOptionPane.YES_NO_CANCEL_OPTION);
 			if (result == JOptionPane.CANCEL_OPTION)
 				return;

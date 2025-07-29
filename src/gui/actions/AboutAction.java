@@ -31,8 +31,8 @@ public class AboutAction extends AbstractAction {
 
 	public AboutAction()
 	{
-		putValue(NAME, "About Onyx");
-		putValue(SHORT_DESCRIPTION, "Display information about the program");
+		putValue(NAME, "Onyxについて");
+		putValue(SHORT_DESCRIPTION, "このプログラムについての情報を表示します");
 
 	}
 	

@@ -155,7 +155,7 @@ public RingMatrix add(RingMatrix B)
 		}
 	return erg;		
 }
-// Gibt eine (nicht orthogonale oder normale) Basis des Kerns der Matrix zurück.
+// Gibt eine (nicht orthogonale oder normale) Basis des Kerns der Matrix zuruck.
 public RingVector[] coreBase()
 {
 	int spalten = this.getColumns();
@@ -182,7 +182,7 @@ public RingVector[] coreBase()
 	
 	return ergarr;	
 }
-// Gibt von einem homogenen Gleichungssystem eine Matrix zurück, die alle Vektoren auf den
+// Gibt von einem homogenen Gleichungssystem eine Matrix zuruck, die alle Vektoren auf den
 // Kern der Matrix projeziert.
 public RingMatrix coreProjectMatrix()
 {
@@ -264,7 +264,7 @@ public Ring developDeterminant()
 	}
 	return erg;
 }
-// approximiert die Eigenwerte bis epsilon. Rückgabe ist Vector mit den Eigenwerten.
+// approximiert die Eigenwerte bis epsilon. Ruckgabe ist Vector mit den Eigenwerten.
 public RingVector eigenvalues(double epsilon)
 {
 	int spalten = this.getColumns();
@@ -434,7 +434,7 @@ public RingMatrix invert()
 	}
 	return z[1];
 }
-// TVO: Erweitert auf Multiplikation von 2 Matrizen verschiedener Größen.
+// TVO: Erweitert auf Multiplikation von 2 Matrizen verschiedener Grossen.
 // Forderung: Zahl der Spalten von this = Zahl der Zeilen von A.
 public RingMatrix matrixMultiply(RingMatrix A) 
 {
@@ -495,8 +495,8 @@ public RingMatrix pow(long exp)
 
 	return erg;			
 }
-// gibt eine obere Dreiecksmatrix R zurück, und eine Matrix U, deren Spaltenvektoren
-// u_i jeweils für eine Matrix Q_I = u_i transpose(u_i) stehen, deren Produkt
+// gibt eine obere Dreiecksmatrix R zuruck, und eine Matrix U, deren Spaltenvektoren
+// u_i jeweils fur eine Matrix Q_I = u_i transpose(u_i) stehen, deren Produkt
 // Q wiederum eine orthogonale Matrix ist, so dass QR = this.
 public RingMatrix[] qRDecomposition()
 {	
@@ -831,7 +831,7 @@ public RingVector solveWithUFromQRDecomposition(RingVector b)
 	return y;
 }
 // Beide Grenzen jeweils eingeschlossen.		
-// Änderung tvo 26.11.00
+// Anderung tvo 26.11.00
 public RingMatrix subMatrix(int startRow, int endRow, int startCol, int endCol)
 {
 	int newRows = endRow-startRow+1;
@@ -953,7 +953,7 @@ public RingVector solveRightUpperTriangleMatrix(RingVector b)
 {
 	return solveRightUpperTriangleMatrix(b, -1);
 }
-// Setzt bei Freiheiten immer 0 ein, außer bei der (useFree)ten Freiheit (dort 1).
+// Setzt bei Freiheiten immer 0 ein, ausser bei der (useFree)ten Freiheit (dort 1).
 public RingVector solveRightUpperTriangleMatrix(RingVector b, int useFree)
 {
 	int spalten = this.getColumns();

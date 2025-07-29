@@ -20,12 +20,12 @@ class WrongFieldException extends RuntimeException
 {
 	WrongFieldException()
 	{
-		super ("Versuch mit zwei Elementen aus verschiedenen Körpern zu arbeiten.");
+		super ("Versuch mit zwei Elementen aus verschiedenen Korpern zu arbeiten.");
 	}
 	
 	WrongFieldException(String s)
 	{
-		super ("Versuch zwei Elemente aus verschiedenen Körpern zu " + s + ".");
+		super ("Versuch zwei Elemente aus verschiedenen Korpern zu " + s + ".");
 	}
 }
 

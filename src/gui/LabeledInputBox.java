@@ -68,6 +68,7 @@ implements KeyListener {
 		label.setText(labelText);
 		label.setBackground(Color.white);
 		textField = new JTextField();
+    textField.enableInputMethods(true); // IME（日本語入力）を有効化
 		textField.setFont( dummyMenuItem.getFont());
 		label.setFont( dummyMenuItem.getFont());
 		

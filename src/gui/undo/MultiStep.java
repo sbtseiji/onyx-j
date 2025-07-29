@@ -54,17 +54,17 @@ public class MultiStep extends UndoStep {
 
 	public void add(UndoStep step)
 	{
-		if (valid == true) {
-			steps.add(step);
-		} else {
-			System.err.println("Multistep was already executed. Cannot add another step: "+step);
-		}
-		
-		super.title="<Multistep: ";
-		for (UndoStep nstep : steps) {
-			super.title+=nstep.title+"; ";
-		}
-		super.title+=">";
+    if (valid == true) {
+        steps.add(step);
+    } else {
+        System.err.println("すで複数ステップが実行されています。これ以上ステップを追加できません: " + step);
+    }
+    
+    super.title = "<複数ステップ: ";
+    for (UndoStep nstep : steps) {
+        super.title += nstep.title + "; ";
+    }
+    super.title += ">";
 	}
 	
 	/**
@@ -86,22 +86,22 @@ public class MultiStep extends UndoStep {
 	}
 	
 	public void redo() {
-		
-		if (steps != null) {
-		//	for (int i=steps.size()-1;i>=0; i--)
-		for (int i=0; i < steps.size(); i++)
-			{
-				UndoStep undoStep = steps.get(i);
-				try {
-					undoStep.redo();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					//e.printStackTrace();
-					System.err.println("Error redoing multistep"+i+"/"+steps.size()+": "+undoStep.title);
-				}
-			}
-			valid = false;
-		}		
+    
+    if (steps != null) {
+    //	for (int i=steps.size()-1;i>=0; i--)
+    for (int i=0; i < steps.size(); i++)
+        {
+            UndoStep undoStep = steps.get(i);
+            try {
+                undoStep.redo();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                //e.printStackTrace();
+                System.err.println("複数ステップのやり直し中にエラーが発生しました " + i + "/" + steps.size() + ": " + undoStep.title);
+            }
+        }
+        valid = false;
+    }		
 	}
 
 }

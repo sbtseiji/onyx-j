@@ -56,7 +56,7 @@ public class RingVector extends RingMatrix
 	}
 	// Multipliziert den Vektor mit der schnellen Fourier-Transformation
 	// mit der Fourier-Matrix (e^{2*Pi*j*k/N)}_{j,k}.
-	// Wirft RuntimeException "FFT benötigt Zweierpoten", falls 
+	// Wirft RuntimeException "FFT benotigt Zweierpoten", falls 
 	// die Zeilenzahl keine Zweierpotenz ist.
 	public RingVector FFT()
 	{
@@ -65,7 +65,7 @@ public class RingVector extends RingMatrix
 		Ring zwei = field.abs_unit().abs_add(field.abs_unit());
 		
 		if (!(field instanceof UnitRootComplete)) 
-			throw new RuntimeException("FFT benötigt Zahlenraum mit Einheitswurzeln");
+			throw new RuntimeException("FFT benotigt Zahlenraum mit Einheitswurzeln");
 		
 		if (N == 1) 
 		{
@@ -74,7 +74,7 @@ public class RingVector extends RingMatrix
 			return erg;
 		}
 		
-		if ((N%2)!=0) throw new RuntimeException("FFT benötigt Zweierpoten");
+		if ((N%2)!=0) throw new RuntimeException("FFT benotigt Zweierpoten");
 		int n = N/2;
 		RingVector xg = new RingVector(field, n);
 		RingVector xu = new RingVector(field, n);
@@ -97,7 +97,7 @@ public class RingVector extends RingMatrix
 		}
 		return erg;
 	}
-	// Diese Methode liefert einen Vektor zurück, mit dessen Hilfe durch
+	// Diese Methode liefert einen Vektor zuruck, mit dessen Hilfe durch
 	// Aufruf mit evalFFT das Interpolationspolynom ausgewertet werden kann.
 	// Interpoliert wird eine Funktion, die an den Tschebycheff-Nullstellen
 	// die in *this* gespeicherten Werte annimmt.
@@ -215,7 +215,7 @@ public static RingVector[] orthonormalize(RingVector[] in)
  * @return arithmetik.RingVector[]
  * @param in arithmetik.RingVector[]
 
-	Orthogonalisiert und normiert die in-Vektoren mit Gram-Schmidt-Orthogonalisierung und hängt weitere orthonormale
+	Orthogonalisiert und normiert die in-Vektoren mit Gram-Schmidt-Orthogonalisierung und hangt weitere orthonormale
 	Vektoren an, bis die Dimension oder anz viele Vektoren erreicht sind.
  
  */

@@ -27,7 +27,7 @@ public class PriorityChangeStep extends UndoStep {
 	public PriorityChangeStep(ModelView mv, Priority runPriority) {
 		this.runPriority = runPriority;	//TODO: do we need to clone() ?
 		this.mv = mv;
-		this.title="Change priority of "+mv.getName();
+		this.title = mv.getName() + " の優先度を変更";
 	}
 
 	@Override

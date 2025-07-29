@@ -123,7 +123,7 @@ public class PlainEdgeLabel implements Cloneable {
 
 	protected void updateFontMetrics() {
 		
-		if (g== null){System.err.println("No font metrics available!"); fm=null; return; }
+		if (g== null){System.err.println("利用できるフォントメトリックスがありません！"); fm=null; return; }
 		
 		this.font = this.g.getFont().deriveFont((float)fontSize);
 		

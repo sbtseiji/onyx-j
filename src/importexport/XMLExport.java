@@ -186,7 +186,7 @@ public class XMLExport extends Export
 				nodeElement.setAttribute("groupName", node.groupName);
 			}
 			} catch (Exception e) {
-				errors.add( "Node "+node.getCaption()+" could not be saved correctly.");
+							errors.add( "ノード " + node.getCaption() + " を正しく保存できませんでした。");
 				e.printStackTrace();
 			}
 			
@@ -233,7 +233,7 @@ public class XMLExport extends Export
 			nodeElement.setAttribute("labelFontColor", "#"+Integer.toHexString(edge.getLabel().getColor().getRGB() & 0x00ffffff ) );
 			
 			} catch (Exception e) {
-				errors.add("Edge "+edge.getParameterName()+" could not be saved correctly");
+				errors.add("エッジ " + edge.getParameterName() + " を正しく保存できませんでした");
 				e.printStackTrace();
 			}
 			nodeElement.setAttribute("automaticControlPoints", Boolean.toString(edge.ctrlAutomatic));
@@ -342,8 +342,8 @@ public class XMLExport extends Export
 			transformer.transform(source, result);
 
 		} catch (Exception e) {
-			System.err.println("Error!");
-			JOptionPane.showMessageDialog(this.modelView, "We are sorry! An error occured during writing the file: "+e.toString()+". Please report this error to onyx@brandmaier.de"); 
+			System.err.println("エラー！");
+			JOptionPane.showMessageDialog(this.modelView, "申し訳ありません。ファイル書き込み中にエラーが発生しました: " + e.toString() + "。このエラーを onyx@brandmaier.de までご報告ください。"); 
 			e.printStackTrace();
 
 		}
@@ -351,7 +351,7 @@ public class XMLExport extends Export
 		if (errors.size() > 0) {
 			String errstr="";
 			for (String error : errors) errstr+="\n"+error;
-			JOptionPane.showMessageDialog(this.modelView,"We are sorry! Your model could not be saved completely. The following errors occured during saving: "+errstr);
+			JOptionPane.showMessageDialog(this.modelView,"申し訳ありません。モデルを完全に保存できませんでした。保存中に次のエラーが発生しました: " + errstr);
 		}
 
 	}

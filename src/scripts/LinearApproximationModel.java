@@ -90,7 +90,7 @@ public class LinearApproximationModel extends Model
             if (par==1) return 1; 
             if (par==2) return -diff*exp; 
             if (par==3) return val[2]*exp;
-            throw new RuntimeException("Exponential Function says: Can't compute derivative wrt. parameter "+par);
+            throw new RuntimeException("指数関数: パラメータ " + par + " に関する微分を計算できません。");
         }
         
         public double evalDev(int[] devRow, double[] val) {
@@ -110,7 +110,7 @@ public class LinearApproximationModel extends Model
                     ((devRow[0]==3) && (devRow[1]==2))) return (1+val[2]*diff)*exp; 
                 if (((devRow[0]==0) && (devRow[1]==3)) || 
                     ((devRow[0]==3) && (devRow[1]==0))) return val[2]*val[2]*exp;
-                throw new RuntimeException("Exponential Function says: Can't compute derivative wrt. parameters "+devRow[0]+", "+devRow[1]);
+                throw new RuntimeException("指数関数: パラメータ " + devRow[0] + ", " + devRow[1] + " に関する微分を計算できません。");
             }
             if (devRow.length==3)
             {
@@ -141,7 +141,7 @@ public class LinearApproximationModel extends Model
                 if (    ((devRow[0]==2) && (devRow[1]==2) && (devRow[2]==3)) ||
                         ((devRow[0]==2) && (devRow[1]==3) && (devRow[2]==2)) ||
                         ((devRow[0]==3) && (devRow[1]==2) && (devRow[2]==2))) return diff*(2+val[2]*diff)*exp;
-                throw new RuntimeException("Exponential Function says: Can't compute derivative wrt. parameters "+devRow[0]+", "+devRow[1]+", "+devRow[2]);
+                throw new RuntimeException("指数関数: パラメータ " + devRow[0] + ", " + devRow[1] + ", " + devRow[2] + " に関する微分を計算できません。");
             }
             
             // for higher derivatives:
@@ -424,7 +424,7 @@ public class LinearApproximationModel extends Model
                 if (covPar[i][j]==nr) return covVal[i][j];
         for (int i=0; i<anzVar; i++)
             if (errPar[i]==nr) return errVal[i];
-        throw new RuntimeException("Parameter "+nr+" does not exist.");
+        throw new RuntimeException("パラメータ " + nr + " は存在しません。");
     }
     
     public double[] getParameters()

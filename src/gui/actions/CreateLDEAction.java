@@ -34,8 +34,8 @@ public class CreateLDEAction extends AbstractAction {
 	{
 		this.desktop = desktop;
 	
-		putValue(NAME, "Create new LDE");
-		putValue(SHORT_DESCRIPTION, "Create an LDE on the desktop");
+		putValue(NAME, "潜在微分方程式モデル（LDE）");
+		putValue(SHORT_DESCRIPTION, "デスクトップ上に潜在微分方程式モデル（LDE）を作成します");
 	}
 	
 	public CreateLDEAction(Desktop desktop, int x, int y)

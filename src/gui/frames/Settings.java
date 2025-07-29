@@ -37,14 +37,14 @@ public class Settings
 
 	JComboBox<String> box ;
 	
-	String[] items = new String[] {"None","Globe","Crumpled Paper","Board","Desk",WelcomeFrame.OMEGA+"nyx"};
+	String[] items = new String[] {"なし","地球儀","シワ紙","ボード","デスク",WelcomeFrame.OMEGA+"nyx"};
 
 	Desktop desktop;
 	JButton ok;
 	
 		public Settings(Desktop desktop)
 		{
-		setTitle("Settings");
+		setTitle("設定");
 			
 		this.desktop = desktop;
 			
@@ -53,10 +53,10 @@ public class Settings
 			
 			box.addActionListener(this);
 			
-			ok = new JButton("Done");
+			ok = new JButton("完了");
 			ok.addActionListener(this);
 			
-			JLabel lab1 = new JLabel("Background Image");
+			JLabel lab1 = new JLabel("背景画像");
 			
 			this.setLayout(new GridBagLayout());
 			

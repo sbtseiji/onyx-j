@@ -49,7 +49,7 @@ public class LISRELMatrixTextExport extends StringExport {
 	public boolean isValid() {
 	    try {
 	        String res = modelView.getModelRequestInterface().getModel().getLISRELMatrixDescription();
-	        if (res.startsWith("Error")) return false;
+	        if (res.startsWith("エラー")) return false;
 	        return true;
 	    } catch (Exception e) {return false;}
 	}
@@ -66,15 +66,15 @@ public class LISRELMatrixTextExport extends StringExport {
 		}
 	}
 	
-    @Override
-    public String createModelSpec(ModelView modelView, String modelName, boolean useUniqueNames) {
-    	Graph g = modelView.getGraph();
-    	
-		if (modelView.hasDefinitionEdges()) return "Error! Definition variables are not supported!";
-		if (g.isMultiGroup()) return "Error! Multigroup models cannot be exported yet!";
-    	
-        return modelView.getModelRequestInterface().getModel().getLISRELMatrixDescription();
-    }
+	@Override
+	public String createModelSpec(ModelView modelView, String modelName, boolean useUniqueNames) {
+		Graph g = modelView.getGraph();
+		
+		if (modelView.hasDefinitionEdges()) return "エラー！定義変数には対応していません。";
+		if (g.isMultiGroup()) return "エラー！マルチグループモデルの書き出しにはまだ対応していません。";
+		
+		return modelView.getModelRequestInterface().getModel().getLISRELMatrixDescription();
+	}
 
 	
 }

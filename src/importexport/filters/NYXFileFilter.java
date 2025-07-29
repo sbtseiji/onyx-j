@@ -38,7 +38,7 @@ public class NYXFileFilter extends FileFilter {
 
 	@Override
 	public String getDescription() {
-		return("Onyx container (*.nyx)");
+		return("Onyxコンテナ（*.nyx）");
 	}
 
 }

@@ -60,7 +60,7 @@ public Modulus(BigInteger mod)
 	   return  (mod.modulo.equals(modulo));
 	}
 	/**
-	 *  Erzeugt einen zufälligen modulus <= max, der Primzahl ist, falls prime gesetzt ist.
+	 *  Erzeugt einen zufalligen modulus <= max, der Primzahl ist, falls prime gesetzt ist.
 	 */
 	public static Modulus rndModulus(long max, boolean prime)
 	{

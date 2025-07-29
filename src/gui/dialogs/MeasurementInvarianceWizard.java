@@ -37,7 +37,7 @@ public class MeasurementInvarianceWizard extends Dialog {
 
 	JButton ok;
 
-	final String[] invarianceTypes = new String[]{"Configural","Weak/Metric","Strong/Scalar", "Strict"};
+	final String[] invarianceTypes = new String[]{"構造的不変性","弱不変性／計量的不変性","強不変性／スカラー不変性", "厳密不変性"};
 	JComboBox<String> invarianceType;
 
 	JComboBox<String> sourceModel;
@@ -47,7 +47,7 @@ public class MeasurementInvarianceWizard extends Dialog {
 	
 	public MeasurementInvarianceWizard(Desktop desktop) {
 		
-		super("Create CFA-based Measurement Invariance Model");
+		super("CFAに基づく測定不変性モデルの作成");
 		this.desktop = desktop;
 		 modelViews = desktop.getModelViews();
 		
@@ -59,15 +59,15 @@ public class MeasurementInvarianceWizard extends Dialog {
 		
 		invarianceType = new JComboBox<String>(invarianceTypes);
 		
-		ok = new JButton("Done");
+		ok = new JButton("完了");
 		ok.addActionListener(this);
 		
 		// layout:
 		
-		JLabel label = new JLabel("Source Model");
+		JLabel label = new JLabel("基準モデル");
 		this.add(label);
 		this.add(sourceModel);
-		JLabel label2 = new JLabel("Invariance Type");
+		JLabel label2 = new JLabel("不変性タイプ");
 		this.add(label2);
 		this.add(invarianceType);
 		

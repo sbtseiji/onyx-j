@@ -33,8 +33,8 @@ public class CreateEmptyModelAction extends AbstractAction {
 	{
 		this.desktop = desktop;
 	
-		putValue(NAME, "Create Empty Model");
-		putValue(SHORT_DESCRIPTION, "Create an empty model on the desktop");
+		putValue(NAME, "空のモデル");
+		putValue(SHORT_DESCRIPTION, "デスクトップ上に空のモデルを作成します");
 	}
 	
 	public CreateEmptyModelAction(Desktop desktop, int x, int y)

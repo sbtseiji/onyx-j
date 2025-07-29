@@ -20,7 +20,7 @@ import java.util.*;
 public class RExpMonomial
 {
 	FastPolynomial factor;
-	Vector member;				// Enthält die referierten RExpressions; pointer ist wichtig.
+	Vector member;				// Enthalt die referierten RExpressions; pointer ist wichtig.
 	
 	public RExpMonomial()
 	{
@@ -48,8 +48,8 @@ public class RExpMonomial
 		this.factor = new FastPolynomial(copy.factor);
 		member = (Vector)copy.member.clone();
 	}
-	// Gibt 2 Vektoren zurück: Einer enthält alle RExpressions, die in beiden Monomen
-	// auftauchen, der zweite enthält alle, die nur einmal insgesamt auftauchten.
+	// Gibt 2 Vektoren zuruck: Einer enthalt alle RExpressions, die in beiden Monomen
+	// auftauchen, der zweite enthalt alle, die nur einmal insgesamt auftauchten.
 	// Die Member sind Datenbankelement, d.h. es werden keine Konstruktoren aufgerufen,
 	// sondern die selben pointer weitergegeben !
 	public Vector[] collectSimilar (RExpMonomial arg2)
@@ -112,7 +112,7 @@ public class RExpMonomial
 		return (compareTo(arg2)==0);
 	}
 	// Evaluate Nr. 6 nimmt ein Array von Doubels, dass alle vorkommenden
-	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zurück.
+	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zuruck.
 	public double evaluate(double[] value)
 	{
 		double erg = factor.evaluate(value);
@@ -128,7 +128,7 @@ public class RExpMonomial
 				(((RExpression)member.elementAt(i)).evaluate(identifierNr, value).sqrt());
 		return erg;
 	}
-	// liefert den höchsten vorkommenden Index (i.A. die Anzahl der Variablen).
+	// liefert den hochsten vorkommenden Index (i.A. die Anzahl der Variablen).
 	public int getHighestIndex()
 	{
 		int erg = factor.getHighestIndex();
@@ -140,7 +140,7 @@ public class RExpMonomial
 	{
 		return member.size() == 0;
 	}
-	// Berechnet lazyDivide auf den FastPolynomials und löscht danach alle Einträge aus *this*,
+	// Berechnet lazyDivide auf den FastPolynomials und loscht danach alle Eintrage aus *this*,
 	// die in *arg2* vorkommen.
 	public RExpMonomial lazyDivide(RExpMonomial arg2)
 	{

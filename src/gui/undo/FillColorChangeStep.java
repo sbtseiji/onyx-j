@@ -31,7 +31,7 @@ public class FillColorChangeStep extends UndoStep {
 	public FillColorChangeStep(ModelView modelView, FillColorable colorable)
 	{
 		color = colorable.getFillColor();
-		this.title = "Line color changed ";
+		this.title = "線の色を変更しました ";
 		this.colorable = colorable;
 		this.mv = modelView;
 	}

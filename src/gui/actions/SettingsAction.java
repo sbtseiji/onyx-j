@@ -35,8 +35,8 @@ import javax.swing.JFrame;
 		public SettingsAction(Desktop desktop)
 		{
 			this.desktop = desktop;
-			putValue(NAME, "Settings");
-			putValue(SHORT_DESCRIPTION, "Settings of the application");
+			putValue(NAME, "設定");
+			putValue(SHORT_DESCRIPTION, "アプリケーションの設定を変更します");
 		}
 		
 		

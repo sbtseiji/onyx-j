@@ -95,7 +95,7 @@ public class LavaanImport extends Import {
 				mri.requestAddEdge(e1);
 				
 			} else {
-				System.err.println("Unknown operator encountered!");
+				System.err.println("不明な演算子が見つかりました！");
 				problemCount++;
 				// Unknown OP
 			}
@@ -104,7 +104,7 @@ public class LavaanImport extends Import {
 		
 		
 		if (problemCount>0) {
-			JOptionPane.showMessageDialog(null, "There were problems during the import.");
+			JOptionPane.showMessageDialog(null, "読み込み中に問題が発生しました。");
 		}
 	}
 

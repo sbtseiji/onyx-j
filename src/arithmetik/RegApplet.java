@@ -75,7 +75,7 @@ public class RegApplet extends Applet implements ActionListener, WindowListener,
 			
 		} catch (Exception ex)
 		{
-			this.println("Fehler bei der Ausführung.");
+			this.println("Fehler bei der Ausfuhrung.");
 		}
 	}
 	public void gap()

@@ -45,7 +45,7 @@ public class CorrelationMatrixExport extends StringExport {
 		
 		int k = model.symVal.length;
 		
-		if (k==0) return "Empty Model";
+		if (k==0) return "空のモデル";
 		
 		double[][] I = new double[k][k];
 		for (int i=0; i < k; i++) I[i][i] = 1;
@@ -62,7 +62,7 @@ public class CorrelationMatrixExport extends StringExport {
 			if (node.isObserved()) obs++;
 		}
 		
-		if (obs==0) return "No Observations";
+		if (obs==0) return "観測データなし";
 		
 		double[][] F = new double[obs][k];
 		for (int i=0; i < model.filter.length; i++) {
@@ -110,7 +110,7 @@ public class CorrelationMatrixExport extends StringExport {
 		
 		String result = "";
 		
-		result+= "Variables: ";
+		result+= "変数：";
         for (int i=0; i<model.anzFac; i++) result += model.variableNames[i]+(i==model.anzFac-1?"":", ");
 		result+="\n";
 		

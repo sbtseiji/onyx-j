@@ -19,7 +19,7 @@ import java.util.*;
 import java.math.*;
 
 // Implementiert Signed mit abs_abs = absolute und abs_signum(x) = x / absolute(x);
-// Implementiert Orderd mit Vergleich der Beträge
+// Implementiert Orderd mit Vergleich der Betrage
 public class DoubleComplex implements Field, Squarerootable, UnitRootComplete, 
 							DoubleNormable, Complex, Signed
 {
@@ -164,7 +164,7 @@ public boolean isNotLegalNummeric()
 	{
 		return multiply(this);
 	}
-	// Mit der Unstetigkeitslinie über die negative reele Achse,
+	// Mit der Unstetigkeitslinie uber die negative reele Achse,
 	// d.h. alle Ergebnisse haben einen positiven reelen Wert.
 	public DoubleComplex sqrt()
 	{

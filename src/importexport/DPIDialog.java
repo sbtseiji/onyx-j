@@ -41,7 +41,7 @@ public class DPIDialog extends JDialog implements ActionListener, KeyListener {
 	
 	public DPIDialog()
 	{
-		super(null, "Resolution", Dialog.ModalityType.DOCUMENT_MODAL);
+		super(null, "解像度", Dialog.ModalityType.DOCUMENT_MODAL);
 		
 		
 		// defaults
@@ -60,9 +60,9 @@ public class DPIDialog extends JDialog implements ActionListener, KeyListener {
 		
 		this.add (new JLabel("DPI"));
 		this.add ( dpiField );
-		this.add (new JLabel("Pixel"));
+		this.add (new JLabel("ピクセル"));
 		this.add( widthPixelField );
-		this.add( new JLabel("Inch"));
+		this.add( new JLabel("インチ"));
 		this.add( widthInchField );
 		
 		ok = new JButton("OK");

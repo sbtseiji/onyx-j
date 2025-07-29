@@ -18,9 +18,9 @@ package arithmetik;
 import java.util.*;
 /*
 	Darstellung von rationalen Funktionen als ein 
-	ZählerRExpression und ein NennerRExpression. Ist der ZählerRExpression
+	ZahlerRExpression und ein NennerRExpression. Ist der ZahlerRExpression
 	0, so muss der NennerRExpression genau 1 sein. Ein Nenner-
-	RExpression = 0 repräsentiert NAN.
+	RExpression = 0 reprasentiert NAN.
 */
 
 public class RQuotientExp implements Field, Squarerootable
@@ -111,9 +111,9 @@ public class RQuotientExp implements Field, Squarerootable
 		erg.clean();
 		return erg;
 	}
-	// Diese Prozedur sorgt für die Eindeutige Nulldarstellung.
-	// TvO: Hier liese sich ein Kürzen einbauen, vielleicht jedenfalls
-	// ein kürzen von a/a = 1/1.
+	// Diese Prozedur sorgt fur die Eindeutige Nulldarstellung.
+	// TvO: Hier liese sich ein Kurzen einbauen, vielleicht jedenfalls
+	// ein kurzen von a/a = 1/1.
 	// 5.99: Ist eingebaut.
 	public void clean()
 	{
@@ -150,7 +150,7 @@ public class RQuotientExp implements Field, Squarerootable
 		return erg;
 	}
 	// Evaluate Nr. 6 nimmt ein Array von doubles, dass alle vorkommenden
-	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zurück.
+	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zuruck.
 	public double evaluate(double[] value)
 	{
 		return zaehler.evaluate(value) / nenner.evaluate(value);
@@ -256,9 +256,9 @@ public void newMethod() {}
  * @param equations arithmetik.RQuotientExp[]
  * @param var int[]
 
-	Gibt einen Vector von RQuotientExp[], in denen jeweils in der selben Reihenfolge wie var die Lösungen
+	Gibt einen Vector von RQuotientExp[], in denen jeweils in der selben Reihenfolge wie var die Losungen
 	stehen. Gleichungen, die einen Nullausdruck gleichen, werden ignoriert. Sind die Gleichungen (bis auf Nullzeilen)
-	leer, so wird eine Lösung zurückgegeben, in der alle vars 0 sind, und falls var auch ein Array der Länge 0 ist,
+	leer, so wird eine Losung zuruckgegeben, in der alle vars 0 sind, und falls var auch ein Array der Lange 0 ist,
 	genau ein leeres Array.
  
  */
@@ -307,8 +307,8 @@ public static Vector solveSystem(RQuotientExp[] equation, int[] var)
 	return erg;
 }
 /**
- * Gibt einen Vector mit allen Lösungen des Gleichungssystems aus, die sich durch Wurzeln ausdrücken lassen in
- * der Beschränkung wie in QPolynomial.solveEasy definiert.
+ * Gibt einen Vector mit allen Losungen des Gleichungssystems aus, die sich durch Wurzeln ausdrucken lassen in
+ * der Beschrankung wie in QPolynomial.solveEasy definiert.
  * Creation date: (17.06.2002 08:41:10)
  * @param equations arithmetik.RQuotientExp[]
  * @param var int[]
@@ -320,7 +320,7 @@ public static Vector solveSystemEasy(RQuotientExp[] equation, int[] var)
 		eq[i] = equation[i].toZeroRepresentingFastPolynomial().member;
 	Vector zw = QPolynomial.solveSystemEasy(eq, var);
 
-	// Alle Lösungen müssen jetzt noch einmal getestet werden, ob sie das Ursprungssystem erfüllen.
+	// Alle Losungen mussen jetzt noch einmal getestet werden, ob sie das Ursprungssystem erfullen.
 	for (int i=0; i<zw.size(); i++)
 	{
 		RQuotientExp[] erg = (RQuotientExp[])zw.elementAt(i);
@@ -339,7 +339,7 @@ public static Vector solveSystemEasy(RQuotientExp[] equation, int[] var)
 		return this.zaehler.solveTo(identifierNr);
 	}
 	// Berechnet bei hinreichend dichtem Startvektor durch Newton-Approximation
-	// Eine Auflösung eines zweier-Block Nährungsweise. Es wird eine RuntimeException
+	// Eine Auflosung eines zweier-Block Nahrungsweise. Es wird eine RuntimeException
 	// geworfen, falls die Jakobi-Matrix mit keinen Werten invertierbar ist.
 	// Die Unbekannten werden aus identiferNr gezogen, und es wird bis zur Genauigkeit eps 
 	// approximiert.
@@ -372,7 +372,7 @@ public static Vector solveSystemEasy(RQuotientExp[] equation, int[] var)
 		{
 			first = false;
 			boolean isok = false;
-			while (!isok)							// Falls zufällig eine Stelle nahe 0
+			while (!isok)							// Falls zufallig eine Stelle nahe 0
 			{
 				xs[identifierNr[0]] = xk[0];
 				xs[identifierNr[1]] = xk[1];
@@ -414,8 +414,8 @@ public static Vector solveSystemEasy(RQuotientExp[] equation, int[] var)
 		return "[ " + zaehler + " ] / [ " + nenner + " ]";
 	}
 /**
- * Gibt ein FastPolynomial zurück, dass 0 ist dann und genau dann, wenn der
- * RExpression des Zählers zu 0 auswertet, während der Nenner an dieser Stelle
+ * Gibt ein FastPolynomial zuruck, dass 0 ist dann und genau dann, wenn der
+ * RExpression des Zahlers zu 0 auswertet, wahrend der Nenner an dieser Stelle
  * nicht zu 0 auswertet.
  * Creation date: (15.06.2002 21:09:00)
  * @return arithmetik.FastPolynomial

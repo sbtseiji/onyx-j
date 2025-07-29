@@ -33,7 +33,7 @@ public class SVGFileFilter extends FileFilter {
 
 	@Override
 	public String getDescription() {
-		return "SVG - Vector File Format";
+		return "SVG - ベクターファイル";
 	}
 
 }

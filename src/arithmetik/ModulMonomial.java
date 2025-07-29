@@ -127,7 +127,7 @@ public ModulMonomial add(int field)
 	 *         from being compared to this Object.
 	 */
 
-// Vergleicht exponenten revlex, dann nach pos, field wird außer acht gelassen.
+// Vergleicht exponenten revlex, dann nach pos, field wird ausser acht gelassen.
 	 
 public int compareTo(java.lang.Object o) 
 {
@@ -151,7 +151,7 @@ public int compareTo(java.lang.Object o)
  * Insert the method's description here.
  * Creation date: (18.09.2003 09:06:30)
 
-erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthält, die an der i-ten Position
+erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthalt, die an der i-ten Position
 ihren Leitterm haben. Jeder Vektor besteht wieder aus einem Vektor von Modulmonomen (ganz vorne Leitterm).
 
 Es wird erwartet, dass pol[i] sortiert ist nach reverse lexikographischer Ordnung der Leitterme.
@@ -167,8 +167,8 @@ public static void computeHilbertResolve(Vector[] pol, int anzVar, boolean ausga
 	
 	int[][] allPolNr = new int[dim][2];
 
-	// Dies Array enthält für jede Zeile die maximale Stelle, an der die Polynome in einer Variable bis 
-	// zu disem Wert sicherlich einen Exponenten größer null haben.
+	// Dies Array enthalt fur jede Zeile die maximale Stelle, an der die Polynome in einer Variable bis 
+	// zu disem Wert sicherlich einen Exponenten grosser null haben.
 	// In der letzten Stelle steht das Maximum aller Werte zuvor.
 	int[] maxErsterBenutzter = new int[anzGrad+1]; for (int i=0; i<anzGrad+1; i++) maxErsterBenutzter[i] = -1;
 	int k=0;
@@ -191,7 +191,7 @@ public static void computeHilbertResolve(Vector[] pol, int anzVar, boolean ausga
 	}
 
 	// Die Polynome werden jetzt in 2 Arrays gesplittet: Im zweiten alle Polynome mit Kriterium = true 
-	// und im ersten der Rest, insofern pol[i].size > 0 ist (Der Leitterm steht natürlich im vorderen Array)
+	// und im ersten der Rest, insofern pol[i].size > 0 ist (Der Leitterm steht naturlich im vorderen Array)
 	Vector[] npol = new Vector[pol.length];
 	for (int i=0; i<anzGrad; i++)
 	{
@@ -376,7 +376,7 @@ public static void computeHilbertResolve(Vector[] pol, int anzVar, boolean ausga
 			}
 			if (ausgabe)
 			{
-				System.out.print("Lösungsmodulpolynom "+i+": ");
+				System.out.print("Losungsmodulpolynom "+i+": ");
 				for (int j=0; j<redpol.size(); j++)
 					System.out.print(redpol.elementAt(j)+" + ");
 				System.out.println();
@@ -392,12 +392,12 @@ public static void computeHilbertResolve(Vector[] pol, int anzVar, boolean ausga
 
  	NICHT SORTIERTE LISTEN
 
-erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthält, die an der i-ten Position
+erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthalt, die an der i-ten Position
 ihren Leitterm haben. Jeder Vektor besteht wieder aus einem Vektor von Modulmonomen (ganz vorne Leitterm).
 
 Es wird erwartet, dass pol[i] sortiert ist nach reverse lexikographischer Ordnung der Leitterme.
 
-Statt Hashtablen für das s-polynom werden hier nicht-sortierte Listen (Vectors) genommen.
+Statt Hashtablen fur das s-polynom werden hier nicht-sortierte Listen (Vectors) genommen.
  
  */
 public static void computeHilbertResolve2(Vector[] pol, int anzVar) 
@@ -519,7 +519,7 @@ public static void computeHilbertResolve2(Vector[] pol, int anzVar)
 	/*
 	for (int i=0; i<erg.size(); i++)
 	{
-		System.out.print("Lösungsmodulpolynom "+i+": ");
+		System.out.print("Losungsmodulpolynom "+i+": ");
 		Vector p = (Vector)erg.elementAt(i);
 		for (int j=0; j<p.size(); j++)
 			System.out.print(p.elementAt(j)+" + ");
@@ -542,7 +542,7 @@ public static void computeHilbertResolve2(Vector[] pol, int anzVar)
  * Insert the method's description here.
  * Creation date: (18.09.2003 09:06:30)
 
-erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthält, die an der i-ten Position
+erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthalt, die an der i-ten Position
 ihren Leitterm haben. Jeder Vektor besteht wieder aus einem Vektor von Modulmonomen (ganz vorne Leitterm).
 
 Es wird erwartet, dass pol[i] sortiert ist nach reverse lexikographischer Ordnung der Leitterme.
@@ -560,7 +560,7 @@ public static void computeHilbertResolve3(Vector[] pol, int anzVar)
 
 	ROT-SCHWARZ BAEUME, OHNE KRITERIUM
  
-erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthält, die an der i-ten Position
+erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthalt, die an der i-ten Position
 ihren Leitterm haben. Jeder Vektor besteht wieder aus einem Vektor von Modulmonomen (ganz vorne Leitterm).
 
 Es wird erwartet, dass pol[i] sortiert ist nach reverse lexikographischer Ordnung der Leitterme.
@@ -702,7 +702,7 @@ public static void computeHilbertResolve3(Vector[] pol, int anzVar, ModulMonomia
 	/*
 	for (int i=0; i<erg.size(); i++)
 	{
-		System.out.print("Lösungsmodulpolynom "+i+": ");
+		System.out.print("Losungsmodulpolynom "+i+": ");
 		Vector p = (Vector)erg.elementAt(i);
 		for (int j=0; j<p.size(); j++)
 			System.out.print(p.elementAt(j)+" + ");
@@ -739,7 +739,7 @@ public static void computeHilbertResolve3(Vector[] pol, int anzVar, ModulMonomia
 
 	ROT-SCHWARZ BAEUME, MIT KRITERIUM
  
-erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthält, die an der i-ten Position
+erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthalt, die an der i-ten Position
 ihren Leitterm haben. Jeder Vektor besteht wieder aus einem Vektor von Modulmonomen (ganz vorne Leitterm).
 
 Es wird erwartet, dass pol[i] sortiert ist nach reverse lexikographischer Ordnung der Leitterme.
@@ -754,8 +754,8 @@ public static void computeHilbertResolve4(Vector[] pol, int anzVar, ModulMonomia
 	int dim = sum[anzGrad-1] + pol[anzGrad-1].size();
 	
 	int[][] allPolNr = new int[dim][2];
-	// Dies Array enthält für jede Zeile die maximale Stelle, an der die Polynome in einer Variable bis 
-	// zu disem Wert sicherlich einen Exponenten größer null haben.
+	// Dies Array enthalt fur jede Zeile die maximale Stelle, an der die Polynome in einer Variable bis 
+	// zu disem Wert sicherlich einen Exponenten grosser null haben.
 	// In der letzten Stelle steht das Maximum aller Werte zuvor.
 	int[] maxErsterBenutzter = new int[anzGrad+1]; for (int i=0; i<anzGrad+1; i++) maxErsterBenutzter[i] = -1;
 	int k=0;
@@ -778,7 +778,7 @@ public static void computeHilbertResolve4(Vector[] pol, int anzVar, ModulMonomia
 	}
 
 	// Die Polynome werden jetzt in 2 Arrays gesplittet: Im zweiten alle Polynome mit Kriterium = true 
-	// und im ersten der Rest, insofern pol[i].size > 0 ist (Der Leitterm steht natürlich im vorderen Array)
+	// und im ersten der Rest, insofern pol[i].size > 0 ist (Der Leitterm steht naturlich im vorderen Array)
 	Vector[] npol = new Vector[pol.length];
 	for (int i=0; i<anzGrad; i++)
 	{
@@ -935,7 +935,7 @@ public static void computeHilbertResolve4(Vector[] pol, int anzVar, ModulMonomia
 	{
 		for (int i=0; i<erg.size(); i++)
 		{
-			System.out.print("Lösungsmodulpolynom "+i+": ");
+			System.out.print("Losungsmodulpolynom "+i+": ");
 			Vector p = (Vector)erg.elementAt(i);
 			for (int j=0; j<p.size(); j++)
 				System.out.print(p.elementAt(j)+" + ");
@@ -976,7 +976,7 @@ public static void computeHilbertResolve4(Vector[] pol, int anzVar, ModulMonomia
 
 	ROT-SCHWARZ BAEUME, MIT KRITERIUM
  
-erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthält, die an der i-ten Position
+erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthalt, die an der i-ten Position
 ihren Leitterm haben. Jeder Vektor besteht wieder aus einem Vektor von Modulmonomen (ganz vorne Leitterm).
 
 Es wird erwartet, dass pol[i] sortiert ist nach reverse lexikographischer Ordnung der Leitterme.
@@ -992,8 +992,8 @@ public static void computeHilbertResolve4(Vector[] pol, int anzVar, ModulMonomia
 	int dim = sum[anzGrad-1] + pol[anzGrad-1].size();
 	
 	int[][] allPolNr = new int[dim][2];
-	// Dies Array enthält für jede Zeile die maximale Stelle, an der die Polynome in einer Variable bis 
-	// zu disem Wert sicherlich einen Exponenten größer null haben.
+	// Dies Array enthalt fur jede Zeile die maximale Stelle, an der die Polynome in einer Variable bis 
+	// zu disem Wert sicherlich einen Exponenten grosser null haben.
 	// In der letzten Stelle steht das Maximum aller Werte zuvor.
 	int[] maxErsterBenutzter = new int[anzGrad+1]; for (int i=0; i<anzGrad+1; i++) maxErsterBenutzter[i] = -1;
 	int k=0;
@@ -1016,7 +1016,7 @@ public static void computeHilbertResolve4(Vector[] pol, int anzVar, ModulMonomia
 	}
 
 	// Die Polynome werden jetzt in 2 Arrays gesplittet: Im zweiten alle Polynome mit Kriterium = true 
-	// und im ersten der Rest, insofern pol[i].size > 0 ist (Der Leitterm steht natürlich im vorderen Array)
+	// und im ersten der Rest, insofern pol[i].size > 0 ist (Der Leitterm steht naturlich im vorderen Array)
 	Vector[] npol = new Vector[pol.length];
 	for (int i=0; i<anzGrad; i++)
 	{
@@ -1196,7 +1196,7 @@ public static void computeHilbertResolve4(Vector[] pol, int anzVar, ModulMonomia
 	{
 		for (int i=0; i<erg.size(); i++)
 		{
-			System.out.print("Lösungsmodulpolynom "+i+": ");
+			System.out.print("Losungsmodulpolynom "+i+": ");
 			Vector p = (Vector)erg.elementAt(i);
 			for (int j=0; j<p.size(); j++)
 				System.out.print(p.elementAt(j)+" + ");
@@ -1234,7 +1234,7 @@ public static void computeHilbertResolve4(Vector[] pol, int anzVar, ModulMonomia
  * Insert the method's description here.
  * Creation date: (18.09.2003 09:06:30)
 
-erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthält, die an der i-ten Position
+erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthalt, die an der i-ten Position
 ihren Leitterm haben. Jeder Vektor besteht wieder aus einem Vektor von Modulmonomen (ganz vorne Leitterm).
 
 Es wird erwartet, dass pol[i] sortiert ist nach reverse lexikographischer Ordnung der Leitterme.
@@ -1250,7 +1250,7 @@ public static void computeHilbertResolve4(Vector[] pol, int anzVar, double wechs
  * Insert the method's description here.
  * Creation date: (18.09.2003 09:06:30)
 
-erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthält, die an der i-ten Position
+erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthalt, die an der i-ten Position
 ihren Leitterm haben. Jeder Vektor besteht wieder aus einem Vektor von Modulmonomen (ganz vorne Leitterm).
 
 Es wird erwartet, dass pol[i] sortiert ist nach reverse lexikographischer Ordnung der Leitterme.
@@ -1268,7 +1268,7 @@ public static void computeHilbertResolve4(Vector[] pol, int anzVar, boolean ausg
 
 EINZELNE MONOME WERDEN AUFGELOEST
 
-erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthält, die an der i-ten Position
+erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthalt, die an der i-ten Position
 ihren Leitterm haben. Jeder Vektor besteht wieder aus einem Vektor von Modulmonomen (ganz vorne Leitterm).
 
 Es wird erwartet, dass pol[i] sortiert ist nach reverse lexikographischer Ordnung der Leitterme.
@@ -1285,8 +1285,8 @@ public static void computeHilbertResolve5(Vector[] pol, int anzVar, boolean ausg
 	
 	int[][] allPolNr = new int[dim][2];
 
-	// Dies Array enthält für jede Zeile die maximale Stelle, an der die Polynome in einer Variable bis 
-	// zu disem Wert sicherlich einen Exponenten größer null haben.
+	// Dies Array enthalt fur jede Zeile die maximale Stelle, an der die Polynome in einer Variable bis 
+	// zu disem Wert sicherlich einen Exponenten grosser null haben.
 	// In der letzten Stelle steht das Maximum aller Werte zuvor.
 	int[] maxErsterBenutzter = new int[anzGrad+1]; for (int i=0; i<anzGrad+1; i++) maxErsterBenutzter[i] = -1;
 	int k=0;
@@ -1309,7 +1309,7 @@ public static void computeHilbertResolve5(Vector[] pol, int anzVar, boolean ausg
 	}
 
 	// Die Polynome werden jetzt in 2 Arrays gesplittet: Im zweiten alle Polynome mit Kriterium = true 
-	// und im ersten der Rest, insofern pol[i].size > 0 ist (Der Leitterm steht natürlich im vorderen Array)
+	// und im ersten der Rest, insofern pol[i].size > 0 ist (Der Leitterm steht naturlich im vorderen Array)
 	Vector[] npol = new Vector[pol.length];
 	for (int i=0; i<anzGrad; i++)
 	{
@@ -1366,7 +1366,7 @@ public static void computeHilbertResolve5(Vector[] pol, int anzVar, boolean ausg
 		}
 	}
 
-	// Hashtable aller schon bearbeiteter Monome mit ihren Lösungen
+	// Hashtable aller schon bearbeiteter Monome mit ihren Losungen
 	resolutionsOfMonomials = new Hashtable();
 
 	// Vortabelle ist erstellt; jetzt werden alle Elemente von erg durchlaufen.
@@ -1375,7 +1375,7 @@ public static void computeHilbertResolve5(Vector[] pol, int anzVar, boolean ausg
 		Vector p = (Vector)erg.elementAt(i);
 		ModulMonomial unten = (ModulMonomial)p.elementAt(0), oben = (ModulMonomial)p.elementAt(1);
 
-		// wird später nach erg abgeschrieben, um Dopplungen hier schon zu vermeiden.
+		// wird spater nach erg abgeschrieben, um Dopplungen hier schon zu vermeiden.
 		Hashtable localerg = new Hashtable();
 		
 		int[] position = allPolNr[unten.pos];
@@ -1437,7 +1437,7 @@ public static void computeHilbertResolve5(Vector[] pol, int anzVar, boolean ausg
 	{
 		for (int i=0; i<erg.size(); i++)
 		{
-			System.out.print("Lösungsmodulpolynom "+i+": ");
+			System.out.print("Losungsmodulpolynom "+i+": ");
 			Vector p = (Vector)erg.elementAt(i);
 			for (int j=0; j<p.size(); j++)
 				System.out.print(p.elementAt(j)+" + ");
@@ -1477,7 +1477,7 @@ public static void computeHilbertResolve5(Vector[] pol, int anzVar, boolean ausg
  * Insert the method's description here.
  * Creation date: (18.09.2003 09:06:30)
 
-erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthält, die an der i-ten Position
+erwartet ein Array von Vektoren von Polynomen, wobei pol[i] ein Vektor aller Polynome enthalt, die an der i-ten Position
 ihren Leitterm haben. Jeder Vektor besteht wieder aus einem Vektor von Modulmonomen (ganz vorne Leitterm).
 
 Es wird erwartet, dass pol[i] sortiert ist nach reverse lexikographischer Ordnung der Leitterme.
@@ -1615,7 +1615,7 @@ public static void computeHilbertResolveOfLeadingMonomials(Vector[] pol, int anz
 	/*
 	for (int i=0; i<erg.size(); i++)
 	{
-		System.out.print("Lösungsmodulpolynom "+i+": ");
+		System.out.print("Losungsmodulpolynom "+i+": ");
 		Vector p = (Vector)erg.elementAt(i);
 		for (int j=0; j<p.size(); j++)
 			System.out.print(p.elementAt(j)+" + ");
@@ -1697,7 +1697,7 @@ public static int fieldInverse(int field, int p)
  * @param m arithmetik.ModulMonomial
  * @param pol java.util.Vector[]
 
-	prüft Kriterium nicht nach.
+	pruft Kriterium nicht nach.
  
  */
 public static int findDivider(ModulMonomial m, Vector pol) 
@@ -1866,7 +1866,7 @@ public boolean istLowerOrderNachKriterium(int letzterBenutzter[])
  * @param m arithmetik.ModulMonomial
  * @param pol java.util.Vector[]
 
-	ist VergleichMitMax = false, verhält sich diese Methode wie das normale istLowerOrderNachKriterium. Ist es true, wird
+	ist VergleichMitMax = false, verhalt sich diese Methode wie das normale istLowerOrderNachKriterium. Ist es true, wird
 	nach dem letzten (d.h. dem Maximum) der Inhalte von letzterBenutzter ausgesiebt.
  
  */
@@ -2100,7 +2100,7 @@ public ModulMonomial[] resolveMonomial(int[] sum, int[][] allPolNr, Vector[] pol
 	pos = divider;
 
 	Hashtable erg = new Hashtable();
-	erg.put(this,this);						// Hier das veränderte this
+	erg.put(this,this);						// Hier das veranderte this
 	
 	for (int kriteriumOderNicht=0; (kriteriumOderNicht==0) || ((kriteriumOderNicht==1) && (istLowerOrderNachKriterium(maxErsterBenutzter,true))); kriteriumOderNicht++)
 	{

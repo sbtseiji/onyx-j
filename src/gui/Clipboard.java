@@ -187,7 +187,7 @@ public class Clipboard extends ArrayList<Object>{
 				edgeCopy.update();
 			} else {
 			
-				System.err.println("Unknown object in clipboard");
+				System.err.println("クリップボードに不明なオブジェクトがあります");
 			}
 		}
 		

@@ -23,17 +23,17 @@ import java.math.*;
 import engine.Statik;
 
 /*
-	Klasse für Polynome über Qelement.
+	Klasse fur Polynome uber Qelement.
 	
 	Die Polynome sind 
-	nach den Potenzen lexikographisch geordnet (höchster zuerst).
+	nach den Potenzen lexikographisch geordnet (hochster zuerst).
 */
 
 public class QPolynomial implements Ring
 {
 	private final static int KONVERGENZHAEUFIGKEIT = 1;
 
-	private Vector monom;		// Der größte (führende) nach hinten, der kleinste (konstante) vorne
+	private Vector monom;		// Der grosste (fuhrende) nach hinten, der kleinste (konstante) vorne
 
 	private static Hashtable gaertnerPolynomialTable = new Hashtable();
 
@@ -100,10 +100,10 @@ public class QPolynomial implements Ring
 	public final static QPolynomial ONE = new QPolynomial(new Qelement(1));
 	public final static QPolynomial TWO = new QPolynomial(new Qelement(2));
 	/*	
-	// liefert in erg[0] den ggV (Produkt aller QPolynomiale) zurück, und in den anderen Argumenten
+	// liefert in erg[0] den ggV (Produkt aller QPolynomiale) zuruck, und in den anderen Argumenten
 	// eine Liste, mit was der jeweilige QPolynomial malgenommen werden muss, um auf den 
 	// kgV zu kommen. Entsprechend wird erwartet, dass die inidzierung der Argument-
-	// liste bei 1 anfängt !!!
+	// liste bei 1 anfangt !!!
 	public static QPolynomial[] kgV(QPolynomial[] arg)
 	{
 		int anz = arg.length;
@@ -343,7 +343,7 @@ public static Complex[] approximateZeroOfSymmetricSystem(QPolynomial[] system, d
 	if (dim!=system.length)
 		throw new RuntimeException("ApproximateZerosOfSystem called with assymetric system ("+dim+" variables given, "+system.length+" equations)");
 
-	// simples Startsystem mit 0 als Lösung.
+	// simples Startsystem mit 0 als Losung.
 	QPolynomial[] startsystem = new QPolynomial[dim];
 	for (int i=0; i<dim; i++) startsystem[i] = new QPolynomial(i);
 	
@@ -436,7 +436,7 @@ public static Complex[] approximateZeroOfSystem(QPolynomial[] system, double eps
  * @param system arithmetik.QPolynomial[]
 
 	Approximiert irgendeine Nullstelle des Systems.
-	einsetzungsKonstante beschreibt die Art der Einsetzung für die überzähligen Variablen. 
+	einsetzungsKonstante beschreibt die Art der Einsetzung fur die uberzahligen Variablen. 
  
  */
 public static Complex[] approximateZeroOfSystem(QPolynomial[] system, int einsetzungsKonstante, double epsilon, int maxIterations) 
@@ -476,7 +476,7 @@ public static Complex[] approximateZeroOfSystem(QPolynomial[] system, int einset
  */
 public static QPolynomial[] computeGroebnerBasis(QPolynomial[] ideal) 
 {
-	// Da die Hashtables kein null als value kriegen dürfen.
+	// Da die Hashtables kein null als value kriegen durfen.
 	Integer dummy = new Integer(0);
 	
 	Hashtable b = new Hashtable();
@@ -536,7 +536,7 @@ public static QPolynomial[] computeGroebnerBasis(QPolynomial[] ideal)
  */
 public static QPolynomial[] computeGroebnerBasis(QPolynomial[] ideal, Comparator ordnung) 
 {
-	// Da die Hashtables kein null als value kriegen dürfen.
+	// Da die Hashtables kein null als value kriegen durfen.
 	Integer dummy = new Integer(0);
 	
 	Hashtable b = new Hashtable();
@@ -766,7 +766,7 @@ public static int countReelZeros(QPolynomial[] ideal)
 	Hashtable restHash = new Hashtable();
 	for (int i=0; i<rest.length; i++) restHash.put(rest[i],new Integer(i));
 
-	// erstellen der Matrizen für die Multiplikation mit  X_i
+	// erstellen der Matrizen fur die Multiplikation mit  X_i
 	RingMatrix[] initial = new RingMatrix[ix+1];
 	for (int i=0; i<=ix; i++)
 	{
@@ -902,7 +902,7 @@ public static int countReelZeros(QPolynomial[] ideal)
  * @return arithmetik.QPolynomial
  * @param matrix arithmetik.QPolynomial[][]
 
-	Eine angepasste Determinanten - Routine für eine Matrix aus QPolynomials
+	Eine angepasste Determinanten - Routine fur eine Matrix aus QPolynomials
  
  */
 public static QPolynomial determinant(QPolynomial[][] inMatrix) 
@@ -1049,8 +1049,8 @@ public static QPolynomial determinant(QPolynomial[][] inMatrix)
  * Teilt das Polynom durch q
 
 	TvO: Die Methode divide in QMonomial existierte nicht.
-	Ich habe sie so eingeführt, dass sie ein new Monomial
-	zurückliefert, dass dann entsprechend in den Vector
+	Ich habe sie so eingefuhrt, dass sie ein new Monomial
+	zuruckliefert, dass dann entsprechend in den Vector
 	eingesetzt wird.
  
  */
@@ -1067,15 +1067,15 @@ public static QPolynomial determinant(QPolynomial[][] inMatrix)
 	{
 		return divideAndRemainder(arg2)[0];
 	}
-	// liefert Divident und Rest zurück, wobei der Rest definiert ist als erstes auftreten,
-	// dass das zweite Argument eine höhere Potenz in irgendeiner Unbekannten hat.
+	// liefert Divident und Rest zuruck, wobei der Rest definiert ist als erstes auftreten,
+	// dass das zweite Argument eine hohere Potenz in irgendeiner Unbekannten hat.
 	// Es gilt in jedem Fall *res[0]* * *arg2* + *res[1]* = *this*
 	public QPolynomial[] divideAndRemainder(QPolynomial arg2)
 	{
 		return multiDivideAndRemainder(new QPolynomial[]{arg2});
 	}
 /**
- * Löst das Polynom nach var auf, solange der Grad in var <= 2 ist.
+ * Lost das Polynom nach var auf, solange der Grad in var <= 2 ist.
  * Creation date: (16.06.2002 11:20:52)
  * @return arithmetik.RQuotientExp
  * @param grad int
@@ -1091,7 +1091,7 @@ public boolean equals(QPolynomial arg2)
 	return true;
 }
 	// Evaluate Nr. 6 nimmt ein Array von doubles, dass alle vorkommenden
-	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zurück.
+	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zuruck.
 	public double evaluate(double[] value)
 	{
 		double erg = 0;
@@ -1108,7 +1108,7 @@ public boolean equals(QPolynomial arg2)
 		}
 		return erg;
 	}
-// Diese Methode liefert einen neues Polynom zurück, in dem die Variablen 
+// Diese Methode liefert einen neues Polynom zuruck, in dem die Variablen 
 // mit den Nummern *identifierNrs* durch *values* ersetzt wurden.
 public QPolynomial evaluate(int[] identifierNrs, Qelement[] values)
 {
@@ -1127,7 +1127,7 @@ public QPolynomial evaluate(int[] identifierNrs, Qelement[] values)
 	return erg.unifiziereKonstanten();
 }
 	// Evaluate Nr. 6 nimmt ein Array von Complex, dass alle vorkommenden
-	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zurück.
+	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zuruck.
 	public Complex evaluate(Complex[] value)
 	{
 		Complex erg = (Complex)value[0].abs_zero();
@@ -1144,11 +1144,11 @@ public QPolynomial evaluate(int[] identifierNrs, Qelement[] values)
 		}
 		return erg;
 	}
-    // Diese Methode liefert einen neues Polynom zurück, in dem die Variable 
+    // Diese Methode liefert einen neues Polynom zuruck, in dem die Variable 
     // mit der Nummer *identifierNr* durch *value* ersetzt wurde und alle anderen
     // Variablen durch 0. Im Gegensatz
     // zur obenstehenden evaluate - Methode nimmt sie einen CElemenet
-    // und liefert auch einen solchen zurück.
+    // und liefert auch einen solchen zuruck.
     public Celement evaluate(int identifierNr, Celement value)
     {
         Celement erg = new Celement();
@@ -1164,11 +1164,11 @@ public QPolynomial evaluate(int[] identifierNrs, Qelement[] values)
         }
         return erg;
     }
-    // Diese Methode liefert einen neues Polynom zurück, in dem die Variable 
+    // Diese Methode liefert einen neues Polynom zuruck, in dem die Variable 
     // mit der Nummer *identifierNr* durch *value* ersetzt wurde und alle anderen
     // Variablen durch 0. Im Gegensatz
     // zur obenstehenden evaluate - Methode nimmt sie einen CElemenet
-    // und liefert auch einen solchen zurück.
+    // und liefert auch einen solchen zuruck.
     public Relement evaluate(int identifierNr, Relement value)
     {
         Relement erg = new Relement();
@@ -1181,7 +1181,7 @@ public QPolynomial evaluate(int[] identifierNrs, Qelement[] values)
         }
         return erg;
     }
-	// Diese Methode liefert einen neues Polynom zurück, in dem die Variable 
+	// Diese Methode liefert einen neues Polynom zuruck, in dem die Variable 
 	// mit der Nummer *identifierNr* durch *value* ersetzt wurde.
 	public QPolynomial evaluate(int identifierNr, Qelement value)
 	{
@@ -1196,10 +1196,10 @@ public QPolynomial evaluate(int[] identifierNrs, Qelement[] values)
 		}
 		return erg.unifiziereKonstanten();
 	}
-	// Diese Methode liefert einen neues Polynom zurück, in dem die Variable 
+	// Diese Methode liefert einen neues Polynom zuruck, in dem die Variable 
 	// mit der Nummer *identifierNr* durch *value* ersetzt wurde. Im Gegensatz
 	// zur obenstehenden evaluate - Methode nimmt sie einen QPolynomial
-	// liefert auch einen solchen zurück.
+	// liefert auch einen solchen zuruck.
 	public QPolynomial evaluate(int identifierNr, QPolynomial value)
 	{
 		QPolynomial erg = new QPolynomial();
@@ -1213,7 +1213,7 @@ public QPolynomial evaluate(int[] identifierNrs, Qelement[] values)
 		return erg.unifiziereKonstanten();
 	}
 	// Diese 4. Evalutate - Methode nimmt einen RExpression und liefert auch einen solchen
-	// zurück.
+	// zuruck.
 	public RExpression evaluate(int identifierNr, RExpression value)
 	{
 		RExpression erg = new RExpression();
@@ -1227,7 +1227,7 @@ public QPolynomial evaluate(int[] identifierNrs, Qelement[] values)
 		return erg;
 	}
 	// Und Nummero 5 nimmt RQuotientExp und  liefert auch einen solchen
-	// zurück.
+	// zuruck.
 	public RQuotientExp evaluate(int identifierNr, RQuotientExp value)
 	{
 		RQuotientExp erg = new RQuotientExp();
@@ -1367,7 +1367,7 @@ public QPolynomial evaluate(int[] identifierNrs, Qelement[] values)
 				Qelement blf = (fsubst.leadingFactor()).reciprocal();
 				Object[][] fb = (fsubst.multiply(blf)).f_bivariate();
 
-				// univariate = gleich zurückgeben
+				// univariate = gleich zuruckgeben
 				
 				if ((fb[0].length ==1) && (((Integer)fb[1][0]).intValue() == 1) )
 				{
@@ -1791,7 +1791,7 @@ public QPolynomial[] factorBivariate(int xIndex, int yIndex)
 	Qelement[][] c = Qelement.findCoreBasis(mat);
 
 //	RingVector[] c = matrix.coreBasis();
-//	int r = c.length - 4*m*n + 2*m*n+m+n;				// Abzüglich der zusätzlichen Spalten.
+//	int r = c.length - 4*m*n + 2*m*n+m+n;				// Abzuglich der zusatzlichen Spalten.
 	int r = c.length;
 
 	System.out.println(r+" Faktoren des Polynoms festgestellt.");
@@ -1802,7 +1802,7 @@ public QPolynomial[] factorBivariate(int xIndex, int yIndex)
 	boolean allesOk = false;
 	while (!allesOk)									// Schleife der Randomisierung
 	{
-		System.out.println("Suche neues g zufällig....");
+		System.out.println("Suche neues g zufallig....");
 		g = new QPolynomial();
 		QPolynomial[] gi = new QPolynomial[r];
 		int l = 0;
@@ -1897,7 +1897,7 @@ public QPolynomial[] factorBivariate(int xIndex, int yIndex)
 		System.out.println("dreiecksmatrix * erg = "+aev.vectorMultiply(sol));
 		System.out.println("Ausgewertete Matrix -> R : "+aev1.findRMatrix());
 		RingVector sol2 = aev1.findRMatrix().solveRightUpperTriangleMatrix(new RingVector(new RQuotientExp(), aev.getRows()), 0);
-		System.out.println("Lösung der ausgewerteten Matrix : "+sol2);
+		System.out.println("Losung der ausgewerteten Matrix : "+sol2);
 		
 */		
 
@@ -1930,10 +1930,10 @@ public QPolynomial[] factorBivariate(int xIndex, int yIndex)
 			RingMatrix rm = new RingMatrix(mat2);
 			RingVector loe = new RingVector(loevec);
 			System.out.println("Gleichungssystem = "+rm);
-			System.out.println("Lösungsvektor = "+loe);
+			System.out.println("Losungsvektor = "+loe);
 			RingMatrix rod[] = rm.findRMatrix(loe);
 			System.out.println("Rechte Obere Dreieck = "+rod[0]);
-			System.out.println("Lösungsvektor = "+rod[1]);				
+			System.out.println("Losungsvektor = "+rod[1]);				
 				
 			RingVector a = rm.solveWithGauss(new RingVector(loevec));
 			if (a == null) throw new RuntimeException("No Solution for A");
@@ -1942,7 +1942,7 @@ public QPolynomial[] factorBivariate(int xIndex, int yIndex)
 		}
 		System.out.println("Ergebnismatrix = "+A);
 		
-//Neues Gleichungslösen
+//Neues Gleichungslosen
 /*
 		for (int i=0; i<r; i++)
 		{
@@ -2045,7 +2045,7 @@ public QPolynomial[] factorBivariate(int xIndex, int yIndex)
 						(new RQuotientExp(0)),i,j);
 			}
 
-		System.out.println("Matrix fürs charakteristische Polynom = "+IxminA);	
+		System.out.println("Matrix furs charakteristische Polynom = "+IxminA);	
 		RQuotientExp charPolRat = (RQuotientExp)IxminA.developDeterminant();
 		charPol = charPolRat.zaehler.toQPolynomial();
 		System.out.println("Charakteristisches Polynom: "+charPol);
@@ -2112,7 +2112,7 @@ public QPolynomial[] factorBivariate(int xIndex, int yIndex)
 	return erg;
 }
 /**
-* Faktorisiert ein Bivariates Polynom vollständig. Eine Faktorisierung über dem algebraischen Abschluss
+* Faktorisiert ein Bivariates Polynom vollstandig. Eine Faktorisierung uber dem algebraischen Abschluss
 * von Q kann auch berechnet werden (ist im moment auskommentiert)
 *
 * Creation date: (18.05.2002 21:30:22)
@@ -2122,7 +2122,7 @@ public QPolynomial[] factorBivariateKurz(int xIndex, int yIndex)
 {
 	// Vorbereitung
 
-	if (isZero()) return new QPolynomial[]{new QPolynomial()};				// Falls 0, ein Nullpolynom zurück
+	if (isZero()) return new QPolynomial[]{new QPolynomial()};				// Falls 0, ein Nullpolynom zuruck
 	Vector ergv = new Vector();
 	
 	QPolynomial f = new QPolynomial(this);									// Quadratfrei machen
@@ -2141,7 +2141,7 @@ public QPolynomial[] factorBivariateKurz(int xIndex, int yIndex)
 	if ((m<1) || (n<1))
 	{
 		QPolynomial[] faks;
-		if (m<1) faks = factorUnivariate();								// Falls jetzt univariat, dort lösen
+		if (m<1) faks = factorUnivariate();								// Falls jetzt univariat, dort losen
 		else faks = factorUnivariate();
 		for (int i=0; i<faks.length; i++)
 			ergv.addElement(faks[i]);
@@ -2179,7 +2179,7 @@ public QPolynomial[] factorBivariateKurz(int xIndex, int yIndex)
 	
 	RingMatrix matrix = new RingMatrix(mat);
 	RingVector[] c = matrix.coreBasis();
-	int r = c.length - 4*m*n + 2*m*n+m+n;				// Abzüglich der zusätzlichen Spalten.
+	int r = c.length - 4*m*n + 2*m*n+m+n;				// Abzuglich der zusatzlichen Spalten.
 	
 	QPolynomial charPol = new QPolynomial(), fx = f.derive(xIndex), g = new QPolynomial();
 	RingMatrix A = new RingMatrix(new Qelement(),1,1);
@@ -2189,7 +2189,7 @@ public QPolynomial[] factorBivariateKurz(int xIndex, int yIndex)
 	{
 		// Schritt 2
 		
-		g = new QPolynomial();							// g wählen
+		g = new QPolynomial();							// g wahlen
 		QPolynomial[] gi = new QPolynomial[r];
 		int l = 0;
 		for (int k=0; k<c.length; k++)
@@ -2272,7 +2272,7 @@ public QPolynomial[] factorBivariateKurz(int xIndex, int yIndex)
 		UnivariatePolynomial phi = (UnivariatePolynomial)faktoren.pop();		// Erster koeffizient = konstante
 		// 5a
 /*
-		// Dieser Teil würde die absoluten Faktoren berechnen, falls dies nötig ist
+		// Dieser Teil wurde die absoluten Faktoren berechnen, falls dies notig ist
 	
 		QPolynomial qphi = phi.toQPolynomial(0);
 		Qalgebraic lambda = (new Qalgebraic(qphi)).getX();
@@ -2336,7 +2336,7 @@ public QPolynomial[] factorize()
  * @return arithmetik.RemainderRingPolynomial[]
  * @param mod long
 
-	nimmt ein univariates Polynom und faktorisiert es bezüglich einem Modulus. Haben einige der Koeffizienten
+	nimmt ein univariates Polynom und faktorisiert es bezuglich einem Modulus. Haben einige der Koeffizienten
 	einen Nenner ungleich 1, stimmt der Inhalt des Ergebnispolynoms nicht mehr (um Division durch 0 zu vermeiden).
  
  */
@@ -2391,9 +2391,9 @@ public Object[][] factorMultivariate(int r)
 	return erg;
 }
 /**
- * Faktorisiert die Polynome so weit wir irgend möglich
- * über paarweisen ggT und finden von multiple Faktoren. Werden 2 gleich Faktoren innerhalb einer
- * Gleichnung gefunden, wird einer eliminiert. Werden 2 gleiche Faktoren über 2 Gleichungen gefunden,
+ * Faktorisiert die Polynome so weit wir irgend moglich
+ * uber paarweisen ggT und finden von multiple Faktoren. Werden 2 gleich Faktoren innerhalb einer
+ * Gleichnung gefunden, wird einer eliminiert. Werden 2 gleiche Faktoren uber 2 Gleichungen gefunden,
  * werden sie danach auch auf den selben Pointer zeigen. Am Input-Array und an den Vectoren wird
  * rumgebastelt, an den Polynomen selber aber nicht.
  * Creation date: (16.06.2002 09:01:30)
@@ -2468,8 +2468,8 @@ public static void factorSystemSimple(Vector[] equation)
  * @return arithmetik.QPolynomial[]
  * @param index int
 
-	Rahmenmethode für univariate Faktorisierung. this muss univariat sein, der Rest ist egal.
-	Zurückgegeben wird ein Array der Faktoren, wobei gleiche Faktoren durch gleiche Pointer
+	Rahmenmethode fur univariate Faktorisierung. this muss univariat sein, der Rest ist egal.
+	Zuruckgegeben wird ein Array der Faktoren, wobei gleiche Faktoren durch gleiche Pointer
 	direkt hintereinander realisiert sind.
  	
  */
@@ -2499,7 +2499,7 @@ public QPolynomial[] factorUnivariate()
 	    {
 	        QPolynomial q = ((UnivariatePolynomial) s.pop()).toQPolynomial(index);
 	        if (q.isConstant())  consts = consts.multiply(q.leadingFactor().pow(pnr+1));
-	        else for (int i=0; i<=pnr; i++) erg.addElement(q);				// pnr ist Häufigkeit des Ursprungsfaktors
+	        else for (int i=0; i<=pnr; i++) erg.addElement(q);				// pnr ist Haufigkeit des Ursprungsfaktors
 	    }
 	}
 
@@ -2625,9 +2625,9 @@ public QPolynomial[] findCombinationPolynomials(int index, Printable out)
 //		erg = erg.add( ((new QPolynomial(index)).pow(d2-i)).multiply(gk1[i]).divide(
 //				new QPolynomial(new Qelement(Statik.faculty(i)))));
 	
-	// Dieser Teil für das symbolische 8er-Polynom:
+	// Dieser Teil fur das symbolische 8er-Polynom:
 	// Wir erstellen ein array: 2 arrays mit je d2 arrays von Tupeln der Form [exp2,...,expInd,factor]
-	// für jedes Monom von gamma.
+	// fur jedes Monom von gamma.
 /*	
 	int ind = getHighestIndex();
 	String rep = "{{";
@@ -2691,7 +2691,7 @@ public FastPolynomial[] findDoubleFactors()
 	QPolynomial content = this.getContent(index);
 	FastPolynomial[] erg = {new FastPolynomial(Qelement.ONE),new FastPolynomial(Qelement.ONE)};
 	if (!content.isUnit()) erg = content.findDoubleFactors();
-	Vector multipleFaktoren = new Vector();			// enthält einfach Faktoren, dann doppelt, dann dreifache...
+	Vector multipleFaktoren = new Vector();			// enthalt einfach Faktoren, dann doppelt, dann dreifache...
 	
 	QPolynomial work = this.divide(content);
 	QPolynomial multiple = work.gcd(work.derive(index));
@@ -2809,10 +2809,10 @@ public Vector findRationalZeros3()
  * Creation date: (08.01.2003 18:51:08)
  * @return arithmetik.RExpression[]
 
-	Findet alle durch Quadratwurzeln ausdrückbaren Nullstellen von this.
+	Findet alle durch Quadratwurzeln ausdruckbaren Nullstellen von this.
 	Liefert die Ergebnisse als RQuotientExp, und zwar alle Ergebnisse, aber jeweils nur eine
-	Konjugierte und Darstellungsform (d.h. für jeden über dem Grundkörper irreduziblen Faktor 
-	genau ein Ergebnis). Die Ergebnisse haben im Zähler die Form 
+	Konjugierte und Darstellungsform (d.h. fur jeden uber dem Grundkorper irreduziblen Faktor 
+	genau ein Ergebnis). Die Ergebnisse haben im Zahler die Form 
 	a + b * sqrt(c) + d * sqrt(e + f * sqrt(c)) + ...
 	und im Nenner ein QPolynomial.
  
@@ -2876,7 +2876,7 @@ public RQuotientExp[] findSquarerootZeros(int index)
 
 			QPolynomial faktorOhneZweithoechsten = work;
 			QPolynomial konstante = work.getCoefficient(index,deg-1).multiply(new Qelement(1,deg)).negate();
-			if ((!notSolvable) && (!faktor[i].getCoefficient(index,deg-1).isZero()))			// zweithöchsten eliminieren
+			if ((!notSolvable) && (!faktor[i].getCoefficient(index,deg-1).isZero()))			// zweithochsten eliminieren
 			{
 				QPolynomial subst = (new QPolynomial(index)).add(konstante);
 				faktorOhneZweithoechsten = work.evaluate(index, subst);
@@ -2945,9 +2945,9 @@ public RQuotientExp[] findSquarerootZeros(int index)
  * @return arithmetik.RQuotientExp[]
  * @param index int
 
-	Liefert entweder null oder eine durch Quadratwurzeln ausdrückbaren Nullstellen von this, 
+	Liefert entweder null oder eine durch Quadratwurzeln ausdruckbaren Nullstellen von this, 
 	wenn this in index Grad 4 hat und irreduzibel ist.
-	Liefert die Ergebnisse als RQuotientExp. Das Ergebniss hat im Zähler die Form 
+	Liefert die Ergebnisse als RQuotientExp. Das Ergebniss hat im Zahler die Form 
 	a + b * sqrt(c) + d * sqrt(e + f * sqrt(c)) + ...
 	und im Nenner ein QPolynomial.
  
@@ -2981,7 +2981,7 @@ private RQuotientExp findSquarerootZerosWithDegree4(int index)
 	adbestimm = adbestimm.subtract(ad.pow(1).multiply(Qelement.TWO).multiply(koeff[1].sqr().multiply(koeff[2])));
 	adbestimm = adbestimm.add(ad.pow(0).multiply(koeff[1].pow(4)));
 	
-	Vector adlsg = adbestimm.getLinearZeros(adnr);			// enthält RQuotientExp mit 1 als Nenner
+	Vector adlsg = adbestimm.getLinearZeros(adnr);			// enthalt RQuotientExp mit 1 als Nenner
 
 	if (adlsg.size() == 0) return null;
 
@@ -2989,7 +2989,7 @@ private RQuotientExp findSquarerootZerosWithDegree4(int index)
 	// d = x (da das Vorzeichen vor d und a gemeinsam vertauscht werden kann), 
 	// b = k1 / 4x , c = -k2 / 2 - b , a = 1
 	// Die Nullstellen muss noch durch k1 geteilt werden.
-	// Die Lösung ist dann sqrt(b) + sqrt(c + d * sqrt(b));
+	// Die Losung ist dann sqrt(b) + sqrt(c + d * sqrt(b));
 	Vector ergV = new Vector();
 	for (int i=0; i<adlsg.size(); i++)
 	{
@@ -3013,9 +3013,9 @@ private RQuotientExp findSquarerootZerosWithDegree4(int index)
  * @param index int
 
  	Liefert null, falls this constant und ungleich 0 ist, und sonst die durch Quadratwurzeln 
- 	ausdrückbaren Nullstellen von this, 
+ 	ausdruckbaren Nullstellen von this, 
 	wenn this in index Grad 2,1,0 oder -1 hat und irreduzibel ist.
-	Liefert die Ergebnisse als RQuotientExp. Das Ergebniss hat im Zähler die Form 
+	Liefert die Ergebnisse als RQuotientExp. Das Ergebniss hat im Zahler die Form 
 	a + b * sqrt(c)
 	und im Nenner ein QPolynomial.
  	
@@ -3050,7 +3050,7 @@ private RQuotientExp findSquarerootZerosWithDegTwo(int index)
  	und solve wird aufgerufen; um alle Ergebnisse wird eine Wurzel gesetzt.
 
 	Aufgrund der Normalform muss der Nenner von findSquarerootZeros (laut Spezifikation ein QPolynomial)
-	ein Quadrat sein. Ansonsten wird die zugehörige Lösung gekillt.
+	ein Quadrat sein. Ansonsten wird die zugehorige Losung gekillt.
  */
 private RQuotientExp[] findSquarerootZerosWithEvenExponents(int index) 
 {
@@ -3206,9 +3206,9 @@ public static QPolynomial gaertnerPolynomial(int[] v)
  * @return arithmetik.QPolynomial
  * @param arg arithmetik.QPolynomial[]
 
-	Berechnet den Größten Gemeinsamen Teiler eines Arrays aus Polynomen.
+	Berechnet den Grossten Gemeinsamen Teiler eines Arrays aus Polynomen.
 	Der Algorithmus ist probabilistisch: Er erzeugt eine Linearkombination des zweiten bis letzten Arguments
-	über ganzen Zahlen, jeweils mit einem Faktor zwischen 1 und 1000. Dann wird
+	uber ganzen Zahlen, jeweils mit einem Faktor zwischen 1 und 1000. Dann wird
 	der gcd des ersten Arguments und dieses Linearfaktors genommen und getestet.
  
  */
@@ -3239,7 +3239,7 @@ public static QPolynomial gcd(QPolynomial[] arg)
 
 	Berechnet den ggT mit Subresultantenketten wie in
 	http://triton.mathematik.tu-muenchen.de/~kaplan/ca/spock/doku_html/node74.html
-	in der 2. genannten Version beschrieben. Für das etwas mysteriöse "epsilon * r" wird
+	in der 2. genannten Version beschrieben. Fur das etwas mysteriose "epsilon * r" wird
 	der Rest der Pseudodivision genommen.
  
  */
@@ -3313,7 +3313,7 @@ public QPolynomial gcd(QPolynomial arg2)
 		QPolynomial inhalt1 = this.getContent(index);
 		QPolynomial inhalt2 = arg2.getContent(index);
 		QPolynomial inhaltGgt = inhalt1.gcd(inhalt2);
-		// Normalisieren zur Vermeidung großer Zahlen
+		// Normalisieren zur Vermeidung grosser Zahlen
 		QPolynomial eins = this.divide(inhalt1).normalize();
 		QPolynomial zwei = arg2.divide(inhalt2).normalize();
 
@@ -3467,7 +3467,7 @@ public int[] getAllIndizes()
 	return erg;
 }
 	/**
-	 * Die Polynome müssen Univariat sein.
+	 * Die Polynome mussen Univariat sein.
 	 * Berechnet die Bezout-Koeffizienten a,b und den ggT r so, dass a*this+b*arg2 = ggT und a und b
 	 * jeweils minimal vom Grad sind.
 	 * Creation date: (22.05.2002 09:47:31)
@@ -3482,7 +3482,7 @@ public int[] getAllIndizes()
 		if (isConstant()) return new QPolynomial[]{new QPolynomial(this.leadingFactor().reciprocal()), new QPolynomial(), new QPolynomial(Qelement.ONE)};
 		if (arg2.isConstant()) return new QPolynomial[]{new QPolynomial(), new QPolynomial(arg2.leadingFactor().reciprocal()), new QPolynomial(Qelement.ONE)};
 		
-		// Normalisieren zur Vermeidung großer Zahlen
+		// Normalisieren zur Vermeidung grosser Zahlen
 		QPolynomial normaler1 = new QPolynomial(this.leadingFactor());
 		QPolynomial normaler2 = new QPolynomial(arg2.leadingFactor());
 		QPolynomial eins = this.divide(normaler1);
@@ -3542,7 +3542,7 @@ public int[] getAllIndizes()
 		if (m.isConstant()) return m.factor;
 		return new Qelement();
 	}
-	// liefert den Inhalt eines Polynoms (GCD aller Koeffizienten) bezüglich x_index
+	// liefert den Inhalt eines Polynoms (GCD aller Koeffizienten) bezuglich x_index
 	public QPolynomial getContent(int index)
 	{
 		int g = getDegreeIn(index);
@@ -3560,7 +3560,7 @@ public int[] getAllIndizes()
 		}
 		return gcd(coeffs);
 	}
-	// liefert den Inhalt eines Polynoms (GCD aller Koeffizienten) bezüglich x_index mit gcd2
+	// liefert den Inhalt eines Polynoms (GCD aller Koeffizienten) bezuglich x_index mit gcd2
 	public QPolynomial getContent2(int index)
 	{
 		int g = getDegreeIn(index);
@@ -3578,7 +3578,7 @@ public int[] getAllIndizes()
 		return erg;
 	}
 /**
- * Gibt das Minimalpolynom vom Grad 2^deg für einen allgemeinen Wurzelausdruck aus (ohne konstantes Glied),
+ * Gibt das Minimalpolynom vom Grad 2^deg fur einen allgemeinen Wurzelausdruck aus (ohne konstantes Glied),
  * d.h. von der Form x1*sqrt(x2) + x3*sqrt(x4+x5*sqrt(x6)) + ...
  * Creation date: (21.06.2002 09:19:34)
  */
@@ -3599,7 +3599,7 @@ public static QPolynomial getGeneralQuadraticMinimalPolynomial(int deg)
 	ex = (new RExpression(0)).subtract(ex);
 	return ex.eliminateSquareRoots().expand().unifiziereKonstanten();		
 }
-	// liefert den höchsten vorkommenden Index (i.A. die Anzahl der Variablen minus 1).
+	// liefert den hochsten vorkommenden Index (i.A. die Anzahl der Variablen minus 1).
 	public int getHighestIndex()
 	{
 		int erg = 0;
@@ -3607,13 +3607,13 @@ public static QPolynomial getGeneralQuadraticMinimalPolynomial(int deg)
 			erg = Math.max(erg, ((QMonomial)monom.elementAt(i)).getHighestIndex());
 		return erg;
 	}
-	// liefert den führenden Koeffizienten zu der gegebenen Variable
+	// liefert den fuhrenden Koeffizienten zu der gegebenen Variable
 	public QPolynomial getLeadingCoefficient(int index)
 	{
 		return getCoefficient(index, this.getDegreeIn(index));
 	}
 /**
-	// Liefert das nach lexikographischer Ordung höchste Monom
+	// Liefert das nach lexikographischer Ordung hochste Monom
  * Creation date: (13.07.2002 10:05:43)
  */
 public QMonomial getLeadingMonomial() 
@@ -3622,7 +3622,7 @@ public QMonomial getLeadingMonomial()
 	return ((QMonomial)monom.lastElement());
 }
 /**
-	// Liefert das nach lexikographischer Ordung höchste Monom
+	// Liefert das nach lexikographischer Ordung hochste Monom
  * Creation date: (13.07.2002 10:05:43)
  */
 public QMonomial getLeadingMonomial(Comparator monomOrdnung) 
@@ -3695,7 +3695,7 @@ public static QMonomial[] getLeadingTermIdeal(QPolynomial[] ideal, Comparator or
  * @return java.util.Vector
  * @param index int
 
-	Liefert einen Vector (RQuotientExp) aller Nullstellen von this zurück, die durch einen Linearfaktor entstehen.
+	Liefert einen Vector (RQuotientExp) aller Nullstellen von this zuruck, die durch einen Linearfaktor entstehen.
  
  */
 public Vector getLinearZeros(int index) 
@@ -3708,7 +3708,7 @@ public Vector getLinearZeros(int index)
 										    new RExpression(faks[i].getCoefficient(index,1))));
 	return erg;			
 }
-	// liefert den Primpart eines Polynoms (Polynom durch Inhalt) bezüglich x_index
+	// liefert den Primpart eines Polynoms (Polynom durch Inhalt) bezuglich x_index
 	public QPolynomial getPrimepart(int index)
 	{
 		if (isZero()) return ZERO;
@@ -3747,7 +3747,7 @@ public Vector getLinearZeros(int index)
  * @param points arithmetik.Complex[][]
  * @param maxDegree int
 
-	Errät ein polynomielles Gleichungsystem, auf dem die Punkte liegen, bis zum Grad maxDegree.
+	Errat ein polynomielles Gleichungsystem, auf dem die Punkte liegen, bis zum Grad maxDegree.
  
  */
 public static QPolynomial[] guessSystem(Complex[][] points, int maxDegree) 
@@ -3836,7 +3836,7 @@ public QPolynomial homogenize()
  * @return arithmetik.QPolynomial
  * @param index int
 
-	Gibt ein homogenes Polynom durch homogenisierung mit X_index zurück. 
+	Gibt ein homogenes Polynom durch homogenisierung mit X_index zuruck. 
  
  */
 public QPolynomial homogenize(int index) 
@@ -3875,10 +3875,10 @@ public QPolynomial homogenize(int index)
 /**
  * Interpoliert das Polynom.
 
- * Eingabe ist folgendermaßen aufgebaut: Zuerst ein Integer i für die Nummer der äußersten Variablen. Dann ein
+ * Eingabe ist folgendermassen aufgebaut: Zuerst ein Integer i fur die Nummer der aussersten Variablen. Dann ein
  * Array von deg_i (f) vielen Qelements, die die Stellen angeben, an denen f ausgewertet wurde. Dann
- * ein Array von deg_i (f) vielen Vectoren, die genauso aufgebaut sind, für die inneren Variablen, oder ein
- * genausogroßes Array von QElements mit den Werten an dieser Stelle.
+ * ein Array von deg_i (f) vielen Vectoren, die genauso aufgebaut sind, fur die inneren Variablen, oder ein
+ * genausogrosses Array von QElements mit den Werten an dieser Stelle.
  * Creation date: (13.07.2002 14:48:28)
  * @return arithmetik.QPolynomial
  * @param stellen java.util.Vector
@@ -3947,7 +3947,7 @@ public boolean isDivisibleBy(QPolynomial arg2)
  * Creation date: (08.01.2003 18:41:58)
  * @return boolean
 
-	Gibt true zurück, wenn alle Exponenten des Polynoms in Xindex gerade sind, sonst false.
+	Gibt true zuruck, wenn alle Exponenten des Polynoms in Xindex gerade sind, sonst false.
  
  */
 public boolean isInAllExponentsEven(int index) 
@@ -3956,7 +3956,7 @@ public boolean isInAllExponentsEven(int index)
 		if (((QMonomial)monom.elementAt(i)).getExponent(index) % 2 == 1) return false;
 	return true;
 }
-	// liefert wahr zurück, wenn der Nenner aller Faktoren 1 ist.
+	// liefert wahr zuruck, wenn der Nenner aller Faktoren 1 ist.
 	public boolean isIntegerFactors()
 	{
 		for (int i=0; i<monom.size(); i++)
@@ -3968,10 +3968,10 @@ public boolean isInAllExponentsEven(int index)
  * Creation date: (08.01.2003 11:37:35)
  * @return boolean
 
-	Erwartet ein irreduzibles Polynom in Xix mit weiteren Variablen, die zufällig eingesetzt werden.
+	Erwartet ein irreduzibles Polynom in Xix mit weiteren Variablen, die zufallig eingesetzt werden.
  
-	Gibt true zurück, wenn das Polynom bezgl. Xix wahrscheinlich duch Quadratwurzeln auflösbar 
-	ist, und false, wenn es sicherlich nicht durch Quadratwurzeln auflösbar ist.
+	Gibt true zuruck, wenn das Polynom bezgl. Xix wahrscheinlich duch Quadratwurzeln auflosbar 
+	ist, und false, wenn es sicherlich nicht durch Quadratwurzeln auflosbar ist.
  */
 public boolean isProbablySquarerootsolvable(int ix) 
 {
@@ -4049,13 +4049,13 @@ public boolean isUnivariate()
 	{
 		return (monom.size()==0);
 	}
-	// Liefert den nach lexikographischer Ordung höchsten Koeffizienten
+	// Liefert den nach lexikographischer Ordung hochsten Koeffizienten
 	public Qelement leadingFactor()
 	{
 		if (monom.size() == 0) return new Qelement();
 		return getLeadingMonomial().factor;
 	}
-	// Liefert den nach lexikographischer Ordung höchsten Koeffizienten
+	// Liefert den nach lexikographischer Ordung hochsten Koeffizienten
 	public Qelement leadingFactor(Comparator ordnung)
 	{
 		if (monom.size() == 0) return new Qelement();
@@ -4079,7 +4079,7 @@ public boolean isUnivariate()
  * @return arithmetik.QPolynomial
 
 	Multipliziert mit dem kgV aller Nenner,
-	Dividiert dann durch den ggT aller Zähler.
+	Dividiert dann durch den ggT aller Zahler.
  
  */
 public QPolynomial makeCoefficientIntegerAndMinimal() 
@@ -4106,7 +4106,7 @@ public QPolynomial makeCoefficientIntegerAndMinimal()
 /**
  * 
 
-	Liefert auf Eingabe snd[0],...,snd[n-1] ein Array a[0],...,a[n-1],r zurück, so dass
+	Liefert auf Eingabe snd[0],...,snd[n-1] ein Array a[0],...,a[n-1],r zuruck, so dass
 
 	this = a[0]*snd[0] + a[1]*snd[1] + ... + a[n-1]*snd[n-1] + r ist und
 
@@ -4163,7 +4163,7 @@ public QPolynomial[] multiDivideAndRemainder(QPolynomial[] snd)
 /**
  * 
 
-	Liefert auf Eingabe snd[0],...,snd[n-1] ein Array a[0],...,a[n-1],r zurück, so dass
+	Liefert auf Eingabe snd[0],...,snd[n-1] ein Array a[0],...,a[n-1],r zuruck, so dass
 
 	this = a[0]*snd[0] + a[1]*snd[1] + ... + a[n-1]*snd[n-1] + r ist und
 
@@ -4279,8 +4279,8 @@ public static QPolynomial multiResultant(QPolynomial[] in)
  * @param index int
 
 	Berechnet die Multiresultante bzgl. toElim, d.h. diese Variablen werden eliminiert.
-	Die Größe von toElim muss genau eins kleiner sein als die Größe von in. Durch unendliche
-	Ferne Lösungen können (wenige) zusätzliche Nullstellen entstehen.
+	Die Grosse von toElim muss genau eins kleiner sein als die Grosse von in. Durch unendliche
+	Ferne Losungen konnen (wenige) zusatzliche Nullstellen entstehen.
  */
 public static QPolynomial multiResultant(QPolynomial[] in, int[] toElim) 
 {
@@ -4333,8 +4333,8 @@ public static QPolynomial multiResultant(QPolynomial[] in, int[] toElim)
 	int[] exs = new int[toElimAndHomo.length];
 	for (int i=0; i<exs.length; i++) exs[i] = 0;
 	exs[0] = d;
-	Hashtable[] aZeilen = new Hashtable[asize];				// Für jede Zeile eine Hashtable monom -> Wert
-	Hashtable exsZuNummer = new Hashtable();				// Für jedes Monom die Zeilennummer
+	Hashtable[] aZeilen = new Hashtable[asize];				// Fur jede Zeile eine Hashtable monom -> Wert
+	Hashtable exsZuNummer = new Hashtable();				// Fur jedes Monom die Zeilennummer
 	int zeile = 0;
 	int snr = 0;
 	boolean weiter = true;
@@ -4371,7 +4371,7 @@ public static QPolynomial multiResultant(QPolynomial[] in, int[] toElim)
 		}
 		
 		zeile++;
-		// exs weiterzählen
+		// exs weiterzahlen
 		int bruch = exs.length-2;
 		while ((bruch >= 0) && (exs[bruch]==0)) bruch--;
 		if (bruch<0) weiter = false; 							// Ende
@@ -4552,7 +4552,7 @@ public static QPolynomial multiResultant(QPolynomial[] in, int[] toElim)
  * @return int
 
 	Erzeugt, glaube ich, von CK. Bin unsicher, 
-	wofür es benutzt wird.
+	wofur es benutzt wird.
 	Taucht in der Dokumentation nicht auf.
 
 	CK: Bivariat in Variablen 0 und 1
@@ -4616,9 +4616,9 @@ public int numbersOfFactors()
 		if (n%2 == 0) return pow(n/2).sqr();
 		else return pow(n/2).sqr().multiply(this);
 	}
-	// liefert alpha, beta und r zurück, so dass 
+	// liefert alpha, beta und r zuruck, so dass 
 	// (1)	alpha * this - beta * arg2 = r
-	// (2)  alpha die Unbekannte x_index nicht mehr enthält,
+	// (2)  alpha die Unbekannte x_index nicht mehr enthalt,
 	// (3)  deg(beta) = deg(this)-deg(arg2) oder beta=0, falls der Ausruck negativ,
 	// (4)  deg(r) < deg(arg2)
 	
@@ -4701,7 +4701,7 @@ public QPolynomial[] pseudoRemainder(QPolynomial arg2, int index)
  * @return arithmetik.QPolynomial
  * @param g arithmetik.QPolynomial
 
-	Berechnet die Pseudodivision ohne die Teile, die für alpha und den Quotienten benötigt werden.
+	Berechnet die Pseudodivision ohne die Teile, die fur alpha und den Quotienten benotigt werden.
  
  */
 public QPolynomial pseudoRemainder2(QPolynomial g, int ix) 
@@ -4783,7 +4783,7 @@ public QPolynomial resort(Comparator c)
 	for (int i=0; i<mons.length; i++) erg.monom.addElement(mons[i]);
 	return erg;
 }
-	// Liefert die Resultante der beiden Polynome bezüglich x_index.
+	// Liefert die Resultante der beiden Polynome bezuglich x_index.
 
 	// funktioniert; die zweite Version arbeitet mit der divide-Methode statt mit pseudodivide
 	public FastPolynomial resultant(QPolynomial arg2, int index)
@@ -4810,7 +4810,7 @@ public QPolynomial resort(Comparator c)
 		erg = erg.divide((new FastPolynomial(pseud[0])).pow(m));
 		return erg;
 	}
-	// Liefert die Resultante der beiden Polynome bezüglich x_index.
+	// Liefert die Resultante der beiden Polynome bezuglich x_index.
 
 	// funktioniert nur bei univariaten Polynomen, arbeitet mit divide statt pseudodivide
 	public FastPolynomial resultant2(QPolynomial arg2, int index)
@@ -4887,8 +4887,8 @@ public RQuotientExp solve4(int index)
 	return null;
 }
 /**
- * Gibt einen Vector mit allen Nullstellen des Polynoms zurück, die durch Wurzeln ausdrückbar sind.
- * läuft bis Polynomgrad 2.
+ * Gibt einen Vector mit allen Nullstellen des Polynoms zuruck, die durch Wurzeln ausdruckbar sind.
+ * lauft bis Polynomgrad 2.
  * Creation date: (17.06.2002 10:12:02)
  * @return arithmetik.RQuotientExp
  * @param index int
@@ -4917,8 +4917,8 @@ public Vector solveEasy(int index)
  * @param eqn arithmetik.QPolynomial[]
  * @param var int[]
 
-	Ruft nur die private SolveSystem-Methode mit den nötigen Parametern auf. Gibt einen Vector mit
-	RQuotientExp[] zurück, die jeweils in der selben Reihenfolge wie var alle Lösungen des Gleichungssystems enthalten.
+	Ruft nur die private SolveSystem-Methode mit den notigen Parametern auf. Gibt einen Vector mit
+	RQuotientExp[] zuruck, die jeweils in der selben Reihenfolge wie var alle Losungen des Gleichungssystems enthalten.
  
  */
 public static Vector solveSystem(QPolynomial[] eqn, int[] var) 
@@ -4934,7 +4934,7 @@ public static Vector solveSystem(QPolynomial[] eqn, int[] var)
  * @param equation java.util.Vector[]
  * @param variable int[]
 
- 	gibt ein Vector von RQuotientExp[] zurück, die alle Lösungen des Gleichungssystems enthalten.
+ 	gibt ein Vector von RQuotientExp[] zuruck, die alle Losungen des Gleichungssystems enthalten.
  
  */
 protected static Vector solveSystem(Vector[] equation, int[] variable, boolean allFactorized) 
@@ -5045,8 +5045,8 @@ protected static Vector solveSystem(Vector[] equation, int[] variable, boolean a
 			for (j=0; (j<variable.length) && (i<neuvar.length); j++)
 				if (j!=varnr) neuvar[i++] = variable[j];
 
-			// alle überzähligen Variablen werden auf 0 gesetzt; wenn es allgemein eine gültige
-			// Lösung gibt, dann auch eine an der Stelle 0.
+			// alle uberzahligen Variablen werden auf 0 gesetzt; wenn es allgemein eine gultige
+			// Losung gibt, dann auch eine an der Stelle 0.
 			int von = j;
 			for (j=von; j<variable.length; j++)
 				if (j!=varnr)
@@ -5059,14 +5059,14 @@ protected static Vector solveSystem(Vector[] equation, int[] variable, boolean a
 					}
 				}
 
-			Vector[] rekEquation = new Vector[irEqn.size()];		// für rekursiven Aufruf
+			Vector[] rekEquation = new Vector[irEqn.size()];		// fur rekursiven Aufruf
 			for (i=0; i<irEqn.size(); i++) 
 			{
 				rekEquation[i] = new Vector(); 
 				rekEquation[i].addElement(irEqn.elementAt(i));
 			}
 
-			// wir könnten jetzt noch zuviele Gleichungen haben, da gehen wir
+			// wir konnten jetzt noch zuviele Gleichungen haben, da gehen wir
 			// alle Kombinationen durch
 
 			boolean[] auswahl = new boolean[irEqn.size()];
@@ -5084,7 +5084,7 @@ protected static Vector solveSystem(Vector[] equation, int[] variable, boolean a
 
 				resultant = resultant.gcd(multiResultant(rek, neuvar));
 									
-				// auswahl weiterzählen
+				// auswahl weiterzahlen
 				int anzTrues = 0;
 				while ((anzTrues < auswahl.length) && (auswahl[auswahl.length-1-anzTrues])) 
 					anzTrues++;
@@ -5119,19 +5119,19 @@ protected static Vector solveSystem(Vector[] equation, int[] variable, boolean a
 			}
 		}
 
-		// faknr weiterzählen
+		// faknr weiterzahlen
 		int i=0; 
 		while ((i < faknr.length) && (faknr[i] == equation[i].size()-1)) {faknr[i]=0; i++;}
 		if (i == faknr.length) weiter = false; else faknr[i]++;
 	}
 	
-	// ergV zurück (ist leer, falls nix gefunden wurde)
+	// ergV zuruck (ist leer, falls nix gefunden wurde)
 	return ergV;
 }
 /**
- * Löst das Gleichungssystem easy, falls möglich. Erwartet teilerfremde Teilgleichungen, und falls 2 Faktoren
- * identisch sind, sollen sie auch durch das selbe Objekt repräsentiert werden. Gibt alle Lösungen in einem Vektor
- * zurück, wobei jeder Vektor die Lösungen an den Stellen hat wie die Variabeln in variables.
+ * Lost das Gleichungssystem easy, falls moglich. Erwartet teilerfremde Teilgleichungen, und falls 2 Faktoren
+ * identisch sind, sollen sie auch durch das selbe Objekt reprasentiert werden. Gibt alle Losungen in einem Vektor
+ * zuruck, wobei jeder Vektor die Losungen an den Stellen hat wie die Variabeln in variables.
  * Creation date: (16.06.2002 09:26:42)
  * @return arithmetik.RQuotientExp[]
  * @param equation java.util.Vector[]
@@ -5157,13 +5157,13 @@ public static Vector solveSystemEasy(Vector[] equation, int[] variables)
 	// Vorfaktorisiern, Elimination doppelter Faktoren
 	factorSystemSimple(equation);
 
-	// Array für jeden Faktor der ersten Gleichung, in dem die Zeilen stehen, die diesen Faktoren enthalten.
+	// Array fur jeden Faktor der ersten Gleichung, in dem die Zeilen stehen, die diesen Faktoren enthalten.
 	Vector[] zeilenRaus = new Vector[equation[0].size()];
 	for (int i=0; i<equation[0].size(); i++) 
 		zeilenRaus[i] = new Vector();
 
-	// Für jede Variable ihre Stelle im variables-Array und der maximal Grad, indem diese Variable vorkommt.
-	// wird später sortiert nach dem Maxgrad.
+	// Fur jede Variable ihre Stelle im variables-Array und der maximal Grad, indem diese Variable vorkommt.
+	// wird spater sortiert nach dem Maxgrad.
 	int[][] stelleMaxgrad = new int[variables.length][2];
 	for (int i=0; i<variables.length; i++) {stelleMaxgrad[i][0] = i; stelleMaxgrad[i][1] = -1;}
 
@@ -5201,7 +5201,7 @@ public static Vector solveSystemEasy(Vector[] equation, int[] variables)
 		// Suche nach dem Faktor, der am meisten Gleichungen eliminieren kann, und darunter den mit dem geringsten
 		// Totalgrad.
 		QPolynomial pivotp = (QPolynomial)equation[0].lastElement();
-		// Dieses int enthält die Anzahl der Zeilen, die pivotp enthalten und demzufolge ignoriert werden können
+		// Dieses int enthalt die Anzahl der Zeilen, die pivotp enthalten und demzufolge ignoriert werden konnen
 		int maxZeilen = zeilenRaus[equation[0].size()-1].size();
 
 		// Suche nach der Pivotvariable (ihre Stelle im stelleMaxgrad-Array wird in pivotvar gespeichert)
@@ -5224,15 +5224,15 @@ public static Vector solveSystemEasy(Vector[] equation, int[] variables)
 			stelleMaxgrad[pivotvar][0] = t;
 		}
 
-		// pivotp wird gelöst.
+		// pivotp wird gelost.
 		Vector lsgpivot = pivotp.solveEasy(variables[stelleMaxgrad[pivotvar][0]]);
 
-		// Falls es Lösungen von pivotp gibt, sind alle konjugiert zueinander, und es genügt, eine zu testen.
+		// Falls es Losungen von pivotp gibt, sind alle konjugiert zueinander, und es genugt, eine zu testen.
 		if (lsgpivot.size()>0)
 		{
 			RQuotientExp lsg = (RQuotientExp)lsgpivot.elementAt(0);
-			// Für den rekursiven Aufruf werden die Variablen vorbereitet. Genommen werden die vorderen aus dem
-			// Array stelleMaxgrad außer der Pivotvariable.
+			// Fur den rekursiven Aufruf werden die Variablen vorbereitet. Genommen werden die vorderen aus dem
+			// Array stelleMaxgrad ausser der Pivotvariable.
 			int[] neuvar = new int[variables.length-maxZeilen-1];
 			int j = 0;
 			for (int i=0; i<stelleMaxgrad.length-maxZeilen; i++)
@@ -5254,13 +5254,13 @@ public static Vector solveSystemEasy(Vector[] equation, int[] variables)
 				}
 			}
 
-			// jetzt den Rest lösen, falls noch ein Rest da ist (ansonsten bleibt lsgandere null und wird auch nicht 
+			// jetzt den Rest losen, falls noch ein Rest da ist (ansonsten bleibt lsgandere null und wird auch nicht 
 			// mehr benutzt).
 			if (neuvar.length>0) 
 			{
 				Vector lsgandere = RQuotientExp.solveSystemEasy(neueq, neuvar);
 
-				// Für alle Lösungen muss jetzt getestet werden, ob sie das Ursprungsystem lösen.
+				// Fur alle Losungen muss jetzt getestet werden, ob sie das Ursprungsystem losen.
 				for (int lsgannr = 0; lsgannr<lsgandere.size(); lsgannr++)
 				{
 					RQuotientExp[] dieseLoesungAndere = (RQuotientExp[])lsgandere.elementAt(lsgannr);
@@ -5285,7 +5285,7 @@ public static Vector solveSystemEasy(Vector[] equation, int[] variables)
 			}
 		}
 
-		// pivotp aus allen Gleichungen entfernen; falls dabei eine leer wird, kann sofort zurückgesprungen werden.
+		// pivotp aus allen Gleichungen entfernen; falls dabei eine leer wird, kann sofort zuruckgesprungen werden.
 		for (int i=1; i<equation.length; i++)
 		{
 			for (int j=0; j<equation[i].size(); j++)
@@ -5296,7 +5296,7 @@ public static Vector solveSystemEasy(Vector[] equation, int[] variables)
 					if (equation[i].size()==0) return ergvec;
 				}
 		}
-		// insbesondere wird pivotp aus der ersten Gleichung gelöscht:
+		// insbesondere wird pivotp aus der ersten Gleichung geloscht:
 		equation[0].removeElementAt(equation[0].size()-1);
 	}
 
@@ -5347,7 +5347,7 @@ public static Vector solveSystemEasy(Vector[] equation, int[] variables)
 			if (vars[j]!=best[3]) neuvar[i++] = vars[j];
 
 			
-			// Fehler: Die Lösung muss zunächs eingesetzt werden.
+			// Fehler: Die Losung muss zunachs eingesetzt werden.
 			
 			RQuotientExp[] rest = solveMinimalSystemEasy(neuzeilen, neuvar);
 
@@ -5390,8 +5390,8 @@ public static Vector solveSystemEasy(Vector[] equation, int[] variables)
 */
 }
 /**
- * Löst das Gleichungssystem easy, falls möglich. Erwartet teilerfremde Teilgleichungen, und falls 2 Faktoren
- * identisch sind, sollen sie auch durch das selbe Objekt repräsentiert werden.
+ * Lost das Gleichungssystem easy, falls moglich. Erwartet teilerfremde Teilgleichungen, und falls 2 Faktoren
+ * identisch sind, sollen sie auch durch das selbe Objekt reprasentiert werden.
  * Creation date: (16.06.2002 09:26:42)
  * @return arithmetik.RQuotientExp[]
  * @param equation java.util.Vector[]
@@ -5414,13 +5414,13 @@ public static RQuotientExp[] solveSystemEasy_alt(Vector[] equation, int[] variab
 	// Vorfaktorisiern, Elimination doppelter Faktoren
 	factorSystemSimple(equation);
 
-	// Array für jeden Faktor der ersten Gleichung, in dem die Zeilen stehen, die diesen Faktoren enthalten.
+	// Array fur jeden Faktor der ersten Gleichung, in dem die Zeilen stehen, die diesen Faktoren enthalten.
 	Vector[] zeilenRaus = new Vector[equation[0].size()];
 	for (int i=0; i<equation[0].size(); i++) 
 		zeilenRaus[i] = new Vector();
 
-	// Für jede Variable ihre Stelle im variables-Array und der maximal Grad, indem diese Variable vorkommt.
-	// wird später sortiert nach dem Maxgrad.
+	// Fur jede Variable ihre Stelle im variables-Array und der maximal Grad, indem diese Variable vorkommt.
+	// wird spater sortiert nach dem Maxgrad.
 	int[][] stelleMaxgrad = new int[variables.length][2];
 	for (int i=0; i<variables.length; i++) {stelleMaxgrad[i][0] = i; stelleMaxgrad[i][1] = -1;}
 
@@ -5453,7 +5453,7 @@ public static RQuotientExp[] solveSystemEasy_alt(Vector[] equation, int[] variab
 	});
 
 	// Endlosschleife, in der alle Faktoren von equation[0] durchprobiert werden, ob sich
-	// Lösungen ergeben.
+	// Losungen ergeben.
 	while (true)
 	{
 		// Suche nach dem Faktor, der am meisten Gleichungen eliminieren kann, und darunter den mit dem geringsten
@@ -5490,15 +5490,15 @@ public static RQuotientExp[] solveSystemEasy_alt(Vector[] equation, int[] variab
 			stelleMaxgrad[pivotvar][0] = t;
 		}
 
-		// pivotp wird gelöst.
+		// pivotp wird gelost.
 		RQuotientExp lsg = (RQuotientExp)pivotp.solveEasy(variables[stelleMaxgrad[pivotvar][0]]).elementAt(0);
 
 		RQuotientExp[] lsgandere = null;
 		// weiter lohnt sich nur, wenn nicht schon lsg null ist
 		if (lsg != null)
 		{
-			// Für den rekursiven Aufruf werden die Variablen vorbereitet. Genommen werden die vorderen aus dem
-			// Array stelleMaxgrad außer der Pivotvariable.
+			// Fur den rekursiven Aufruf werden die Variablen vorbereitet. Genommen werden die vorderen aus dem
+			// Array stelleMaxgrad ausser der Pivotvariable.
 			int[] neuvar = new int[variables.length-maxZeilen-1];
 			int j = 0;
 			for (int i=0; i<stelleMaxgrad.length-maxZeilen; i++)
@@ -5520,7 +5520,7 @@ public static RQuotientExp[] solveSystemEasy_alt(Vector[] equation, int[] variab
 				}
 			}
 
-			// jetzt den Rest lösen, falls noch ein Rest da ist (ansonsten bleibt lsgandere null und wird auch nicht 
+			// jetzt den Rest losen, falls noch ein Rest da ist (ansonsten bleibt lsgandere null und wird auch nicht 
 			// mehr benutzt).
 			if (neuvar.length>0) 
 			{
@@ -5529,7 +5529,7 @@ public static RQuotientExp[] solveSystemEasy_alt(Vector[] equation, int[] variab
 			}
 		}
 		
-		// Falls alles gut gegangen ist, wird die Lösung hier zusammengesetzt; außer lsg werden alle andere nur
+		// Falls alles gut gegangen ist, wird die Losung hier zusammengesetzt; ausser lsg werden alle andere nur
 		// an die richtige Stelle abgeschrieben, in lsg werden alle anderen noch eingesetzt.
 		if (lsg!=null)
 		{
@@ -5605,7 +5605,7 @@ public static RQuotientExp[] solveSystemEasy_alt(Vector[] equation, int[] variab
 			if (vars[j]!=best[3]) neuvar[i++] = vars[j];
 
 			
-			// Fehler: Die Lösung muss zunächs eingesetzt werden.
+			// Fehler: Die Losung muss zunachs eingesetzt werden.
 			
 			RQuotientExp[] rest = solveMinimalSystemEasy(neuzeilen, neuvar);
 
@@ -5656,7 +5656,7 @@ public static RQuotientExp[] solveSystemEasy_alt(Vector[] equation, int[] variab
  * @param ix int
  * @param partial arithmetik.RQuotientExp
 
-	Nur von solveSystem aufgerufen. Setzt eine Partiallösung ein, ruft solve Rekursiv auf, und liefert die Rückgabe
+	Nur von solveSystem aufgerufen. Setzt eine Partiallosung ein, ruft solve Rekursiv auf, und liefert die Ruckgabe
 	weiter.
  
  */
@@ -5698,8 +5698,8 @@ private static Vector solveSystemTestPartial(Vector[] equation, int[] variable, 
 /*	
 	// Diese Methode fordert ein quadratfreies, garantiert univariates Polynom mit ganzzahligen
 	// Koeffizienten und liefert alle Nullstellen im euklidischen 
-	// Körper in Ausrücken zurück.
-	// Sonderfälle werden hier nicht beachtet.
+	// Korper in Ausrucken zuruck.
+	// Sonderfalle werden hier nicht beachtet.
 	private Ausdruck[] solveUnivariate(int index)
 	{
 		int grad = getDegreeIn(index);
@@ -5738,10 +5738,10 @@ private static Vector solveSystemTestPartial(Vector[] equation, int[] variable, 
 		
 	}
 */
-	// Diese Methode löst ein vorgegebenes Polynom in mehreren Unbekannten nach einer
-	// Unbekannten auf, sofern dies im euklidischen Körper möglich ist. Falls unmöglich,
-	// wird null zurückgegeben.
-	// Das Polynom wird quadratfrei und ganzzahlig gemacht. Die Nullstellen dürfen Nenner haben,
+	// Diese Methode lost ein vorgegebenes Polynom in mehreren Unbekannten nach einer
+	// Unbekannten auf, sofern dies im euklidischen Korper moglich ist. Falls unmoglich,
+	// wird null zuruckgegeben.
+	// Das Polynom wird quadratfrei und ganzzahlig gemacht. Die Nullstellen durfen Nenner haben,
 	// diese werden im Ablauf hinzumultipliziert.	
 	public RQuotientExp solveTo(int index)
 	{
@@ -5807,7 +5807,7 @@ private static Vector solveSystemTestPartial(Vector[] equation, int[] variable, 
 		Datenmatrix matrix = new Datenmatrix(maxKoeff);
 		
 		int[] z = new int[unspecs+1];					// In diesem Array werden Werte 
-									    				// für die anderen Variablen gezählt.
+									    				// fur die anderen Variablen gezahlt.
 		for (int i=0; i<unspecs+1; i++) z[i] = 0;
 		
 		QPolynomial work = new QPolynomial(poly);
@@ -5885,8 +5885,8 @@ private static Vector solveSystemTestPartial(Vector[] equation, int[] variable, 
 				
 				// ***
 				// Interpolarisation der einzelnen Polynome
-				// und Test auf Korrektheit. Falls positiv, kann das Ergebniss direkt zurückgegeben
-				// werden (es wird nur eine Nullstelle gesucht, unabhängig von möglichen weiteren).
+				// und Test auf Korrektheit. Falls positiv, kann das Ergebniss direkt zuruckgegeben
+				// werden (es wird nur eine Nullstelle gesucht, unabhangig von moglichen weiteren).
 				// ***
 	
 				kandaus = Ausdruck.interpolarisation(ausdrucksmatrix, index);
@@ -5908,7 +5908,7 @@ private static Vector solveSystemTestPartial(Vector[] equation, int[] variable, 
 				} else System.out.println("Interpolation schlug fehl (Ganzzahligkeit)");
 			}			
 		}
-		return null;		// Wenn keine Nullstelle gefunden: Zurück ohne Ergebniss.
+		return null;		// Wenn keine Nullstelle gefunden: Zuruck ohne Ergebniss.
 	}
 	public QPolynomial sqr()
 	{
@@ -5919,7 +5919,7 @@ private static Vector solveSystemTestPartial(Vector[] equation, int[] variable, 
  * Creation date: (18.01.2003 11:12:58)
  * @return arithmetik.QPolynomial
 
-	Falls this = c * p * p ist, wobei c konstant ist, wird c*p zurückgegeben. Ansonsten null.
+	Falls this = c * p * p ist, wobei c konstant ist, wird c*p zuruckgegeben. Ansonsten null.
  
  */
 public QPolynomial sqrt() 
@@ -5945,21 +5945,21 @@ public QPolynomial sqrt()
 	
 	return consqrt.multiply(divAndRem[0]);
 }
-// Faktorisiert das Polynom bzgl. Xidentifier zu quadratfreien Faktoren. Die Rückgabe gibt jeden Faktor genau einmal,
-// nach Häufigkeit des Auftauchens sortiert, d.h. this = erg[0] * erg[1]^2 * erg[2]^3 * ... erg[n-1]^n
+// Faktorisiert das Polynom bzgl. Xidentifier zu quadratfreien Faktoren. Die Ruckgabe gibt jeden Faktor genau einmal,
+// nach Haufigkeit des Auftauchens sortiert, d.h. this = erg[0] * erg[1]^2 * erg[2]^3 * ... erg[n-1]^n
 
 public QPolynomial[] squarefree(int identifierNr)
 {
 	if (isZero()) return new QPolynomial[]{ZERO};
 	Vector erg = new Vector();
 
-	QPolynomial p1 = gcd(derive(identifierNr));		// Enthält Faktoren, die mind. 2 mal auftauchen, in Vielfachheit
-	QPolynomial letzterFaktor = divide(p1);			// Enthält alle Faktoren genau 1 mal.
+	QPolynomial p1 = gcd(derive(identifierNr));		// Enthalt Faktoren, die mind. 2 mal auftauchen, in Vielfachheit
+	QPolynomial letzterFaktor = divide(p1);			// Enthalt alle Faktoren genau 1 mal.
 	QPolynomial p2;						
 	while (!p1.isConstant())
 	{
-		p2 = p1.gcd(p1.derive(identifierNr));		// Enthält Faktoren, die mind. 3 mal auftauchen, in Vielfachheit
-		p1 = p1.divide(p2);							// Enthält Faktoren, die mind. 2 mal auftauchen, genau 1 mal
+		p2 = p1.gcd(p1.derive(identifierNr));		// Enthalt Faktoren, die mind. 3 mal auftauchen, in Vielfachheit
+		p1 = p1.divide(p2);							// Enthalt Faktoren, die mind. 2 mal auftauchen, genau 1 mal
 		erg.addElement(letzterFaktor.divide(p1));	// Genau die Faktoren, die 1 mal auftauchen, 1 mal
 		letzterFaktor = p1;							// wie oben, nur mit 2
 		p1 = p2;									// wie oben, nur mit 2
@@ -6086,7 +6086,7 @@ public Vector toModulMomialList(int anzVar)
      * Creation date: (15.12.2002 23:13:13)
      * @return arithmetik.QPolynomial
     
-    	Schaut, ob das Polynom konstant 0, 1 oder 2 ist, und liefert in dem Fall die statische 0, 1 oder 2 zurück,
+    	Schaut, ob das Polynom konstant 0, 1 oder 2 ist, und liefert in dem Fall die statische 0, 1 oder 2 zuruck,
     	sonst this. Benutzt zum sparen von Speicher.
      
      */

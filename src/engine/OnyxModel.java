@@ -46,7 +46,7 @@ import machineLearning.clustering.Clustering;
 
 public class OnyxModel extends RAMModel implements ModelRequestInterface {
     
-	public static final String defaultName = "Unnamed Model";
+	public static final String defaultName = "名称未設定モデル";
 	
     public ModelListener[] modelListener;
     public String name = defaultName;

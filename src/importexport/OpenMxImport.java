@@ -99,13 +99,13 @@ public class OpenMxImport {
 			}
 			ok = RConnection.testRPath(RConnection.pathToRExecutable);
 			if (!ok) {
-				Object[] options = {"Try again","Cancel"};
-				// ask to abort or try once again?
+				Object[] options = {"再試行","キャンセル"};
+				// 再試行または中止を尋ねる
 				int n = JOptionPane.showOptionDialog(
 						this.desktop,
 						
-						"The chosen R interpreter is invalid. Do you like to choose the location of the R interpreter again?"
-						,"Problem with R"
+						"選択されたRインタプリタが無効です。Rインタプリタの場所を再度選択しますか？"
+						,"Rに問題があります"
 						,JOptionPane.YES_NO_OPTION,
 						JOptionPane.ERROR_MESSAGE,
 						null, options, options[0]);
@@ -167,7 +167,7 @@ public class OpenMxImport {
 			if (matcher.find()) {
 				output = matcher.group();
 			} else {
-				System.err.println("Problem in finding an XML representation within console output!");
+				System.err.println("コンソール出力内にXML表現が見つかりませんでした！");
 				
 				String err = "";
 				while (true) {
@@ -181,7 +181,7 @@ public class OpenMxImport {
 					}
 				
 				//System.out.println(output+"\n"+err);
-				JOptionPane.showMessageDialog(this.desktop, "R reported the following error in your script:\n "+err, "Import error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this.desktop, "Rがスクリプト内で次のエラーを報告しました:\n "+err, "インポートエラー", JOptionPane.ERROR_MESSAGE);
 				return null;
 			}
 			
@@ -207,40 +207,40 @@ public class OpenMxImport {
 	}
 	
 	public ModelView loadModelFromString(String openMxScript) {
-	    
-	    RConnection.getPathToRExecutable(this.desktop);
-	    try {
-            String xml = getModelAsXml(openMxScript);
-            
-            if (xml == null) return null;
-            
-            System.out.println(xml);
-            
-            // filter out multiple models, if any
-           List<XMLModel> models = detectMultipleModels(xml);
-           
-           if (models.size() > 1) {
-               ModelSelectFrame msf = new ModelSelectFrame(null, models);
-               msf.toFront();
-               models = msf.getSelectedModels();
-           }
-           
-           System.out.println("Start import");
-           
-           for (XMLModel model : models) {
-               
-           System.out.println("Importing "+model.name);
-               
-            ModelView modelView = desktop.loadModel(model.xml);
-           
-            if (modelView == null) {
-                System.err.println("An error occured during import of "+model.name);
-                return null;
-            }
-            
-            Tree tree = new Tree(modelView.getGraph(), true);
-            tree.layout();
-            
+		
+		RConnection.getPathToRExecutable(this.desktop);
+		try {
+			String xml = getModelAsXml(openMxScript);
+			
+			if (xml == null) return null;
+			
+			System.out.println(xml);
+			
+			// filter out multiple models, if any
+		   List<XMLModel> models = detectMultipleModels(xml);
+		   
+		   if (models.size() > 1) {
+			   ModelSelectFrame msf = new ModelSelectFrame(null, models);
+			   msf.toFront();
+			   models = msf.getSelectedModels();
+		   }
+		   
+		   System.out.println("Start import");
+		   
+		   for (XMLModel model : models) {
+			   
+		   System.out.println("Importing "+model.name);
+			   
+			ModelView modelView = desktop.loadModel(model.xml);
+		   
+			if (modelView == null) {
+				System.err.println("読み込み中にエラーが発生しました: "+model.name);
+				return null;
+			}
+			
+			Tree tree = new Tree(modelView.getGraph(), true);
+			tree.layout();
+			
 //          System.err.println("T")
 
             //TODO: allow returning a list of models!

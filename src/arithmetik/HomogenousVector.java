@@ -91,7 +91,7 @@ public HomogenousVector(RExpression x, RExpression y)
 		}
 		return ergvec;
 	}
-	// Kürzt den HomogenousVector so weit wie möglich, bereinigt unsaubere 0-Darstellungen,
+	// Kurzt den HomogenousVector so weit wie moglich, bereinigt unsaubere 0-Darstellungen,
 	public void clean()
 	{
 		RExpression[] arg = new RExpression[3]; arg[0]=x; arg[1]=y; arg[2]=z;
@@ -128,7 +128,7 @@ public HomogenousVector(RExpression x, RExpression y)
 		return "("+(x.debugEvaluation() / z.debugEvaluation())+","+(y.debugEvaluation() / z.debugEvaluation())+")";
 	}
 	// Erweitert alle HomogenousVectoren der Liste so, dass sie gleich z-Werte haben.
-	// VORSICHT: Nur der 0. HomogenousVector hat einen gültigen z-Wert!!!
+	// VORSICHT: Nur der 0. HomogenousVector hat einen gultigen z-Wert!!!
 	// die der anderen sind identisch (ausrechnen dauert zu lange)
 	public static HomogenousVector[] erweitert (HomogenousVector[] arg)
 	{
@@ -151,7 +151,7 @@ public HomogenousVector(RExpression x, RExpression y)
 	Wie bei on_cut_cc beschrieben, kann man (ohne sqrtn) den Punkt
 	auf der Verbindungsgerade zweier Kreismittelpunkte A und B berechnen,
 	an dem AB von der Verbindungsgeraden der beiden Kreisschnittpunkte
-	senkrecht geschnitten wird; über das "senkrecht" läßt sich dann die
+	senkrecht geschnitten wird; uber das "senkrecht" lasst sich dann die
 	Verbindungsgerade der Kreisschnittpunkte bestimmen. Schneiden sich
 	alle 3 Kreise in einem Punkt, so laufen die drei dadurch bestimmten
 	Geraden durch den gemeinsamen Schnittpunkt. In der Routine sind
@@ -366,7 +366,7 @@ public HomogenousVector(RExpression x, RExpression y)
 */
 	public boolean is_collinear(HomogenousVector arg2, HomogenousVector arg3)
 	{
-		if (DEBUG) docfile.print(" *** Test auf Kollinearität *** \r\n");
+		if (DEBUG) docfile.print(" *** Test auf Kollinearitat *** \r\n");
 
 		RExpression L = (arg2.y.multiply(arg3.z)).add(arg3.y.multiply(arg2.z.negate()));
 		RExpression M = (y.multiply(arg3.z.negate())).add(arg3.y.multiply(z));
@@ -446,7 +446,7 @@ public HomogenousVector(RExpression x, RExpression y)
 	}
 	public boolean is_parallel(HomogenousVector arg2, HomogenousVector arg3, HomogenousVector arg4)
 	{
-		if (DEBUG) docfile.print(" *** Test auf Parallelität *** \r\n");
+		if (DEBUG) docfile.print(" *** Test auf Parallelitat *** \r\n");
 
 		boolean erg = ((arg2.add(this.negate())).crossProduct(arg4.add(arg3.negate()))).isZero();
 		if (DEBUG)
@@ -537,12 +537,12 @@ public HomogenousVector(RExpression x, RExpression y)
 	{
 		RQuotientExp erg = (scalarProduct(this)).sqrt();
 		if (DEBUG)
-			docfile.print ("Ergebnis der Längenberechnung: "+erg.debugEvaluation());
+			docfile.print ("Ergebnis der Langenberechnung: "+erg.debugEvaluation());
 		return erg;
 	}
-	// Berechnet die Strecke zwischen 2 Punkten ohne Berücksichtigung
+	// Berechnet die Strecke zwischen 2 Punkten ohne Berucksichtigung
 	// der z-Koordinaten (respektive des Nenners). Wird nur von 
-	// is_circle_meet sozusagen als "Auslagerung" benutzt, außerdem
+	// is_circle_meet sozusagen als "Auslagerung" benutzt, ausserdem
 	// noch von on_cut_cc und on_cut_lc zu gleichem Zwecke.
 	private RQuotientExp my_strecke(HomogenousVector arg2)
 	{
@@ -557,7 +557,7 @@ public HomogenousVector(RExpression x, RExpression y)
 	/*
 		(X-A)^2=(X-B)^2=(X-C)^2 = r^2
 
-	Ausgehend von dieser Gleichung und mit x0 := r^2-X^2 erhält man:
+	Ausgehend von dieser Gleichung und mit x0 := r^2-X^2 erhalt man:
 	x0+2a1x1+2a2x2 = A^2
 	x0+2b1x1+2b2x2 = B^2
 	x0+2c1x1+2c2x2 = C^2
@@ -689,7 +689,7 @@ public HomogenousVector(RExpression x, RExpression y)
 	
 	Seien so die 4 Argumente gegeben durch A=(a1,a2,a3), B=(b1,b2,b3), 
 	C = (c1,c2,c3) und D = (d1,d2,d3).	  
-	Für die Schnittgeraden gilt dann:
+	Fur die Schnittgeraden gilt dann:
 
 	g = AB = (a2*b3-a3*b2, a3*b1-a1*b3, a1*b2-a2*b1)
 	h = CD = (c2*d3-c3*d2, c3*d1-c1*d3, c1*d2-c2*d1)
@@ -750,7 +750,7 @@ public HomogenousVector(RExpression x, RExpression y)
 	Kreisschnittpunkte. AB und CD stehen senkrecht aufeinander und 
 	treffen sich in einem Punkt P. Es ist AP^2+PC^2 = r1^2 und 
 	PB^2+PC^2 = r2^2, woraus sich (AP)/(AB) = r1^2-r2^2+(AB)^2 / 2(AB)^2
-	ergibt. Heiße dieser Faktor lambda, so berechnet sich 
+	ergibt. Heisse dieser Faktor lambda, so berechnet sich 
 	mue = (PC)/(AB) = sqrt ((r1^2/AB^2) - lambda^2).
 	*/
 	public HomogenousVector on_cut_cc(HomogenousVector arg2, HomogenousVector arg3, HomogenousVector arg4, boolean left)
@@ -818,7 +818,7 @@ public HomogenousVector(RExpression x, RExpression y)
 	/* Sei der Kreis gegeben durch Mittelpunkt M und Radius^2 = (R-M)^2.
 	   Dann liegt ein Punkt P auf dem Kreis, wenn (P-M)^2 = r^2 ist, und
 	   auf der Geraden, wenn P = A + lambda (B-A) gilt. Eingesetzt ergibt
-	   das für lambda den Ausdruck:
+	   das fur lambda den Ausdruck:
 	   lambda = - (B-A)(A-M) / (B-A)^2 +- 
 					sqrt ( ((B-A)(A-M))^2-(A-M)^2(B-A)^2+r^2(B-A)^2) / (B-A)^2.
 	*/
@@ -951,7 +951,7 @@ public HomogenousVector(RExpression x, RExpression y)
 		return erg;
 
 	}
-	// HomogenousVector senkrecht auf (this,arg2), über arg2.
+	// HomogenousVector senkrecht auf (this,arg2), uber arg2.
 	public HomogenousVector on_rect(HomogenousVector arg2)
 	{
 		if (DEBUG) 
@@ -1062,7 +1062,7 @@ public HomogenousVector(RExpression x, RExpression y)
 	{
 		if (DEBUG) 
 		{
-			docfile.print(" *** sqr über Strecke *** \r\n");
+			docfile.print(" *** sqr uber Strecke *** \r\n");
 			docfile.print("Argument 1: "+this.debugEvaluation()+"\r\n");
 			docfile.print("Argument 2: "+arg2.debugEvaluation()+"\r\n");
 		}
@@ -1081,8 +1081,8 @@ public HomogenousVector(RExpression x, RExpression y)
 		{
 			docfile.print("Arg 1.konv: "+ret[0].debugEvaluation()+"\r\n");
 			docfile.print("Arg 2.konv: "+ret[1].debugEvaluation()+"\r\n");
-			docfile.print("x-Zähler  : "+xz.debugEvaluation()+"\r\n\r\n");
-			docfile.print("y-Zähler  : "+yz.debugEvaluation()+"\r\n\r\n");
+			docfile.print("x-Zahler  : "+xz.debugEvaluation()+"\r\n\r\n");
+			docfile.print("y-Zahler  : "+yz.debugEvaluation()+"\r\n\r\n");
 			docfile.print("Summe     : "+su.debugEvaluation()+"\r\n");
 			docfile.print("Nenner    : "+ne.debugEvaluation()+"\r\n");
 			docfile.print("Ergebnis  : "+ergcop.debugEvaluation()+"\r\n\r\n");

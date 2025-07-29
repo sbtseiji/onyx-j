@@ -74,7 +74,7 @@ public class TutorialView extends View implements MouseListener, ActionListener 
 		framePath.lineTo(0, offset_top + offset_curve);
 		framePath.lineTo(offset_curve, offset_top);
 
-		label = new JLabel("No text available");
+		label = new JLabel("テキストがありません");
 		this.add(label);
 
 		int inset = 10;
@@ -114,7 +114,7 @@ public class TutorialView extends View implements MouseListener, ActionListener 
 		if (Utilities.isRightMouseButton(arg0)) {
 
 			JPopupMenu menu = new JPopupMenu();
-			menuClose = new JMenuItem("Close");
+			menuClose = new JMenuItem("閉じる");
 			menu.add(menuClose);
 			menuClose.addActionListener(this);
 			try {

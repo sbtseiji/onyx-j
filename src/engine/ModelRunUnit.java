@@ -482,8 +482,8 @@ public class ModelRunUnit implements ParameterReader {
         if (asHTML) {
             String params;
                 
-            params = "<html><h3>Estimates</h3>Estimation method: "
-                    + name+"<br>"+"Fit:"+fit+"<br><hr><br>";
+            params = "<html><h3>推定値</h3>推定法: "
+                    + name+"<br>"+"フィット値:"+fit+"<br><hr><br>";
             for (String parameterName : getSortedParameterNames()) {
                 
                 int idx = getParameterNameIndex(parameterName); 
@@ -506,9 +506,9 @@ public class ModelRunUnit implements ParameterReader {
         } else {
             
             
-            String erg = "Estimation = "+getName()+"\r\n";
-            erg += "Fit = "+fit+"\r\n\r\n";
-            erg += "Name\tEstimate\tStd. error\r\n";
+            String erg = "推定 = "+getName()+"\r\n";
+            erg += "フィット値 = "+fit+"\r\n\r\n";
+            erg += "名前\t推定\t標準誤差\r\n";
             for (int i=0; i<anzPar; i++) 
                 erg += parameterNames[i]+"\t"+position[i]+"\t"+Math.sqrt(cov[i][i])+"\r\n";
             
@@ -586,65 +586,65 @@ public class ModelRunUnit implements ParameterReader {
         String erg = getVariableDescription();
         erg += "\r\n"+getParameterDescription();
 
-        erg += "\r\nObserved Statistics           : "+observedStatistics+"\r\n";
-        erg += "Estimated Parameters          : "+this.anzPar+"\r\n";
-        erg += "Non-Missing Ratio             : "+Statik.round(modelRun.nonmissRatio, digits)+"\r\n";
-        erg += "Number of Observations        : "+this.anzPer+"\r\n";
-        erg += "Minus Two Log Likelihood      : "+Statik.round(ll,digits)+"\r\n";
-        erg += "Log Likelihood                : "+Statik.round(-0.5*ll,digits)+"\r\n";
+        erg += "\r\n観測値統計量                  : "+observedStatistics+"\r\n";
+        erg += "推定パラメータ                   : "+this.anzPar+"\r\n";
+        erg += "欠損なし比率             : "+Statik.round(modelRun.nonmissRatio, digits)+"\r\n";
+        erg += "観測値の個数        : "+this.anzPer+"\r\n";
+        erg += "-2対数尤度      : "+Statik.round(ll,digits)+"\r\n";
+        erg += "対数尤度                : "+Statik.round(-0.5*ll,digits)+"\r\n";
         //if (MainFrame.DEVMODE) 
-        erg += "Independent -2LL              : "+Statik.round(modelRun.precomputedIndependentLL, digits)+"\r\n";
+        erg += "独立モデル -2対数尤度              : "+Statik.round(modelRun.precomputedIndependentLL, digits)+"\r\n";
        // if (MainFrame.DEVMODE) 
-        erg += "Saturated -2LL                : "+Statik.round(modelRun.precomputedSaturatedLL, digits)+"\r\n";
+        erg += "飽和モデル -2対数尤度                : "+Statik.round(modelRun.precomputedSaturatedLL, digits)+"\r\n";
 
         erg += "\u03C7\u00B2                            : "+Statik.round(this.chisqr,digits)+"\r\n";
-        erg += "Restricted Degrees of Freedom : "+modelRun.df+"\r\n";
+        erg += "制限付自由度 : "+modelRun.df+"\r\n";
         erg += "AIC                           : "+Statik.round(this.aic,digits)+"\r\n";
         erg += "AICc                          : "+Statik.round(this.aicc, digits)+"\r\n";
         erg += "BIC                           : "+Statik.round(this.bic,digits)+"\r\n";
-        erg += "BIC (sample-size adjusted)    : "+Statik.round(this.bicadj,digits)+"\r\n";
-        erg += "Kulback-Leibler to Saturated  : "+Statik.round(this.kulbackLeibler, digits)+"\r\n";
+        erg += "BIC (自由度調整済)    : "+Statik.round(this.bicadj,digits)+"\r\n";
+        erg += "飽和モデル カルバック・ライブラー情報量 : "+Statik.round(this.kulbackLeibler, digits)+"\r\n";
         //if (MainFrame.DEVMODE) 
-        erg += "\u03C7\u00B2 from independent           : "+Statik.round(this.chisqrIndep,digits)+"\r\n";
-        erg +="Degrees of Freedom  (indep.)   :"+modelRun.independentDF+"\r\n";
-        if (MainFrame.DEVMODE) erg += "Kulback-Leibler from indep.   : "+Statik.round(this.klIndep,digits)+"\r\n";
-        erg += "RMSEA (df corrected)          : "+Statik.round(this.rmseaDfCorrected,digits)+"\r\n";
-        erg += "RMSEA (Kulback Leibler)       : "+Statik.round(this.rmseaKL,digits)+"\r\n";
-        erg += "RMSEA (classic)               : "+Statik.round(this.rmsea, digits);
+        erg += "独立モデル \u03C7\u00B2  : "+Statik.round(this.chisqrIndep,digits)+"\r\n";
+        erg += "独立モデル 自由度 :"+modelRun.independentDF+"\r\n";
+        if (MainFrame.DEVMODE) erg += "独立モデル カルバック・ライブラー情報量 : "+Statik.round(this.klIndep,digits)+"\r\n";
+        erg += "RMSEA (自由度補正済)          : "+Statik.round(this.rmseaDfCorrected,digits)+"\r\n";
+        erg += "RMSEA (カルバック・ライブラー)       : "+Statik.round(this.rmseaKL,digits)+"\r\n";
+        erg += "RMSEA (古典的)               : "+Statik.round(this.rmsea, digits);
         
         if (MainFrame.DEVMODE)
         erg+=" ("+Statik.round(this.rmseaCI[0],digits)+";"
         		+ Statik.round(this.rmseaCI[1], digits)+")";
         
         erg+="\r\n";
-        erg += "SRMR (covariances only)       : "+Statik.round(this.srmr,digits)+"\r\n";
-        erg += "CFI (to independent model)    : "+Statik.round(this.cfi, digits)+"\r\n";
-        erg += "TLI (to independent model)    : "+Statik.round(this.tli,digits)+"\r\n\r\n";
-        erg += "Timestamp                     : "+Statik.today(true)+"\r\n";
-        erg += "Runner Individual Time        : "+ownTime+"\r\n";
-        erg += "Wall Clock Time               : "+clockTime+"\r\n";
+        erg += "SRMR (共分散のみ)       : "+Statik.round(this.srmr,digits)+"\r\n";
+        erg += "CFI (独立モデルとの比較)    : "+Statik.round(this.cfi, digits)+"\r\n";
+        erg += "TLI (独立モデルとの比較)    : "+Statik.round(this.tli,digits)+"\r\n\r\n";
+        erg += "タイムスタンプ                     : "+Statik.today(true)+"\r\n";
+        erg += "実行者個別時間        : "+ownTime+"\r\n";
+        erg += "実時間               : "+clockTime+"\r\n";
         if (isConverged()) {
-            erg += "Runner Time at convergence    : "+ownTimeAtConvergence+"\r\n";
-            erg += "Wall Clock at convergence     : "+clockTimeAtConvergence+"\r\n";
+            erg += "収束時の実行者時間    : "+ownTimeAtConvergence+"\r\n";
+            erg += "収束時の実時間     : "+clockTimeAtConvergence+"\r\n";
         }
-        if (MainFrame.DEVMODE) erg += "Runner ID                     : "+this+"\r\n";
+        if (MainFrame.DEVMODE) erg += "実行者ID                     : "+this+"\r\n";
         
         erg += "\r\n";
         
-        erg += (modelRun.isBestEstimate(this)?"This estimate is the best found.\r\n":"This estimate is a local optimum, better estimates exist.\r\n");
-        erg += (isReliable()?"This estimate is reliably converged.\r\n":"This estimate is still improving.\r\n");
-        erg += (isHessianNonPositiveDefinite()?"The model is overspecified at this estimate.\r\n":"");
+        erg += (modelRun.isBestEstimate(this)?"この推定値はこれまでで最良のものです。\r\n":"この推定値は局所的最適解であり、より良い推定値が存在します。\r\n");
+        erg += (isReliable()?"この推定値は信頼できる収束状態にあります。\r\n":"この推定値はまだ改善中です。\r\n");
+        erg += (isHessianNonPositiveDefinite()?"このモデルは過剰指定されている可能性があります。\r\n":"");
         int anzLocal = modelRun.getAnzLocalOptima();
         if (anzLocal > 1) {
-            erg += "There are "+anzLocal+" local maxium likelihood optima found so far, "+modelRun.getAnzLocalReliableOptima()+" of them reliable.\r\n";
-        } else erg += "This is the only maximum likelihood optimum found.\r\n";
-        erg += "This estimate has been found with "+this.anzClustered+" starting value sets converged in total.\r\n";
-        if (modelRun.isHappy()) erg += "The overall estimation situation has stabilized.\r\n";
+            erg += anzLocal+" 個の局所的最尤推定値が存在し、そのうち "+modelRun.getAnzLocalReliableOptima()+" 個が信頼可能です。\r\n";
+        } else erg += "これは唯一の最尤推定値です。\r\n";
+        erg += "この推定値は合計で "+this.anzClustered+" セットの初期値群から収束しました。\r\n";
+        if (modelRun.isHappy()) erg += "全体の推定状況は安定しています。\r\n";
         if (this instanceof ExternalRunUnit) {
             ExternalRunUnit eThis = (ExternalRunUnit)this;
-            erg += "This estimate was found using "+eThis.getAgentLabel()+".\r\n";
-            if (eThis.agentMessage != null && eThis.agentMessage.length()>0) erg += eThis.getAgentLabel()+" produced the message: "+eThis.agentMessage+"\r\n";
-            if (eThis.agentStatus == AgentStatus.FAIL) erg += "The estimation is marked as failed.";
+            erg += "この推定は "+eThis.getAgentLabel()+" によって行われました。\r\n";
+            if (eThis.agentMessage != null && eThis.agentMessage.length()>0) erg += eThis.getAgentLabel()+" のメッセージ: "+eThis.agentMessage+"\r\n";
+            if (eThis.agentStatus == AgentStatus.FAIL) erg += "推定は失敗としてマークされています。";
         }
         
 //        if (MainFrame.DEVMODE) {
@@ -751,7 +751,7 @@ public class ModelRunUnit implements ParameterReader {
     }
     
     public OptimizationHistory getHistory() {return history;}
-    public String getHistoryString() {return (history==null?"History not available":history.toString());}
+    public String getHistoryString() {return (history==null?"履歴がありません":history.toString());}
 
     public String getModelName() {
         return modelRun.model.getName();

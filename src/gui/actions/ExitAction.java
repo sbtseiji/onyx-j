@@ -28,8 +28,8 @@ import javax.swing.AbstractAction;
 		public ExitAction()
 		{
 	
-			putValue(NAME, "Quit");
-			putValue(SHORT_DESCRIPTION, "Quit the application");
+			putValue(NAME, "終了");
+			putValue(SHORT_DESCRIPTION, "アプリケーションを終了します");
 		}
 		
 		

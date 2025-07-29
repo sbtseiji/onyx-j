@@ -35,8 +35,8 @@ public class CreateApproxUARAction extends AbstractAction {
 	{
 		this.desktop = desktop;
 	
-		putValue(NAME, "Create new approx. univariate AR");
-		putValue(SHORT_DESCRIPTION, "Create an approx. AR model on the desktop");
+		putValue(NAME, "近似単変量自己回帰モデル（UAR）");
+		putValue(SHORT_DESCRIPTION, "デスクトップ上に近似自己回帰（AR）モデルを作成します");
 	}
 	
 	public CreateApproxUARAction(Desktop desktop, int x, int y)

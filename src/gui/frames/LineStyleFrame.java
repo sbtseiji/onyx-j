@@ -72,9 +72,9 @@ public class LineStyleFrame extends JFrame implements ActionListener
 		this.setBackground(Color.white);
 		
 		this.setLayout(new GridBagLayout());
-		style1 = new JRadioButton("Normal");
-		style2 = new JRadioButton("Dotted");
-		style3 = new JRadioButton("Dashed");
+		style1 = new JRadioButton("実線");
+		style2 = new JRadioButton("点線");
+		style3 = new JRadioButton("破線");
 		
 		group = new ButtonGroup();
 		group.add(style1);
@@ -89,7 +89,7 @@ public class LineStyleFrame extends JFrame implements ActionListener
 		cx.gridx = 0;
 		cx.gridy = 7;
 		
-		select = new JButton("Select");
+		select = new JButton("選択");
 		select.addActionListener(this);
 		this.add(select, cx);
 		

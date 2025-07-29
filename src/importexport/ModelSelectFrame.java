@@ -39,7 +39,7 @@ public class ModelSelectFrame extends JDialog implements ActionListener {
 		
 		public ModelSelectFrame(JFrame owner, List<XMLModel> models)
 		{
-			super(owner, "Select models to import", Dialog.ModalityType.DOCUMENT_MODAL);
+			super(owner, "読み込むモデルを選択", Dialog.ModalityType.DOCUMENT_MODAL);
 			
 			this.models = models;
 			
@@ -47,8 +47,8 @@ public class ModelSelectFrame extends JDialog implements ActionListener {
 			for (int i=0; i < names.length;i++) names[i]=models.get(i).name;
 			
 			list = new JList(names);
-			label = new JLabel("Choose which models you want to import");
-			ok = new JButton("ok");
+			label = new JLabel("読み込みたいモデルを選択してください");
+			ok = new JButton("決定");
 			this.add(label, BorderLayout.NORTH);
 			this.add(list, BorderLayout.CENTER);
 			this.add(ok, BorderLayout.SOUTH);

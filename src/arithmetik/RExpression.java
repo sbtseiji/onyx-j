@@ -66,7 +66,7 @@ public class RExpression
 	public RExpression add (RExpression arg2)
 	{
 		// Sonderfall: Falls beide Terme keine Wurzeln enthalten,
-		// muss es schön schnell gehen.
+		// muss es schï¿½n schnell gehen.
 		if (this.monom.size()==0) return new RExpression(arg2);
 		if (arg2.monom.size()==0) return new RExpression(this);
 		if ((this.hasNoRoot()) && (arg2.hasNoRoot())) return new RExpression
@@ -102,7 +102,7 @@ public class RExpression
 		return erg;
 	}
 	// Berechnet den lazyGcd (nach Def. von FastPolynomial) aller Faktoren und sammelt
-	// alle Datenbankeinträge ein, die in jedem Monom vorkommen.
+	// alle Datenbankeintrï¿½ge ein, die in jedem Monom vorkommen.
 	public RExpMonomial commonContent()
 	{
 		if (monom.size()==0) return new RExpMonomial(Qelement.ONE);
@@ -111,9 +111,9 @@ public class RExpression
 			erg = erg.unite((RExpMonomial)monom.elementAt(i));
 		return erg;
 	}
-	// Berechnet einen lazyGcd diese RExpressions mit dem übergebenen RExpMonomial, d.h. alle
-	// gemeinsamen Anteile der Faktoren und alle Datenbankeinträge, die in jedem Monom vorkommen.
-	// Ist das RExpMonomial 0, so wird in unverändert zurückgegeben.
+	// Berechnet einen lazyGcd diese RExpressions mit dem ï¿½bergebenen RExpMonomial, d.h. alle
+	// gemeinsamen Anteile der Faktoren und alle Datenbankeintrï¿½ge, die in jedem Monom vorkommen.
+	// Ist das RExpMonomial 0, so wird in unverï¿½ndert zurï¿½ckgegeben.
 	public RExpMonomial commonContent(RExpMonomial in)
 	{
 		RExpMonomial erg = new RExpMonomial(in);
@@ -168,7 +168,7 @@ public class RExpression
 			erg = erg.add( ((RExpMonomial)monom.elementAt(i)).derive(identifierNr) );
 		return erg;
 	}
-	// Diese Routine eliminiert die Wurzeln für den Test auf 0. Dafür wird
+	// Diese Routine eliminiert die Wurzeln fï¿½r den Test auf 0. Dafï¿½r wird
 	// die 3. binomische Formel verwendet; das Ergebnis ist 0 <=> der RExpression ist 0.
 	// Testbeispiel: 5 ab + 2 ac + 3d = 0
 	//			<=>  a (5b + 2c) = -3d
@@ -216,7 +216,7 @@ public class RExpression
 		return erg;
 	}
 	// Evaluate Nr. 6 nimmt ein Array von doubles, dass alle vorkommenden
-	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zurück.
+	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zurï¿½ck.
 	public double evaluate(double[] value)
 	{
 		double erg = 0;
@@ -265,8 +265,8 @@ public RExpression[] getAllConjugates()
 
 	a + b*sqrt(a) + c*sqrt(d+e*sqrt(a)) + ....
 
-	sein und hat signs genau soviele Einträge 0 oder 1, wie es verschiedene Wurzeln in der Darstellung
-	gibt, so gibt diese Methode die durch signs angegebene Konjugierte zurück.
+	sein und hat signs genau soviele Eintrï¿½ge 0 oder 1, wie es verschiedene Wurzeln in der Darstellung
+	gibt, so gibt diese Methode die durch signs angegebene Konjugierte zurï¿½ck.
  
  */
 public RExpression getConjugate(int[] signs) 
@@ -332,7 +332,7 @@ public int getDepth()
 	}
 	return erg;
 }
-	// liefert den höchsten vorkommenden Index (i.A. die Anzahl der Variablen).
+	// liefert den hï¿½chsten vorkommenden Index (i.A. die Anzahl der Variablen).
 	public int getHighestIndex()
 	{
 		int erg = 0;
@@ -374,13 +374,13 @@ public boolean isCertainlyOne()
 {
 	return ((monom.size()==1) && (((RExpMonomial)monom.elementAt(0)).member.size()==0) && (((RExpMonomial)monom.elementAt(0)).factor.isUnit()));
 }
-	// Lässt sich später vielleicht noch ausbauen.
+	// Lï¿½sst sich spï¿½ter vielleicht noch ausbauen.
 	public boolean isCertainlyZero()
 	{
 		return monom.size()==0;
 	}
 	public static boolean isDatabaseEnabled() {return datenbankAktiv;}
-	// nicht equals überschreiben, sonst sind 1+sqrt(2) und 1sqt(2) identisch!
+	// nicht equals ï¿½berschreiben, sonst sind 1+sqrt(2) und 1sqt(2) identisch!
 	public boolean isEqual(RExpression arg2)
 	{
 		return (subtract(arg2)).isZero();
@@ -398,8 +398,8 @@ public boolean isCertainlyOne()
 
 		return erg;
 	}
-	// Gibt eine Liste zurück, mit welchem RExpression man den ggT
-	// multiplizieren müsste, um auf den jeweiligen factor zu kommen.
+	// Gibt eine Liste zurï¿½ck, mit welchem RExpression man den ggT
+	// multiplizieren mï¿½sste, um auf den jeweiligen factor zu kommen.
 	public static RExpression[] lazyGcdFaks(RExpression[] v_in)
 	{
 		RExpMonomial gg = lazyGcdList(v_in);
@@ -408,8 +408,8 @@ public boolean isCertainlyOne()
 			f[i] = v_in[i].lazyDivide(gg);
 		return f;
 	}
-	// Findet einen RExpression, der alle FastPolynomial- und alle RExpression-Datenbankeinträge
-	// enthält, die in allen RExpressionen des Arrays v_in vorkommen. 
+	// Findet einen RExpression, der alle FastPolynomial- und alle RExpression-Datenbankeintrï¿½ge
+	// enthï¿½lt, die in allen RExpressionen des Arrays v_in vorkommen. 
 	public static RExpMonomial lazyGcdList(RExpression[] v_in)
 	{
 		int j=0;
@@ -421,7 +421,7 @@ public boolean isCertainlyOne()
 
 		return erg;
 	}
-	// Gibt eine Liste zurück, mit welchem RExpression man die jeweiligen
+	// Gibt eine Liste zurï¿½ck, mit welchem RExpression man die jeweiligen
 	// Argumente multiplizieren muss, um auf das "kgV" zu kommen.
 	// Der Faktor des kgV ist das Produkt der Faktoren (Zahlen!) aller 
 	// Komponenten, und somit haben die Ergebnisse als Faktoren das 
@@ -440,8 +440,8 @@ public boolean isCertainlyOne()
 	}
 	// Diese Routine teilt den RExpression durch ein RExpMonomial, wobei dessen Factor
 	// ein lazyDivisor vom factor jedes Monoms sein muss und dessen Wurzel-Datenbankelement 
-	// in jedem monom auftauchen müssen. Aufgerufen wird diese Routine von RQuotientenExp,
-	// um zu kürzen, und zwar mit dem commonContent united mit dem commonContent eines anderen
+	// in jedem monom auftauchen mï¿½ssen. Aufgerufen wird diese Routine von RQuotientenExp,
+	// um zu kï¿½rzen, und zwar mit dem commonContent united mit dem commonContent eines anderen
 	// RExpression. 
 	protected RExpression monomialDivide(RExpMonomial arg2)
 	{
@@ -484,7 +484,7 @@ public boolean isCertainlyOne()
 	public RExpression multiply(RExpression arg2)
 	{
 		// Sonderfall: Falls beide Terme keine Wurzeln enthalten,
-		// muss es schön schnell gehen.
+		// muss es schï¿½n schnell gehen.
 		if (this.monom.size()==0) return new RExpression();
 		if (arg2.monom.size()==0) return new RExpression();
 		if ((this.hasNoRoot()) && (arg2.hasNoRoot())) return new RExpression

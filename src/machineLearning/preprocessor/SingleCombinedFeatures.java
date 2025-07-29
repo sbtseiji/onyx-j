@@ -35,7 +35,7 @@ public class SingleCombinedFeatures extends Preprocessor {
     public void train(int start, int end) {
         if (components.contains(Feature.MEANCOMPONENT) || components.contains(Feature.LDACOMPONENT)) {
             int g1 = target[start], g2 = 2398463; int j=start+1; while (j<end) if (target[j]!=g1) {g2 = target[j]; j=end; } else j++;
-            if (g2 == 2398463) throw new RuntimeException("Training Range of CSP contains targets of only one group.");
+            if (g2 == 2398463) throw new RuntimeException("CSPの学習範囲に1つのグループしか含まれていません。");
             if (g1>g2) {int t = g1; g1=g2; g2=t;}
             
             int dim = data[start].length, anzPer = end-start;

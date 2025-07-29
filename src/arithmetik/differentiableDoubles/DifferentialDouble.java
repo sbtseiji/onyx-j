@@ -169,7 +169,7 @@ public abstract class DifferentialDouble extends DifferentialObject
                 for (int i=0; i<matrixChild.length; i++) erg.matrixChild[i] = matrixChild[i].copy();
             }
             return erg;
-        } catch (Exception e) {throw new RuntimeException("Problems creating a copy of "+this+".");}
+        } catch (Exception e) {throw new RuntimeException("このオブジェクト（" + this + "）のコピー作成中に問題が発生しました。");}
     }
     
     public DifferentialDouble substitute(int[] pnr, DifferentialDouble[] vals) {

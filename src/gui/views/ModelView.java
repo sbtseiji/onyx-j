@@ -247,41 +247,40 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 	int guide_horizontal_active = -1;
 
 	private MessageObject messageNonPositiveDefiniteDataSet = new MessageObject(
-			"Data covariance matrix is not positive definite.", "warning");
+			"データの共分散行列が正定値ではありません。", "warning");
 	private MessageObject messageSwitchedToImplicitMeanTreatment = new MessageObject(
-			"One or more variables with non-zero means exists; means are added implicitly. You may switch to an explicit mean structure.",
+			"1つ以上の変数にゼロでない平均値が存在します。平均は暗黙的に追加されます。明示的な平均構造に切り替えることもできます。",
 			"information");
 	private MessageObject messageSwitchedToExplicitMeanTreatment = new MessageObject(
-			"Means are treated explicitly now.", "information");
-	private MessageObject messageDatasetHasNoParticipants = new MessageObject("Data set has no observations.", "error");
+			"現在、平均は明示的に処理されています。", "information");
+	private MessageObject messageDatasetHasNoParticipants = new MessageObject("データセットに観測値がありません。", "error");
 	private MessageObject messageMultipleDatasetsWithoutID = new MessageObject(
-			"Multiple data sets without identifier column are used, those will be treated as independent.", "warning");
+			"識別子列のない複数のデータセットが使用されています。これらは独立したものとして扱われます。", "warning");
 	private MessageObject messageAddVariables = new MessageObject(
-			"Add observed variables by dragging them from a dataset onto the model!", "information");
+			"データセットからモデル上にドラッグして観測変数を追加してください！", "information");
 	private MessageObject messageNoGroupsOrDefinitionOnCovariance = new MessageObject(
-			"Definition variables and groups are not permitted on covariance data sets.", "information");
+			"共分散データセットでは、定義変数およびグループは使用できません。", "information");
 	private MessageObject messageGroupingHasMissing = new MessageObject(
-			"Group variables have missingness, for these cases, grouped variables will be ignored.", "warning");
+			"グループ変数に欠損値があります。この場合、グループ化された変数は無視されます。", "warning");
 	private MessageObject messageDefinitionHasMissing = new MessageObject(
-			"Definition variables are not available for all observations.", "information");
-	private MessageObject messageError = new MessageObject("An unspecified error has occured!", "error");
-	private MessageObject messageObjectRunning = new MessageObject("Model parameters are being estimated right now!",
-			"gears");
-	private MessageObject messageObjectNA = new MessageObject("One or more columns have only missing data!", "error");
-	private MessageObject messageOverspecified = new MessageObject("Model is overspecified.", "warning");
-	private MessageObject messageSingular = new MessageObject("The model-implied covariance matrix is singular!",
+			"すべての観測に定義変数が存在するわけではありません。", "information");
+	private MessageObject messageError = new MessageObject("原因不明のエラーが発生しました！", "error");
+	private MessageObject messageObjectRunning = new MessageObject("モデルのパラメータを推定中です！", "gears");
+	private MessageObject messageObjectNA = new MessageObject("1つ以上の列がすべて欠損値です！", "error");
+	private MessageObject messageOverspecified = new MessageObject("モデルが過剰特定されています。", "warning");
+	private MessageObject messageSingular = new MessageObject("モデルが示す共分散行列が特異です！",
 			"warning");
 	private MessageObject messageAcceleratingCycle = new MessageObject(
-			"The single-headed edges form a cylce of product greater than one.", "warning");
+			"単方向エッジが、積が1を超える閉路を形成しています。", "warning");
 	private MessageObject msgConnectGroupVariables = new MessageObject(
-			"Connect all group indicator variables to obtain parameter estimates!", ImageLoaderWorker.INFORMATION,
+			"すべてのグループ指標変数を接続してパラメータ推定値を取得してください！", ImageLoaderWorker.INFORMATION,
 			this);
 	private MessageObject msgConnectDefinitionVariables = new MessageObject(
-			"Connect all definition variables to obtain parameter estimates!", ImageLoaderWorker.INFORMATION, this);
+			"すべての定義変数を接続してパラメータ推定値を取得してください！", ImageLoaderWorker.INFORMATION, this);
 	private MessageObject msgConnectObservedVariables = new MessageObject(
-			"Connect all observed variables to obtain parameter estimates!", ImageLoaderWorker.INFORMATION, this);
+			"すべての観測変数を接続してパラメータ推定値を取得してください！", ImageLoaderWorker.INFORMATION, this);
 	private MessageObject messageObjectAllMissing = new MessageObject(
-			"There is at least one data row without any observed data! This may bias your fit statistics!",
+			"観測データがまったく含まれていないデータ行が少なくとも1つ存在します！このことは適合度指標にバイアスを生じさせる可能性があります！",
 			ImageLoaderWorker.WARNING, this);
 
 	public static Preset[] presets;
@@ -1148,12 +1147,12 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 				mri.requestRemoveEdge(edge);
 		}
 		
-		if (e.getSource() == menuAddRectangle) {
-			ShapeDecorator b = new BoxDecorator(200,100);
-			b.setX( this.mouseClickX);
-			b.setY( this.mouseClickY);
-			addDecorator(b);
-		}
+		// if (e.getSource() == menuAddRectangle) {
+		// 	ShapeDecorator b = new BoxDecorator(200,100);
+		// 	b.setX( this.mouseClickX);
+		// 	b.setY( this.mouseClickY);
+		// 	addDecorator(b);
+		// }
 
 		if (e.getSource() == menuDeleteNode) {
 
@@ -1189,7 +1188,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			setAtomicOperationInProgress(false);
 
 			if (!ok) {
-				MessageObject mo = new MessageObject("Error! Backend could not delete a node!",
+				MessageObject mo = new MessageObject("エラー！バックエンドでノードを削除できませんでした！",
 						ImageLoaderWorker.ERROR);
 				this.messageObjectContainer.add(mo);
 				this.redraw();
@@ -1260,7 +1259,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 				try {
 					export.export(this.file);
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(this, "Error! File could not be saved!");
+					JOptionPane.showMessageDialog(this, "エラー！ ファイルを保存できませんでした！");
 				}
 
 			desktop.mainFrame.addToRecentFiles(this.file);
@@ -1292,7 +1291,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 		if (e.getSource() == menuEdgeLabelColor) {
 			setUnsavedChanges(true);
-			Color newColor = JColorChooser.showDialog(this, "Choose Font Color", menuContextEdge.getLabel().getColor());
+			Color newColor = JColorChooser.showDialog(this, "フォントの色を選択", menuContextEdge.getLabel().getColor());
 
 			MultiStep mstep = new MultiStep();
 
@@ -1309,7 +1308,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 		if (e.getSource() == menuNodeFontColor) {
 			setUnsavedChanges(true);
-			Color newColor = JColorChooser.showDialog(this, "Choose Font Color", menuContextNode.getFontColor());
+			Color newColor = JColorChooser.showDialog(this, "フォントの色を選択", menuContextNode.getFontColor());
 
 			MultiStep mstep = new MultiStep();
 
@@ -1326,7 +1325,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		if (e.getSource() == menuEdgeColor) {
 
 			setUnsavedChanges(true);
-			Color newColor = JColorChooser.showDialog(this, "Choose Path Color", menuContextEdge.getLineColor());
+			Color newColor = JColorChooser.showDialog(this, "パスの色を選択", menuContextEdge.getLineColor());
 
 			MultiStep mstep = new MultiStep();
 
@@ -1342,7 +1341,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 		if (e.getSource() == menuBackgroundColor) {
 			setUnsavedChanges(true);
-			Color newColor = JColorChooser.showDialog(this, "Choose Background Color", getGraph().backgroundColor);
+			Color newColor = JColorChooser.showDialog(this, "背景の色を選択", getGraph().backgroundColor);
 
 			this.getGraph().backgroundColor = newColor;
 			this.redraw();
@@ -1584,7 +1583,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			if (graph.hasTriangles()) {
 
 				JOptionPane.showMessageDialog(this,
-						"The model has an explicit mean structure. Delete the explicit mean structure before setting mean treatment to saturated. ",
+						"このモデルには明示的な平均構造があります。平均の扱いを飽和に設定する前に、明示的な平均構造を削除してください。",
 						"Mean Treatment Error", JOptionPane.ERROR_MESSAGE);
 
 			} else {
@@ -1703,7 +1702,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		MultiStep mstep = new MultiStep();
 
 		setUnsavedChanges(true);
-		Color newColor = JColorChooser.showDialog(this, "Choose Fill Color", menuContextNode.getFillColor());
+		Color newColor = JColorChooser.showDialog(this, "塗りの色を選択", menuContextNode.getFillColor());
 
 		for (Node node : getSelectedNodes()) {
 
@@ -1725,7 +1724,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		MultiStep mstep = new MultiStep();
 
 		setUnsavedChanges(true);
-		Color newColor = JColorChooser.showDialog(this, "Choose Line Color", menuContextNode.getLineColor());
+		Color newColor = JColorChooser.showDialog(this, "線の色を選択", menuContextNode.getLineColor());
 		for (Node node : getSelectedNodes()) {
 			// if (node.isSelected())
 			mstep.add(new LineColorChangeStep(this, node));
@@ -1789,7 +1788,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		});
 		fc.setAcceptAllFileFilterUsed(true);
 
-		fc.setDialogTitle("Load Parameters");
+		fc.setDialogTitle("パラメータの読み込み");
 		int returnVal = fc.showSaveDialog(this);
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -1922,7 +1921,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		// construct a dataset
 		if (numObserved != numConnected) {
 			messageObjectContainer
-					.add(new MessageObject("Connect all manifest variables in order to obtain parameter estimates!",
+					.add(new MessageObject("すべての顕在変数を接続してパラメータ推定値を取得してください！",
 							ImageLoaderWorker.INFORMATION, this));
 
 			return null;
@@ -1930,7 +1929,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 		if (numObserved == 0) {
 			messageObjectContainer
-					.add(new MessageObject("Add observed variables by dragging them from a dataset onto the model!",
+					.add(new MessageObject("データセットからモデル上にドラッグして観測変数を追加してください！",
 							ImageLoaderWorker.INFORMATION, this));
 			return null;
 		}
@@ -1950,16 +1949,16 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			if (df == null) {
 
 				messageObjectContainer
-						.add(new MessageObject("An error occurred with the mapping of your variables. Blame Andy.",
+						.add(new MessageObject("変数のマッピング中にエラーが発生しました。アンディのせいです。",
 								ImageLoaderWorker.ERROR, this));
 
-				System.err.println("An error occurred with the variable mapping! Variable is linked to NULL dataset");
+				System.err.println("変数のマッピング中にエラーが発生しました！変数がNULLデータセットにリンクされています。");
 				return null;
 			}
 
 			if (!(df.dataset instanceof RawDataset)) {
 				JOptionPane.showMessageDialog(this,
-						"An error has occurred during assemblin data when linking dataset and model!");
+						"データセットとモデルをリンクする際のデータ組み立て中にエラーが発生しました！");
 
 				return (null);
 			}
@@ -1978,7 +1977,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 				for (int j = 0; j < rdataset.getNumRows(); j++) {
 
 					if (!(datasetField.dataset instanceof RawDataset)) {
-						JOptionPane.showMessageDialog(this, "An error has occurred during linking dataset and model!");
+						JOptionPane.showMessageDialog(this, "データセットとモデルのリンク中にエラーが発生しました！");
 						return (null);
 					}
 
@@ -1996,7 +1995,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 				if (!dataset.hasIdColumn()) {
 
 					messageObjectContainer.add(new MessageObject(
-							"If multiple datasets are associated with a single model, all datasets must have an identifier column!",
+							"1つのモデルに複数のデータセットが関連付けられている場合、すべてのデータセットに識別子列が必要です！",
 							ImageLoaderWorker.ERROR, this));
 					return null;
 				}
@@ -2069,7 +2068,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 					if (Model.isMissing(group)) {
 						messageObjectContainer.addOnce(messageGroupingHasMissing);
 
-						System.out.println("Grouping variable at node " + node.getCaption() + " has missingness.");
+						System.out.println("ノード " + node.getCaption() + " のグループ化変数に欠損値があります。");
 					} else if (group != node.groupValue)
 						data[j][i] = Model.MISSING;
 				}
@@ -2188,7 +2187,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			if (messageObjectContainer.contains(messageObjectRunning))
 				messageObjectContainer.remove(messageObjectRunning);
 			MessageObject messageObjectError = new MessageObject(
-					"All computations in the backend have been terminated!", ImageLoaderWorker.ERROR);
+					"バックエンドですべての計算が終了しました！", ImageLoaderWorker.ERROR);
 			messageObjectContainer.addOnce(messageObjectError);
 			this.repaint();
 		} else if (status == Status.RESETTING) {
@@ -2800,7 +2799,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 						if (dataset instanceof CovarianceDataset) {
 							JOptionPane.showMessageDialog(this,
-									"Cannot apply covariance dataset to multiple group model");
+									"共分散データセットを複数グループモデルに適用できません。");
 							return;
 						}
 
@@ -3190,11 +3189,11 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 						// if (pr2==0.0)
 
-						return "Latent variable " + node.getCaption() + idString + "\n" + pseudor2;
+						return "潜在変数 " + node.getCaption() + idString + "\n" + pseudor2;
 					} else if (node.isMeanTriangle()) {
-						return "Constant term";
+						return "定数項";
 					} else {
-						return "Observed variable " + node.getCaption() + idString + " without associated data";
+						return "観測変数 " + node.getCaption() + idString + " （関連データなし）";
 					}
 				}
 			}
@@ -3204,14 +3203,14 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			if (edge != null) {
 
 				if (edge.isDefinitionVariable()) {
-					String str = "Definition variable ";
+					String str = "定義変数 ";
 					if (edge.getDefinitionVariableContainer().isConnected()) {
 
 						DatasetField df = edge.getDefinitionVariableContainer().getLinkedDatasetField();
 
 						str += df.dataset.getColumnName(df.columnId);
 					} else {
-						str += " [unconnected]";
+						str += " [未接続]";
 					}
 
 					return (str);
@@ -3226,7 +3225,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 				}
 
 				if (edge.isFixed()) {
-					str += " [fixed]";
+					str += " [固定]";
 				}
 
 				return (str);
@@ -3767,8 +3766,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			int numcases = combinedData.getNumCompletelyMissingCases();
 			if (numcases > 0) {
 				messageObjectContainer.addOnce(messageObjectAllMissing);
-				messageObjectAllMissing.setTextMessage("There are " + numcases
-						+ " data row(s) without any observed data! This may bias your fit statistics!");
+				messageObjectAllMissing.setTextMessage("観測データがまったく含まれていないデータ行が " + numcases + " 行あります！ このことは適合度指標にバイアスを生じさせる可能性があります！");
 				// System.out.println("NUMCASES > 0");
 			} else {
 				// ...
@@ -4600,7 +4598,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 				// We found a better estimate than we had before
 
 				if (sparklingObject == null) {
-					sparklingObject = new MessageObject("New results are available!", ImageLoaderWorker.SPARKLING);
+					sparklingObject = new MessageObject("新しい結果が利用可能です！", ImageLoaderWorker.SPARKLING);
 				}
 				if (!this.messageObjectContainer.contains(sparklingObject)
 						&& mri.getBigClockTime() > IMMEDIATEREDRAWTIME) {
@@ -4985,10 +4983,10 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		if (graph.getAuxiliaryStack().isPointWithin(arg0.getX(), arg0.getY())) {
 
 			if (menuAux == null)
-				menuAux = new JMenu("Auxiliary Variables");
+				menuAux = new JMenu("補助変数");
 
 			if (menuRemoveAllAux == null) {
-				menuRemoveAllAux = new JMenuItem("Remove All Auxiliary Variables");
+				menuRemoveAllAux = new JMenuItem("すべての補助変数を削除");
 				menuAux.add(menuRemoveAllAux);
 				menuRemoveAllAux.addActionListener(this);
 				;
@@ -5000,13 +4998,13 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		if (nodeUnderMouse) {
 
 			if (!menuContextNode.isMeanTriangle()) {
-				nodeNameInput = new LabeledInputBox("Variable Name");
+				nodeNameInput = new LabeledInputBox("変数名");
 				menu.add(nodeNameInput);
 				nodeNameInput.setText(menuContextNode.getCaption());
 				nodeNameInput.getDocument().addDocumentListener(this);
 			}
 			if (menuContextNode.isGrouping()) {
-				nodeGroupInput = new LabeledInputBox("Group");
+				nodeGroupInput = new LabeledInputBox("グループ");
 				menu.add(nodeGroupInput);
 				nodeGroupInput.setText(Statik.doubleNStellen(menuContextNode.groupValue, 0));
 				nodeGroupInput.getDocument().addDocumentListener(this);
@@ -5014,12 +5012,12 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			// nodeNameInput.addKeyListener(this);
 
 			if (menuCreatePath == null) {
-				menuCreatePath = new JMenu("Add Path");
+				menuCreatePath = new JMenu("パスを追加");
 				menuCreatePath.addActionListener(this);
 
-				menuCreatePathVariance = new JMenuItem("Add Variance");
-				menuCreatePathCovariance = new JMenuItem("Add Covariance");
-				menuCreatePathRegression = new JMenuItem("Add Regression");
+				menuCreatePathVariance = new JMenuItem("分散を追加");
+				menuCreatePathCovariance = new JMenuItem("共分散を追加");
+				menuCreatePathRegression = new JMenuItem("回帰を追加");
 				menuCreatePathVariance.addActionListener(this);
 				menuCreatePathCovariance.addActionListener(this);
 				menuCreatePathRegression.addActionListener(this);
@@ -5029,14 +5027,14 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			}
 
 			if (menuSwapLatent == null) {
-				menuSwapLatent = new JMenuItem("Swap Latent / Manifest");
+				menuSwapLatent = new JMenuItem("潜在・顕在の切替え");
 				menuSwapLatent.addActionListener(this);
 			}
 
 			if (menuContextNode.isLatent()) {
-				menuSwapLatent.setText("Change to Observed");
+				menuSwapLatent.setText("観測変数に変更");
 			} else {
-				menuSwapLatent.setText("Change to Latent");
+				menuSwapLatent.setText("潜在変数に変更");
 			}
 
 			menu.add(menuCreatePath);
@@ -5047,7 +5045,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 					menuSwapGrouping = new JMenuItem("");
 					menuSwapGrouping.addActionListener(this);
 				}
-				menuSwapGrouping.setText((menuContextNode.isGrouping() ? "Remove Grouping" : "Add Grouping"));
+				menuSwapGrouping.setText((menuContextNode.isGrouping() ? "グループを削除" : "グループを追加"));
 				menu.add(menuSwapGrouping);
 
 				if (menuSwapNormalized == null) {
@@ -5055,12 +5053,12 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 					menuSwapNormalized.addActionListener(this);
 				}
 				menuSwapNormalized
-						.setText((menuContextNode.isNormalized() ? "Remove z-Transform" : "Apply z-Transform"));
+						.setText((menuContextNode.isNormalized() ? "z変換を削除" : "z変換を追加"));
 				menu.add(menuSwapNormalized);
 			}
 
 			if (menuUnlinkGrouping == null && menuContextNode.isGrouping()) {
-				menuUnlinkGrouping = new JMenuItem("Unlink Grouping");
+				menuUnlinkGrouping = new JMenuItem("グループのリンクを解除");
 				menuUnlinkGrouping.addActionListener(this);
 			}
 			if (menuContextNode.isGrouping())
@@ -5068,7 +5066,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 			if (!menuContextNode.isLatent()) {
 				if (menuUnlinkNode == null) {
-					menuUnlinkNode = new JMenuItem("Unlink Variable");
+					menuUnlinkNode = new JMenuItem("変数のリンクを解除");
 					menuUnlinkNode.addActionListener(this);
 				}
 				menu.add(menuUnlinkNode);
@@ -5081,27 +5079,27 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			// menu.add(menuDeleteNode);
 
 			if (menuNodeColor == null) {
-				menuNodeColor = new JMenuItem("Change Line Color");
+				menuNodeColor = new JMenuItem("線の色を変更");
 				menuNodeColor.addActionListener(this);
 			}
 
 			if (menuNodeFillColor == null) {
-				menuNodeFillColor = new JMenuItem("Change Fill Color");
+				menuNodeFillColor = new JMenuItem("塗りの色を変更");
 				menuNodeFillColor.addActionListener(this);
 			}
 
 			if (menuNodeFontColor == null) {
-				menuNodeFontColor = new JMenuItem("Change Font Color");
+				menuNodeFontColor = new JMenuItem("フォントの色を変更");
 				menuNodeFontColor.addActionListener(this);
 			}
 
 			if (menuNodeFillStyle == null) {
-				menuNodeFillStyle = new JMenu("Change Fill Style");
-				menuNodeFillStyleGradient = new JMenuItem("Gradient");
-				menuNodeFillStyleFill = new JMenuItem("Plain");
+				menuNodeFillStyle = new JMenu("塗りのスタイルを変更");
+				menuNodeFillStyleGradient = new JMenuItem("グラデーション");
+				menuNodeFillStyleFill = new JMenuItem("カラー塗りつぶし");
 				menuNodeFillStyleR2 = new JMenuItem("Boker's R2");
 				menuNodeFillStyleHand = new JMenuItem("Hand");
-				menuNodeFillStyleNone = new JMenuItem("None");
+				menuNodeFillStyleNone = new JMenuItem("なし");
 				menuNodeFillStyle.add(menuNodeFillStyleGradient);
 				menuNodeFillStyle.add(menuNodeFillStyleFill);
 				menuNodeFillStyle.add(menuNodeFillStyleR2);
@@ -5115,21 +5113,21 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			}
 
 			if (menuAddImage == null) {
-				menuAddImage = new JMenuItem("Add Image");
+				menuAddImage = new JMenuItem("画像を追加");
 				menuAddImage.addActionListener(this);
 			}
 
-			thicknessInput = new LabeledInputBox("Thickness");
+			thicknessInput = new LabeledInputBox("太さ");
 
 			thicknessInput.setText(String.valueOf(menuContextNode.getStrokeWidth()));
 			thicknessInput.getDocument().addDocumentListener(this);
 
-			labelsizeInput = new LabeledInputBox("Font Size");
+			labelsizeInput = new LabeledInputBox("フォントサイズ");
 
 			labelsizeInput.setText(String.valueOf(menuContextNode.getFontSize()));
 			labelsizeInput.getDocument().addDocumentListener(this);
 
-			JMenu Customize = new JMenu("Customize Variable");
+			JMenu Customize = new JMenu("変数のカスタマイズ");
 			menu.add(Customize);
 			Customize.add(labelsizeInput);
 			Customize.add(thicknessInput);
@@ -5144,7 +5142,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			// menuCustomize.add(menuNodeColor);
 
 			if (menuDeleteNode == null) {
-				menuDeleteNode = new JMenuItem("Delete Variable");
+				menuDeleteNode = new JMenuItem("変数を削除");
 				menuDeleteNode.addActionListener(this);
 			}
 
@@ -5163,7 +5161,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			if (edgeUnderMouse != null) {
 
 				if (!edgeUnderMouse.isFixed() || edgeUnderMouse.isDefinitionVariable()) {
-					nameInput = new LabeledInputBox("Path Name");
+					nameInput = new LabeledInputBox("パスの名前");
 
 					// nameInput.addKeyListener(this);
 					menu.add(nameInput);
@@ -5173,13 +5171,13 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 				if (edgeUnderMouse.isFixed() && !edgeUnderMouse.isDefinitionVariable()) {
 
-					valueInput = new LabeledInputBox("Path Value");
+					valueInput = new LabeledInputBox("パスの値");
 					menu.add(valueInput);
 					valueInput.setText(Double.toString(edgeUnderMouse.getValue()));
 					valueInput.getDocument().addDocumentListener(this);
 
 				} else if (!edgeUnderMouse.isDefinitionVariable()) {
-					svalueInput = new LabeledInputBox("Starting Value");
+					svalueInput = new LabeledInputBox("値");
 					menu.add(svalueInput);
 					double svalue = getModelRequestInterface().getStartingValuesUnit()
 							.getParameterValue(edgeUnderMouse.getParameterName());
@@ -5190,26 +5188,26 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 				menu.addSeparator();
 
-				JMenu customizeEdge = new JMenu("Customize Path");
+				JMenu customizeEdge = new JMenu("パスのカスタマイズ");
 
-				thicknessInput = new LabeledInputBox("Thickness");
+				thicknessInput = new LabeledInputBox("太さ");
 				customizeEdge.add(thicknessInput);
 				thicknessInput.setText(String.valueOf(edgeUnderMouse.getStrokeWidth()));
 				thicknessInput.getDocument().addDocumentListener(this);
 
-				labelsizeInput = new LabeledInputBox("Font Size");
+				labelsizeInput = new LabeledInputBox("フォントサイズ");
 				customizeEdge.add(labelsizeInput);
 				labelsizeInput.setText(String.valueOf(edgeUnderMouse.getLabel().getFontSize()));
 				labelsizeInput.getDocument().addDocumentListener(this);
 
-				menuEdgeLabelColor = new JMenuItem("Change Font Color");
+				menuEdgeLabelColor = new JMenuItem("フォントの色を変更");
 				menuEdgeLabelColor.addActionListener(this);
 
 				if (arrow == null) {
-					arrow = new JMenu("Arrowhead");
-					arrow1 = new JMenuItem("V-Shaped");
-					arrow2 = new JMenuItem("Filled");
-					arrow3 = new JMenuItem("Pointy");
+					arrow = new JMenu("矢印");
+					arrow1 = new JMenuItem(">");
+					arrow2 = new JMenuItem("▶︎");
+					arrow3 = new JMenuItem("➤");
 					arrow.add(arrow1);
 					arrow.add(arrow2);
 					arrow.add(arrow3);
@@ -5219,13 +5217,13 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 				}
 
 				if (menuEdgeColor == null) {
-					menuEdgeColor = new JMenuItem("Change Path Color");
+					menuEdgeColor = new JMenuItem("パスの色を変更");
 					menuEdgeColor.addActionListener(this);
 
 				}
 
 				if (menuDashStyle == null) {
-					menuDashStyle = new JMenuItem("Change Dash Style");
+					menuDashStyle = new JMenuItem("破線スタイルを変更");
 					menuDashStyle.addActionListener(this);
 				}
 
@@ -5239,13 +5237,13 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 				customizeEdge.addSeparator();
 
 				if (menuDeleteEdge == null) {
-					menuDeleteEdge = new JMenuItem("Delete Path");
+					menuDeleteEdge = new JMenuItem("パスを削除");
 					menuDeleteEdge.addActionListener(this);
 				}
 				// menu.add(menuDeleteEdge);
 
 				if (menuToggleAutomaticNaming == null) {
-					menuToggleAutomaticNaming = new JCheckBoxMenuItem("Automatic Parameter Naming");
+					menuToggleAutomaticNaming = new JCheckBoxMenuItem("パラメータ自動命名");
 					menuToggleAutomaticNaming.addActionListener(this);
 
 				}
@@ -5253,12 +5251,12 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 					menuToggleAutomaticNaming.setSelected(edgeUnderMouse.isAutomaticNaming());
 
 				if (menuToggleEdgeHeads == null) {
-					menuToggleEdgeHeads = new JMenuItem("Toggle Path Heads");
+					menuToggleEdgeHeads = new JMenuItem("パスの向きをトグル");
 					menuToggleEdgeHeads.addActionListener(this);
 				}
 
 				if (menuActivateManuaLEdgeControl == null) {
-					menuActivateManuaLEdgeControl = new JCheckBoxMenuItem("Show Control Points");
+					menuActivateManuaLEdgeControl = new JCheckBoxMenuItem("コントロールポイントを表示");
 					menuActivateManuaLEdgeControl.addActionListener(this);
 				}
 
@@ -5268,9 +5266,9 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 				String fixedLabel = "";
 				if (edgeUnderMouse.isFixed()) {
-					fixedLabel = "Free Parameter";
+					fixedLabel = "パラメータを推定";
 				} else {
-					fixedLabel = "Fix Parameter";
+					fixedLabel = "パラメータを固定";
 				}
 
 				menuToggleFixed = new JMenuItem(fixedLabel);
@@ -5283,7 +5281,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 					menu.add(menuToggleEdgeHeads);
 
 				if (menuMakeDefinition == null) {
-					menuMakeDefinition = new JMenuItem("Add Definition Variable");
+					menuMakeDefinition = new JMenuItem("定義変数を追加");
 					menuMakeDefinition.addActionListener(this);
 				}
 
@@ -5298,7 +5296,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 				menu.add(customizeEdge);
 
 				if (menuDeleteEdge == null) {
-					menuDeleteEdge = new JMenuItem("Delete Path");
+					menuDeleteEdge = new JMenuItem("パスを削除");
 					menuDeleteEdge.addActionListener(this);
 				}
 
@@ -5306,37 +5304,37 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		}
 
 		if (menuStrategyClassic == null) {
-			menuStrategyClassic = new JRadioButtonMenuItem("Classic");
+			menuStrategyClassic = new JRadioButtonMenuItem("クラシック");
 			menuStrategyClassic.addActionListener(this);
 		}
 		if (menuStrategyDefault == null) {
-			menuStrategyDefault = new JRadioButtonMenuItem("Default");
+			menuStrategyDefault = new JRadioButtonMenuItem("初期値");
 			menuStrategyDefault.addActionListener(this);
 		}
 		if (menuStrategyDefaultWithEMSupport == null) {
-			menuStrategyDefaultWithEMSupport = new JRadioButtonMenuItem("EM supported");
+			menuStrategyDefaultWithEMSupport = new JRadioButtonMenuItem("期待値最大化（EM）対応");
 			menuStrategyDefaultWithEMSupport.addActionListener(this);
 		}
 
 		if (menuStrategyMCMC == null) {
-			menuStrategyMCMC = new JRadioButtonMenuItem("Bayesian (MCMC)");
+			menuStrategyMCMC = new JRadioButtonMenuItem("ベイズ（MCMC）");
 			menuStrategyMCMC.addActionListener(this);
 		}
 
 		if (menuPriorityHigh == null) {
-			menuPriorityHigh = new JRadioButtonMenuItem("High");
+			menuPriorityHigh = new JRadioButtonMenuItem("高");
 			menuPriorityHigh.addActionListener(this);
 		}
 		if (menuPriorityNormal == null) {
-			menuPriorityNormal = new JRadioButtonMenuItem("Normal");
+			menuPriorityNormal = new JRadioButtonMenuItem("中");
 			menuPriorityNormal.addActionListener(this);
 		}
 		if (menuPriorityLow == null) {
-			menuPriorityLow = new JRadioButtonMenuItem("Low");
+			menuPriorityLow = new JRadioButtonMenuItem("低");
 			menuPriorityLow.addActionListener(this);
 		}
 		if (menuPriorityHold == null) {
-			menuPriorityHold = new JRadioButtonMenuItem("Pause");
+			menuPriorityHold = new JRadioButtonMenuItem("停止");
 			menuPriorityHold.addActionListener(this);
 		}
 
@@ -5372,14 +5370,14 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		if (getModelRequestInterface().getRunPriority() == Priority.NORMAL)
 			menuPriorityNormal.setSelected(true);
 
-		JMenu priorityMenu = new JMenu("Priority");
+		JMenu priorityMenu = new JMenu("優先度");
 		priorityMenu.add(menuPriorityHigh);
 		priorityMenu.add(menuPriorityNormal);
 		priorityMenu.add(menuPriorityLow);
 		priorityMenu.addSeparator();
 		priorityMenu.add(menuPriorityHold);
 
-		JMenu menuStrategy = new JMenu("Strategy");
+		JMenu menuStrategy = new JMenu("方略");
 		menuStrategy.add(menuStrategyClassic);
 		menuStrategy.add(menuStrategyDefault);
 		menuStrategy.add(menuStrategyDefaultWithEMSupport);
@@ -5390,12 +5388,12 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		menuStrategy.add(priorityMenu);
 
 		if (menuDeleteModel == null) {
-			menuDeleteModel = new JMenuItem("Close Model");
+			menuDeleteModel = new JMenuItem("モデルを閉じる");
 			menuDeleteModel.addActionListener(this);
 		}
 
 		if (menuToggleShowGrid == null) {
-			menuToggleShowGrid = new JCheckBoxMenuItem("Display Grid");
+			menuToggleShowGrid = new JCheckBoxMenuItem("グリッドを表示");
 			menuToggleShowGrid.addActionListener(this);
 		}
 		// if (showGrid) {
@@ -5403,18 +5401,18 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		// }
 
 		if (menuToggleLockToGrid == null) {
-			menuToggleLockToGrid = new JCheckBoxMenuItem("Lock to Grid");
+			menuToggleLockToGrid = new JCheckBoxMenuItem("グリッドに吸着");
 			menuToggleLockToGrid.addActionListener(this);
 		}
 		menuToggleLockToGrid.setSelected(lockToGrid);
 
 		if (menuResetToDefaults == null) {
-			menuResetToDefaults = new JMenuItem("Reset All Elements To Default");
+			menuResetToDefaults = new JMenuItem("全要素を初期値にリセット");
 			menuResetToDefaults.addActionListener(this);
 		}
 
 		if (menuAutoLayout == null) {
-			menuAutoLayout = new JMenuItem("Apply Auto-Layout");
+			menuAutoLayout = new JMenuItem("自動レイアウトを適用");
 			menuAutoLayout.addActionListener(this);
 		}
 
@@ -5423,77 +5421,77 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			menuShowAux.addActionListener(this);
 		}
 		if (graph.getAuxiliaryStack().isHidden()) {
-			menuShowAux.setText("Show Auxiliary Variable Stack");
+			menuShowAux.setText("補助変数スタックを表示");
 		} else {
-			menuShowAux.setText("Hide Auxiliary Variable Stack");
+			menuShowAux.setText("補助変数スタックを隠す");
 		}
 
 		if (menuSaveModel == null) {
-			menuSaveModel = new JMenuItem("Save Model");
+			menuSaveModel = new JMenuItem("モデルを保存");
 			menuSaveModel.addActionListener(this);
 		}
 
 		if (menuSaveAsModel == null) {
-			menuSaveAsModel = new JMenuItem("Save Model As");
+			menuSaveAsModel = new JMenuItem("モデルを別名で保存");
 			menuSaveAsModel.addActionListener(this);
 		}
 
 		if (menuSaveModelAndData == null) {
-			menuSaveModelAndData = new JMenuItem("Save Model & Data");
+			menuSaveModelAndData = new JMenuItem("モデルとデータを保存");
 			menuSaveModelAndData.addActionListener(this);
 		}
 
 		if (menuLoadStartingValues == null) {
-			menuLoadStartingValues = new JMenuItem("Load Starting Values");
+			menuLoadStartingValues = new JMenuItem("値を読み込む");
 			menuLoadStartingValues.addActionListener(this);
 		}
 
 		if (menuDPClustering == null) {
-			menuDPClustering = new JMenu("DP Clustering");
+			menuDPClustering = new JMenu("DPクラスタリング");
 			menuDPClustering.addActionListener(this);
-			menuDPClusteringStart = new JMenuItem("Start Clustering");
+			menuDPClusteringStart = new JMenuItem("クラスタリング開始");
 			menuDPClusteringStart.addActionListener(this);
 			menuDPClustering.add(menuDPClusteringStart);
-			menuAnzBurninDPClustering = new LabeledInputBox("     Burnin:");
+			menuAnzBurninDPClustering = new LabeledInputBox("     バーンイン：");
 			menuAnzBurninDPClustering.setText("0");
 			menuAnzBurninDPClustering.getDocument().addDocumentListener(this);
 			menuAnzBurninDPClustering.addActionListener(this);
 			menuDPClustering.add(menuAnzBurninDPClustering);
-			menuanzSamplesDPClustering = new LabeledInputBox("     Samples:");
+			menuanzSamplesDPClustering = new LabeledInputBox("     サンプル：");
 			menuanzSamplesDPClustering.setText("5");
 			menuanzSamplesDPClustering.getDocument().addDocumentListener(this);
 			menuanzSamplesDPClustering.addActionListener(this);
 			menuDPClustering.add(menuanzSamplesDPClustering);
-			menuAlphaDPClustering = new LabeledInputBox("     Alpha:");
+			menuAlphaDPClustering = new LabeledInputBox("     アルファ：");
 			menuAlphaDPClustering.setText("1.0");
 			menuAlphaDPClustering.getDocument().addDocumentListener(this);
 			menuAlphaDPClustering.addActionListener(this);
 			menuDPClustering.add(menuAlphaDPClustering);
-			menuPriorStrengthDPClustering = new LabeledInputBox("     Prior Weight:");
+			menuPriorStrengthDPClustering = new LabeledInputBox("     初期重みづけ：");
 			menuPriorStrengthDPClustering.setText("2");
 			menuPriorStrengthDPClustering.getDocument().addDocumentListener(this);
 			menuPriorStrengthDPClustering.addActionListener(this);
 			menuDPClustering.add(menuPriorStrengthDPClustering);
 
 			// menu Pre-Clustering
-			menuPreClusteringDPClustering = new JMenu("Pre-Clustering");
+			menuPreClusteringDPClustering = new JMenu("事前クラスタリング");
 			menuPreClusteringDPClustering.addActionListener(this);
 			menuDPClustering.add(menuPreClusteringDPClustering);
-			menuToggleDoPreClusteringDPClustering = new JCheckBoxMenuItem("do Pre-Clustering");
+			menuToggleDoPreClusteringDPClustering = new JCheckBoxMenuItem("事前クラスタリング実施");
 			menuToggleDoPreClusteringDPClustering.addActionListener(this);
 			menuToggleDoPreClusteringDPClustering.setSelected(true);
 			menuPreClusteringDPClustering.add(menuToggleDoPreClusteringDPClustering);
-			menuBurninPreClusteringDPClustering = new LabeledInputBox("     Burnin:");
+			menuBurninPreClusteringDPClustering = new LabeledInputBox("     バーンイン：");
 			menuBurninPreClusteringDPClustering.setText("50");
 			menuBurninPreClusteringDPClustering.getDocument().addDocumentListener(this);
 			menuBurninPreClusteringDPClustering.addActionListener(this);
 			menuPreClusteringDPClustering.add(menuBurninPreClusteringDPClustering);
-			menuSamplesPreClusteringDPClustering = new LabeledInputBox("     Samples:");
+			menuSamplesPreClusteringDPClustering = new LabeledInputBox("     サンプル：");
 			menuSamplesPreClusteringDPClustering.setText("50");
 			menuSamplesPreClusteringDPClustering.getDocument().addDocumentListener(this);
 			menuSamplesPreClusteringDPClustering.addActionListener(this);
 			menuPreClusteringDPClustering.add(menuSamplesPreClusteringDPClustering);
-			menuThinningPreClusteringDPClustering = new LabeledInputBox("     Thinning:");
+			menuThinningPreClusteringDPClustering = new LabeledInputBox("     間引き：");
 			menuThinningPreClusteringDPClustering.setText("1");
 			menuThinningPreClusteringDPClustering.getDocument().addDocumentListener(this);
 			menuThinningPreClusteringDPClustering.addActionListener(this);
@@ -5501,25 +5499,25 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		}
 
 		if (menuSimulation == null) {
-			menuSimulation = new JMenu("Simulation");
+			menuSimulation = new JMenu("シミュレーション");
 			menuSimulation.addActionListener(this);
 		}
 
 		if (menuSimulationStart == null) {
-			menuSimulationStart = new JMenuItem("Start Simulation");
+			menuSimulationStart = new JMenuItem("シミュレーション開始");
 			menuSimulationStart.addActionListener(this);
 		}
 		menuSimulation.add(menuSimulationStart);
 
 		if (menuSimulationCovarianceDataset == null) {
-			menuSimulationCovarianceDataset = new JMenuItem("Create Covariance Dataset");
+			menuSimulationCovarianceDataset = new JMenuItem("共分散データセットを作成");
 			menuSimulationCovarianceDataset.addActionListener(this);
 		}
 		if (MainFrame.DEVMODE)
 			menuSimulation.add(menuSimulationCovarianceDataset);
 
 		if (menuAnzRowsSimulation == null) {
-			menuAnzRowsSimulation = new LabeledInputBox("     Data Rows: ");
+			menuAnzRowsSimulation = new LabeledInputBox("     データ行：");
 			menuAnzRowsSimulation.setText("100");
 			menuAnzRowsSimulation.getDocument().addDocumentListener(this);
 			menuAnzRowsSimulation.addActionListener(this);
@@ -5527,7 +5525,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		menuSimulation.add(menuAnzRowsSimulation);
 
 		if (menuPercentMissingSimulation == null) {
-			menuPercentMissingSimulation = new LabeledInputBox("     Missing [%]: ");
+			menuPercentMissingSimulation = new LabeledInputBox("     欠損[%]：");
 			menuPercentMissingSimulation.setText("0");
 			menuPercentMissingSimulation.getDocument().addDocumentListener(this);
 			menuPercentMissingSimulation.addActionListener(this);
@@ -5606,7 +5604,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		}
 
 		if (menuShowCode == null) {
-			menuShowCode = new JMenu("Show Script");
+			menuShowCode = new JMenu("スクリプトを表示");
 			menuShowCode.addActionListener(this);
 			menuShowCode.add(menuShowOpenMXCode);
 			menuShowCode.add(menuShowOpenMXMatrixCode);
@@ -5626,37 +5624,37 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		}
 
 		if (menuIconify == null) {
-			menuIconify = new JMenuItem("Iconify");
+			menuIconify = new JMenuItem("アイコン化");
 			menuIconify.addActionListener(this);
 		}
 
 		if (menuSelectEdgeStyle == null) {
-			menuSelectEdgeStyle = new JMenuItem("Change Path Style");
+			menuSelectEdgeStyle = new JMenuItem("パスのスタイルを変更");
 			menuSelectEdgeStyle.addActionListener(this);
 		}
 
 		if (menuStroke == null) {
-			menuStroke = new JMenu("Change Line Weight");
+			menuStroke = new JMenu("パスの太さを変更");
 		}
 
 		if (menuCopy == null) {
-			menuCopy = new JMenuItem("Copy");
+			menuCopy = new JMenuItem("コピー");
 			menuCopy.addActionListener(this);
 		}
 		if (menuPaste == null) {
-			menuPaste = new JMenuItem("Paste and Rename");
+			menuPaste = new JMenuItem("貼り付けて名前変更");
 			menuPaste.addActionListener(this);
 		}
 		if (menuPasteDontMess == null) {
-			menuPasteDontMess = new JMenuItem("Paste");
+			menuPasteDontMess = new JMenuItem("貼り付け");
 			menuPasteDontMess.addActionListener(this);
 		}
 
 		if (menuFlipHorizontal == null) {
-			menuFlipHorizontal = new JMenuItem("Flip horizontally");
+			menuFlipHorizontal = new JMenuItem("水平方向に反転");
 		}
 		if (menuFlipVertically == null) {
-			menuFlipVertically = new JMenuItem("Flip vertically");
+			menuFlipVertically = new JMenuItem("垂直方向に反転");
 			menuFlipHorizontal.addActionListener(this);
 			menuFlipVertically.addActionListener(this);
 		}
@@ -5667,7 +5665,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		 * }
 		 */
 		if (menuFlip == null) {
-			menuFlip = new JMenu("Flip");
+			menuFlip = new JMenu("反転");
 			menuFlip.add(menuFlipHorizontal);
 			menuFlip.add(menuFlipVertically);
 		}
@@ -5701,28 +5699,28 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		}
 
 		if (menuAddTriangle == null) {
-			menuAddTriangle = new JMenuItem("Constant");
+			menuAddTriangle = new JMenuItem("定数");
 			menuAddTriangle.addActionListener(this);
 		}
 
 		if (menuAddMultiplication == null) {
-			menuAddMultiplication = new JMenuItem("Multiplication");
+			menuAddMultiplication = new JMenuItem("乗算");
 			menuAddMultiplication.addActionListener(this);
 		}
 
 		if (menuCreateLatent == null) {
-			menuCreateLatent = new JMenuItem("Latent");
+			menuCreateLatent = new JMenuItem("潜在変数");
 			menuCreateLatent.addActionListener(this);
 		}
 
 		if (menuCreateManifest == null) {
-			menuCreateManifest = new JMenuItem("Observed");
+			menuCreateManifest = new JMenuItem("観測変数");
 			menuCreateManifest.addActionListener(this);
 		}
 
 		// menuRemoveDefinitionStatus = new JMenuItem();
 		if (menuRemoveDefinitionStatus == null) {
-			menuRemoveDefinitionStatus = new JMenuItem("Remove Definition Variable");
+			menuRemoveDefinitionStatus = new JMenuItem("定義変数を削除");
 			menuRemoveDefinitionStatus.addActionListener(this);
 		}
 
@@ -5732,15 +5730,15 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		 * menuSwapManifestLatent.addActionListener(this); }
 		 */
 		if (menuClone == null) {
-			menuClone = new JMenuItem("Clone Model");
+			menuClone = new JMenuItem("モデルを複製");
 			menuClone.addActionListener(this);
 		}
 
 		if (menuShowHide == null) {
-			menuShowHide = new JMenu("Show/Hide");
-			menuShowHideVariances = new JMenuItem("Show/Hide Variances");
-			menuShowHideCovariances = new JMenuItem("Show/Hide Covariances");
-			menuShowHideRegressions = new JMenuItem("Show/Hide Regressions");
+			menuShowHide = new JMenu("表示/非表示");
+			menuShowHideVariances = new JMenuItem("分散を表示/非表示");
+			menuShowHideCovariances = new JMenuItem("共分散を表示/非表示");
+			menuShowHideRegressions = new JMenuItem("回帰を表示/非表示");
 
 			menuShowHide.add(menuShowHideVariances);
 			menuShowHide.add(menuShowHideCovariances);
@@ -5752,7 +5750,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		}
 
 		if (menuAgents == null) {
-			menuAgents = new JMenu("Start External Estimate");
+			menuAgents = new JMenu("外部推定を開始");
 			menuAgents.addActionListener(this);
 		}
 		menuAgents.removeAll();
@@ -5774,7 +5772,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		}
 
 		if (menuRunners == null) {
-			menuRunners = new JMenu("Select Estimate");
+			menuRunners = new JMenu("推定を選択");
 			menuRunners.addActionListener(this);
 		}
 
@@ -5811,38 +5809,38 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		}
 
 		if (menuAllRunner == null) {
-			menuAllRunner = new JMenuItem("Show All Runners");
+			menuAllRunner = new JMenuItem("全結果を表示");
 			menuAllRunner.addActionListener(this);
 		}
 		if (menuShowStartingValues == null) {
-			menuShowStartingValues = new JMenuItem("Show Starting Values");
+			menuShowStartingValues = new JMenuItem("値を表示");
 			menuShowStartingValues.addActionListener(this);
 		}
 		if (menuShowBestML == null) {
-			menuShowBestML = new JMenuItem("Show Best ML Estimate");
+			menuShowBestML = new JMenuItem("最良の最尤推定値を表示");
 			menuShowBestML.addActionListener(this);
 		}
 		if (menuShowBestLS == null) {
-			menuShowBestLS = new JMenuItem("Show Best LS Estimate");
+			menuShowBestLS = new JMenuItem("最良の最小二乗推定値を表示");
 			menuShowBestLS.addActionListener(this);
 		}
 		if (menuShowTextOutput == null) {
-			menuShowTextOutput = new JMenuItem("Show Estimate Summary");
+			menuShowTextOutput = new JMenuItem("推定の要約を表示");
 			menuShowTextOutput.addActionListener(this);
 		}
 		if (menuShowTextHistory == null) {
-			menuShowTextHistory = new JMenuItem("Show Estimate History");
+			menuShowTextHistory = new JMenuItem("推定履歴を表示");
 			menuShowTextHistory.addActionListener(this);
 		}
 
 		if (menuSelectSaturatedModel == null) {
-			menuSelectSaturaredModel = new JMenu("Select explicit saturated model");
+			menuSelectSaturaredModel = new JMenu("明示的な飽和モデルを選択");
 			menuSelectSaturaredModel.addActionListener(this);
 		}
 
 		if (!nodeUnderMouse && edgeUnderMouse == null) {
 
-			modelName = new LabeledInputBox("Model Name: ");
+			modelName = new LabeledInputBox("モデル名：");
 			modelName.setText(this.mri.getName());
 			modelName.getDocument().addDocumentListener(this);
 
@@ -5851,7 +5849,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		}
 
 		if (menuSaveImage == null) {
-			menuSaveImage = new JMenu("Export Image");
+			menuSaveImage = new JMenu("画像の書き出し");
 			menuSaveImage.add(menuExportJPEG);
 			menuSaveImage.add(menuExportPNG);
 			menuSaveImage.add(menuExportPDF);
@@ -5860,7 +5858,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 		}
 		if (menuSaveScript == null) {
-			menuSaveScript = new JMenu("Export Script");
+			menuSaveScript = new JMenu("スクリプトの書き出し");
 			menuSaveScript.add(menuExportLaTeX);
 			menuSaveScript.add(menuExport);
 			menuSaveScript.add(menuExportMplus);
@@ -5881,35 +5879,35 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		}
 
 		if (menuUndo == null) {
-			menuUndo = new JMenuItem("Undo");
+			menuUndo = new JMenuItem("取り消し");
 			menuUndo.addActionListener(this);
 		}
 
 		if (menuRedo == null) {
-			menuRedo = new JMenuItem("Redo");
+			menuRedo = new JMenuItem("やり直し");
 			menuRedo.addActionListener(this);
 		}
 		// menuRedo.setEnabled(false);
 
 		if (menuSelectAll == null) {
-			menuSelectAll = new JMenuItem("Select All");
+			menuSelectAll = new JMenuItem("すべて選択");
 			menuSelectAll.addActionListener(this);
 		}
 
 		if (menuModifyGraph == null) {
-			menuModifyGraph = new JMenu("Modify Graph");
+			menuModifyGraph = new JMenu("グラフを修正");
 			// menuModifyGraph.add(menuCopyPaste);
 			menuModifyGraph.add(menuFlip);
 
 		}
 
 		if (menuPrior == null) {
-			menuPrior = new JMenu("Prior");
+			menuPrior = new JMenu("事前分布");
 
-			menuPriorGaussian = new JMenuItem("Normal");
-			menuPriorChi2 = new JMenuItem("Chi Square");
-			menuPriorGamma = new JMenuItem("Gamma");
-			menuPriorUniform = new JMenuItem("Uniform");
+			menuPriorGaussian = new JMenuItem("正規分布");
+			menuPriorChi2 = new JMenuItem("カイ二条分布");
+			menuPriorGamma = new JMenuItem("ガンマ分布");
+			menuPriorUniform = new JMenuItem("一様分布");
 
 			menuPrior.add(menuPriorGaussian);
 			menuPrior.add(menuPriorChi2);
@@ -5933,21 +5931,21 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		// menuShowStandardizedEstimates.setSelected(false);
 
 		if (menuSaveStartingValues == null) {
-			menuSaveStartingValues = new JMenuItem("Save Starting Values");
+			menuSaveStartingValues = new JMenuItem("値を保存");
 			menuSaveStartingValues.addActionListener(this);
 		}
 
 		if (menuSaveCurrentEstimate == null) {
-			menuSaveCurrentEstimate = new JMenuItem("Save Current Estimate");
+			menuSaveCurrentEstimate = new JMenuItem("現在の推定値を保存");
 			menuSaveCurrentEstimate.addActionListener(this);
 		}
 
 		if (menuBackgroundColor == null) {
-			menuBackgroundColor = new JMenuItem("Change Background Color");
+			menuBackgroundColor = new JMenuItem("背景色を変更");
 			menuBackgroundColor.addActionListener(this);
 		}
 
-		JMenu menuCreateVariable = new JMenu("Create Variable");
+		JMenu menuCreateVariable = new JMenu("変数を作成");
 
 		menuCreateVariable.add(menuAddTriangle);
 		menuCreateVariable.add(menuCreateLatent);
@@ -5956,7 +5954,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			menuCreateVariable.add(menuAddMultiplication);
 
 		if (menuToggleMarkUnconnectedManifests == null) {
-			menuToggleMarkUnconnectedManifests = new JCheckBoxMenuItem("Mark Unconnected Observed Variables");
+			menuToggleMarkUnconnectedManifests = new JCheckBoxMenuItem("未接続の観測変数にマーク");
 			menuToggleMarkUnconnectedManifests.addActionListener(this);
 
 		}
@@ -5965,8 +5963,8 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		/*
 		 * Decorators
 		 */
-		JMenu menuCreateDecorator = new JMenu("Create Decorator");
-		menuAddRectangle = new JMenuItem("Add Box");
+		JMenu menuCreateDecorator = new JMenu("装飾を作成");
+		menuAddRectangle = new JMenuItem("ボックスを追加");
 		menuAddRectangle.addActionListener(this);
 		menuCreateDecorator.add(menuAddRectangle);
 
@@ -5974,11 +5972,11 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		/**
 		 * Menu Grid
 		 */
-		JMenu menuGrid = new JMenu("Change Grid Properties");
+		JMenu menuGrid = new JMenu("グリッドの設定を変更");
 		menuGrid.add(menuToggleShowGrid);
 		menuGrid.add(menuToggleLockToGrid);
 		if (menuGridSizeInput == null) {
-			menuGridSizeInput = new LabeledInputBox("Grid Size");
+			menuGridSizeInput = new LabeledInputBox("グリッドサイズ");
 			menuGridSizeInput.getDocument().addDocumentListener(this);
 		}
 		menuGridSizeInput.setText(Integer.toString(gridSize));
@@ -5988,13 +5986,13 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		/**
 		 * CUSTOMIZE MODEL
 		 */
-		JMenu menuCustomizeModel = new JMenu("Customize Model");
+		JMenu menuCustomizeModel = new JMenu("モデルをカスタマイズ");
 
 		menuCustomizeModel.add(menuSelectEdgeStyle);
 
 		if (menuGraphPresetsMenu == null) {
 			menuGraphPresets = new JMenuItem[presets.length];
-			menuGraphPresetsMenu = new JMenu("Apply Diagram Style");
+			menuGraphPresetsMenu = new JMenu("図のスタイルを適用");
 
 			for (int i = 0; i < menuGraphPresets.length; i++) {
 				menuGraphPresets[i] = new JMenuItem(presets[i].getName());
@@ -6005,7 +6003,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		}
 		
 		if (menuKeepStyle==null) {
-			menuKeepStyle = new JCheckBoxMenuItem("Keep Style on Edit");
+			menuKeepStyle = new JCheckBoxMenuItem("スタイルを固定");
 			menuKeepStyle.addActionListener(this);
 		}
 		menuKeepStyle.setSelected(getGraph().isLockedStyle());
@@ -6033,7 +6031,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		/*
 		 * Menu EDIT
 		 */
-		menuEdit = new JMenu("Edit");
+		menuEdit = new JMenu("編集");
 
 		menuEdit.add(menuCopy);
 		menuEdit.add(menuPasteDontMess);
@@ -6052,7 +6050,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		 * Menu FILE
 		 */
 		if (menuSave == null) {
-			menuSave = new JMenu("File");
+			menuSave = new JMenu("ファイル");
 			menuSave.add(menuSaveModel);
 			menuSave.add(menuSaveAsModel);
 			if (MainFrame.DEVMODE)
@@ -6071,16 +6069,16 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		 * mean Treatment
 		 */
 
-		JMenu menuMeanTreatment = new JMenu("Mean Structure");
+		JMenu menuMeanTreatment = new JMenu("平均構造");
 
 		/*
 		 * Menu ADvanced
 		 */
 
-		JMenu menuEstimation = new JMenu("Estimation");
+		JMenu menuEstimation = new JMenu("推定");
 
 		if (menuLatentScores == null) {
-			menuLatentScores = new JMenuItem("Obtain Latent / Missing Scores");
+			menuLatentScores = new JMenuItem("潜在スコア・欠損スコアを取得");
 			menuLatentScores.addActionListener(this);
 		}
 
@@ -6091,7 +6089,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			menuEstimation.add(menuRunners);
 		}
 		if (menuShowingEstimate == null) {
-			menuShowingEstimate = new JMenu("Current Estimate");
+			menuShowingEstimate = new JMenu("現在の推定値");
 			menuShowingEstimate.addActionListener(this);
 		}
 
@@ -6126,7 +6124,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		// menuAdvanced.addSeparator();
 		// }
 		if (menuShowStandardizedEstimates == null) {
-			menuShowStandardizedEstimates = new JCheckBoxMenuItem("Show Standardized Estimates");
+			menuShowStandardizedEstimates = new JCheckBoxMenuItem("標準化推定値を表示");
 			menuShowStandardizedEstimates.addActionListener(this);
 		}
 
@@ -6159,7 +6157,7 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 				// if (edgeUnderMouse != null) {
 				if (edgeUnderMouse.isDefinitionVariable()) {
-					menuUnlinkDefinition = new JMenuItem("Unlink Definition Variable");
+					menuUnlinkDefinition = new JMenuItem("定義変数のリンクを解除");
 					menuUnlinkDefinition.addActionListener(this);
 					menu.add(menuUnlinkDefinition);
 				}
@@ -6187,11 +6185,11 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 		menu.add(menuShowTextOutput);
 
 		if (menuMeanTreatmentExplicit == null) {
-			menuMeanTreatmentExplicit = new JRadioButtonMenuItem("Explicit Means");
+			menuMeanTreatmentExplicit = new JRadioButtonMenuItem("明示的平均");
 			menuMeanTreatmentExplicit.addActionListener(this);
 		}
 		if (menuMeanTreatmentSaturated == null) {
-			menuMeanTreatmentSaturated = new JRadioButtonMenuItem("Saturated Means");
+			menuMeanTreatmentSaturated = new JRadioButtonMenuItem("飽和平均");
 			menuMeanTreatmentSaturated.addActionListener(this);
 		}
 		menuMeanTreatmentExplicit.setSelected(graph.getMeanTreatment().equals(Graph.MeanTreatment.explicit));
@@ -6399,9 +6397,9 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 
 	public void requestDeleteView() {
 		if (isUnsavedChanges()) {
-			int result = JOptionPane.showConfirmDialog(this,
-					"Do you want to save your unsaved changes in model '" + this.getName() + "' before closing it?",
-					"Save Model", JOptionPane.YES_NO_CANCEL_OPTION);
+      int result = JOptionPane.showConfirmDialog(this,
+          "モデル「" + this.getName() + "」の未保存の変更を閉じる前に保存しますか？",
+          "モデルを保存", JOptionPane.YES_NO_CANCEL_OPTION);
 			boolean exportAborted = false;
 			if (result == JOptionPane.YES_OPTION) {
 				XMLExport export = new XMLExport(this);
@@ -6489,13 +6487,13 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			title += " *";
 		title += " - ";
 		if (mri == null || showingEstimate == null || showingEstimate.isStartingParameters())
-			title += "Starting values";
+			title += "値";
 		else {
 			currentEstimatesShownInMenu = stackCurrentEstimates();
 			if (showingEstimate.getObjective() == Objective.MAXIMUMLIKELIHOOD)
-				title += "Maximum Likelihood Estimate";
+				title += "最尤推定";
 			if (showingEstimate.getObjective() == Objective.LEASTSQUARES)
-				title += "Least Squares Estimate";
+				title += "最小二乗推定";
 
 			int rank = 1;
 			for (ParameterReader pr : currentEstimatesShownInMenu) {
@@ -6508,9 +6506,9 @@ public class ModelView extends View implements ModelListener, ActionListener, Dr
 			if (showingEstimate instanceof ExternalRunUnit)
 				agentLabel = ", " + ((ExternalRunUnit) showingEstimate).getAgentLabel();
 			if (rank == 1)
-				title += " (best" + agentLabel + ")";
+				title += " (最良" + agentLabel + ")";
 			else
-				title += " (alternative " + rank + agentLabel + ")";
+				title += " (代替 " + rank + agentLabel + ")";
 		}
 		return title;
 	}

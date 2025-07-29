@@ -105,7 +105,7 @@ public class ListPolynomial<F extends Field<F>> extends Polynomial<F, ListPolyno
         return erg;
     }
     
-    // TODO: das geht natürlich besser!
+    // TODO: das geht naturlich besser!
     public ListPolynomial<F> add(ListPolynomial<F>[] summand) {
         if (summand.length == 0) return zero();
         if (summand.length == 1) return summand[0];

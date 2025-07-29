@@ -61,7 +61,7 @@ public class EdgeStyleFrame extends JFrame implements ActionListener {
 
 	public EdgeStyleFrame(ModelView view) {
 		
-		super("Select path style");
+		super("パスのスタイルを選択");
 		
 		this.mv = view;
 		
@@ -70,12 +70,12 @@ public class EdgeStyleFrame extends JFrame implements ActionListener {
 		this.setLayout(new GridBagLayout());
 
 		// create radio buttons
-		style1 = new JRadioButton("Normal");
-		style2 = new JRadioButton("Plain");
-		style3 = new JRadioButton("Label only");
-		style4 = new JRadioButton("Values only");
+		style1 = new JRadioButton("ノーマル");
+		style2 = new JRadioButton("プレーン");
+		style3 = new JRadioButton("ラベルのみ");
+		style4 = new JRadioButton("値のみ");
 //		style5 = new JRadioButton("Full");
-		style5 = new JRadioButton("Simplified");
+		style5 = new JRadioButton("簡素化");
 		
 		group = new ButtonGroup();
 		group.add(style1);
@@ -85,7 +85,7 @@ public class EdgeStyleFrame extends JFrame implements ActionListener {
 		group.add(style5);
 	//	group.add(style6);
 
-		checkExplicitOnes = new JCheckBox("Hide unit values");
+		checkExplicitOnes = new JCheckBox("単位値を非表示");
 		if (view != null)
 			checkExplicitOnes.setSelected(view.getGraph().defaultEdgeStyleHideUnitValues); 
 		else
@@ -118,9 +118,9 @@ public class EdgeStyleFrame extends JFrame implements ActionListener {
 		c4.gridy = 0;
 
 		this.add(new JLabel(""), c1);
-		this.add(new JLabel("Path with unit value"), c2);
-		this.add(new JLabel("Path with non-unit value"), c3);
-		this.add(new JLabel("Free parameter"), c4);
+		this.add(new JLabel("単位値つきパス"), c2);
+		this.add(new JLabel("非単位値つきパス"), c3);
+		this.add(new JLabel("パラメタを推定"), c4);
 
 		
 		// create graphs for styles
@@ -142,7 +142,7 @@ public class EdgeStyleFrame extends JFrame implements ActionListener {
 		cx.gridx = 0;
 		cx.gridy = 7;
 		
-		select = new JButton("Select");
+		select = new JButton("選択");
 		select.addActionListener(this);
 		this.add(select, cx);
 		

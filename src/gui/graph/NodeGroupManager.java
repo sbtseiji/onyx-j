@@ -73,7 +73,7 @@ public class NodeGroupManager {
 		if ((groupId > 0) && (groupId < groups.length)) {
 			groups[groupId] = nodeGroup;
 		} else {
-			System.err.println("Warning! Tried to add node group larger than node group capacity!");
+			System.err.println("警告！ ノードグループの容量を超えるノードグループを追加しようとしました！");
 		}
 		
 	}

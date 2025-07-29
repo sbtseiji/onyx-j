@@ -27,9 +27,9 @@ public class EdgeDeleteStep extends UndoStep {
 	{
 		super();
 		if (edge != null)
-			this.title="Delete edge "+edge.getParameterName();
+			this.title = "エッジ「" + edge.getParameterName() + "」を削除";
 		else {
-			System.err.println("Potential problem in delete edge!");
+			System.err.println("エッジ削除時に問題が発生しました！");
 		}
 		this.mv = mv;
 		this.edge = edge;

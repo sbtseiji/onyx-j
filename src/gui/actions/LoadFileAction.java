@@ -44,7 +44,7 @@ public class LoadFileAction extends AbstractAction {
 		this.desktop = desktop;
 	
 		putValue(NAME, name);
-        putValue(SHORT_DESCRIPTION, "Loads file (model or data set) on the desktop");
+        putValue(SHORT_DESCRIPTION, "モデルまたはデータセットファイルをデスクトップ上に読み込みます");
 		this.name = name;
 		this.file = file;
         this.x = x;
@@ -58,7 +58,7 @@ public class LoadFileAction extends AbstractAction {
 		try {
 			desktop.importFromFile(file, file.getName(), x, y);
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(this.desktop, "Unable to load file!");
+			JOptionPane.showMessageDialog(this.desktop, "ファイルを読み込めません");
 			e.printStackTrace();
 		}
 /*

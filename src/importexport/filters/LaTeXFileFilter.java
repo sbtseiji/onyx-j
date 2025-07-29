@@ -33,7 +33,7 @@ public class LaTeXFileFilter extends FileFilter {
 
 	@Override
 	public String getDescription() {
-		return "LaTeX File";
+		return "LaTeXファイル";
 	}
 
 }

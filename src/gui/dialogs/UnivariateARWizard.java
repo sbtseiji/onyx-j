@@ -39,30 +39,30 @@ public class UnivariateARWizard extends Dialog {
 	
 	public UnivariateARWizard(Desktop desktop)
 	{
-		super("Univariate Autoregression Wizard");
+		super("単変量自己回帰モデル（AR）ウィザード");
 		this.desktop = desktop;
 	
 		Dimension d = new Dimension(150,30);
 		
 		// # of observations
 		 numObsInput = new JSpinner(new SpinnerNumberModel(4,2,100,1));
-		this.addElement("Observed time points",numObsInput);
+		this.addElement("観測時点",numObsInput);
 		// observation name
 		nameObsInput = new JTextArea("x");
 		nameObsInput.setSize(d);
-		this.addElement("Name of observed variable",nameObsInput);
+		this.addElement("観測変数名",nameObsInput);
 		
 		// error term name
 		nameErrInput = new JTextArea("e");
 		nameErrInput.setSize(d);
-		this.addElement("Name of residual variance term ",nameErrInput);
+		this.addElement("残差分散項名 ",nameErrInput);
 		
 		
 
-		uniqueResiduals = new JCheckBox("unique variances across time");
-		this.addElement("Residual variances", uniqueResiduals);
+		uniqueResiduals = new JCheckBox("時点ごとの独自分散");
+		this.addElement("残差分散", uniqueResiduals);
 		
-		this.addSendButton("Create");
+		this.addSendButton("作成");
 		
 		this.pack();
 		
@@ -94,12 +94,12 @@ public class UnivariateARWizard extends Dialog {
 			model.requestAddNode(obs[i]);
 			
 			// add measurement part
-			Node err = new Node("residual"+i);
+			Node err = new Node("残差"+i);
 			model.requestAddNode(err);
 			err.setPosition(xOffset+i*xDist, yOffset+200);
 			
 			// add latent process
-			lat[i] = new Node("latent"+i);
+			lat[i] = new Node("潜在"+i);
 			lat[i].setPosition(xOffset+i*xDist, yOffset+30);
 			model.requestAddNode(lat[i]);
 			

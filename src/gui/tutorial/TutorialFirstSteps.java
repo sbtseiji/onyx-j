@@ -63,7 +63,7 @@ public class TutorialFirstSteps implements DesktopListener, ModelListener {
 	{
 		
 		if (counter == 0) {
-			tutorialView.setText("Welcome to Onyx! This tutorial will lead you through the basic ideas of modeling in Onyx. Let's start and creaty an empty model. Double-click at the workspace.");
+			tutorialView.setText("Onyxへようこそ！ このチュートリアルでは、Onyxでのモデリングの基本を案内します。まずは空のモデルを作成しましょう。ワークスペースをダブルクリックしてください。");
 
 			for (View v : desktop.getViews()) {
 				if (v instanceof gui.views.ModelView) {
@@ -76,7 +76,7 @@ public class TutorialFirstSteps implements DesktopListener, ModelListener {
 		
 		
 		if (counter == 1) {
-			tutorialView.setText("Well done! Now, let us open a dataset. Click on the top menu bar and select 'load tutorial'. Then load 'Simple Regression Example'.");
+			tutorialView.setText("	よくできました！ 次はデータセットを開きましょう。上部メニューバーから「チュートリアルを読み込む」を選び、「Simple Regression Example」を読み込んでください。'.");
 		
 			for (View v : desktop.getViews()) {
 				if (v instanceof gui.views.DataView) {
@@ -89,7 +89,7 @@ public class TutorialFirstSteps implements DesktopListener, ModelListener {
 		}
 
 		if (counter == 2) {
-			tutorialView.setText("Now let us add variables from the dataset to the model. Click on variable X in the dataset and while holding down the mouse button, drag it onto the model panel.");
+			tutorialView.setText("次に、データセットからモデルへ変数を追加しましょう。データセット内の変数Xをクリックし、マウスボタンを押したままモデルパネルへドラッグしてください。");
 
 			for (Node node : modelView.getGraph().getNodes()) {
 				if (node.getCaption().equals("X_c")) {
@@ -102,7 +102,7 @@ public class TutorialFirstSteps implements DesktopListener, ModelListener {
 		}
 		
 		if (counter == 3) {
-			tutorialView.setText("Great! Now let us add another variable from the dataset to the model. Click on variable Y in the dataset and while holding down the mouse button, drag it onto the model panel.");
+			tutorialView.setText("素晴らしい！ 次はデータセットからもう一つの変数をモデルへ追加しましょう。変数Yを同じようにドラッグしてください。");
 
 			for (Node node : modelView.getGraph().getNodes()) {
 				if (node.getCaption().equals("Y_c")) {
@@ -115,7 +115,7 @@ public class TutorialFirstSteps implements DesktopListener, ModelListener {
 		}
 		
 		if (counter == 4) {
-			tutorialView.setText("Let's move to latent variables. Double-click onto the model panel to create a latent variable.");
+			tutorialView.setText("次は潜在変数を追加します。モデルパネルをダブルクリックして潜在変数を作成してください。");
 
 			for (Node node : modelView.getGraph().getNodes()) {
 				if (node.isLatent()) {
@@ -127,8 +127,7 @@ public class TutorialFirstSteps implements DesktopListener, ModelListener {
 		}
 		
 		if (counter == 5) {
-			tutorialView.setText("Let's create paths (so called factor loadings) for the latent variable. Right-click on the latent variable and drag a path onto X_c! ");
-
+			tutorialView.setText("潜在変数のパス（いわゆる因子負荷）を作成しましょう。潜在変数を右クリックし、X_cへパスをドラッグしてください！");
 			for (Edge edge : modelView.getGraph().getEdges()) {
 				if (edge.getSource()==node3 && edge.getTarget()==node1) {
 					counter++; break;
@@ -137,8 +136,7 @@ public class TutorialFirstSteps implements DesktopListener, ModelListener {
 		}
 		
 		if (counter == 6) {
-			tutorialView.setText("Great! Now connect the latent variable with Y_c in the same manner! ");
-
+			tutorialView.setText("素晴らしい！ 同じ方法で潜在変数からY_cにもパスをつなげてください！");
 			for (Edge edge : modelView.getGraph().getEdges()) {
 				if (edge.getSource()==node3 && edge.getTarget()==node2) {
 					counter++; break;
@@ -147,8 +145,7 @@ public class TutorialFirstSteps implements DesktopListener, ModelListener {
 		}
 		
 		if (counter == 7) {
-			tutorialView.setText("Let's fix the variance of the latent construct (that is currently freely estimated) to unity. Right-click on the double-headed path on the latent variable and select 'fix parameter'. Right-click again and set the value to '1'. ");
-
+			tutorialView.setText("現在自由に推定されている潜在構成概念の分散を1に固定しましょう。潜在変数上の両矢印パスを右クリックして「パラメータを固定」を選択し、もう一度右クリックして値を「1」に設定してください。");
 			for (Edge edge : modelView.getGraph().getEdges()) {
 				if (edge.getSource()==node3 && edge.getTarget()==node3) {
 					if (edge.isFixed() && edge.getValue()==1)
@@ -158,8 +155,7 @@ public class TutorialFirstSteps implements DesktopListener, ModelListener {
 		}
 		
 		if (counter == 8) {
-			tutorialView.setText("Let's freely estimate the loading of the latent variable onto Y_c. Right-click on the respective path and choose 'free parameter'. ");
-
+			tutorialView.setText("潜在変数からY_cへのパスの負荷を自由に推定できるようにしましょう。該当パスを右クリックし「パラメタを推定」を選択してください。");
 			for (Edge edge : modelView.getGraph().getEdges()) {
 				if (edge.getSource()==node3 && edge.getTarget()==node2) {
 					if (edge.isFree())
@@ -171,7 +167,7 @@ public class TutorialFirstSteps implements DesktopListener, ModelListener {
 		
 		
 		if (counter == 9) {
-			tutorialView.setText("Awesome! You have finished this tutorial! Right-click and choose 'close' to close this frame.");
+			tutorialView.setText("おめでとうございます！ これでチュートリアルは終了です。右クリックして「閉じる」を選ぶとこの画面を閉じられます。");
 
 		}
 		

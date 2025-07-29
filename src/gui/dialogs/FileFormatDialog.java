@@ -30,22 +30,22 @@ public class FileFormatDialog extends Dialog implements ActionListener {
 
 	public FileFormatDialog()
 	{
-		super("File Format Dialog");
+		super("ファイル形式ダイアログ");
 		
-		radioSeparatorTab = new JRadioButton("Tabulator");
-		radioSeparatorWhitespace = new JRadioButton("Whitespace");
-		radioSeparatorComma = new JRadioButton("Comma");
-//		this.add("")
+		radioSeparatorTab = new JRadioButton("タブ区切り");
+		radioSeparatorWhitespace = new JRadioButton("空白区切り");
+		radioSeparatorComma = new JRadioButton("カンマ区切り");
+		// this.add("")
 		JPanel separatorPanel = new JPanel();
 		separatorPanel.add(radioSeparatorComma);
 		separatorPanel.add(radioSeparatorTab);
 		separatorPanel.add(radioSeparatorWhitespace);
-		this.add("Separator", separatorPanel);
+		this.add("区切り文字", separatorPanel);
 		
-		JCheckBox header = new JCheckBox("First line contains row names");
-		this.add("Header", header);
+		JCheckBox header = new JCheckBox("1行目に列名を含む");
+		this.add("ヘッダ", header);
 		
-		this.addSendButton("Load");
+		this.addSendButton("読み込み");
 		
 		this.pack();
 		this.show();

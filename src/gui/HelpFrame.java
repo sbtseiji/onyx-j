@@ -25,13 +25,12 @@ public class HelpFrame extends JFrame
 	
 	public HelpFrame()
 	{
-		String text = "Double-click any empty space on the desktop to create a model panel."+
-	"Double-click any empty space on the model panel to create a new latent variable."+
-				"Double-click any empty space on the model panel and hold down shift to create an observed variable"+
-	"Right-press the mouse on any variable and drag the mouse onto another variable to create a regression path"+
-				"Right-press the mouse on any variable and drag the mouse onto another variable while holding down shift to create a (co)variance path.";
-		
-		
+		String text = "デスクトップの空白部分をダブルクリックするとモデルパネルを作成できます。"
+			+ "モデルパネルの空白部分をダブルクリックすると新しい潜在変数を作成できます。"
+			+ "モデルパネルの空白部分をシフトキーを押しながらダブルクリックすると観測変数を作成できます。"
+			+ "任意の変数を右クリックし、他の変数へドラッグすると回帰パスを作成できます。"
+			+ "任意の変数を右クリックし、シフトキーを押しながら他の変数へドラッグすると（共）分散パスを作成できます。";
+
 		label = new JLabel(text);
 	}
 	

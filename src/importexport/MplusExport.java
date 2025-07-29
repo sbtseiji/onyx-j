@@ -43,7 +43,7 @@ public class MplusExport extends StringExport {
 		useStartingValues = true;
 	}
 	
-	public String getHeader() {return "MPlus code";}	
+	public String getHeader() {return "MPlusコード";}	
 	
     public boolean isValid() {return !modelView.hasDefinitionEdges();}
     
@@ -84,8 +84,8 @@ public class MplusExport extends StringExport {
 	public String createModelSpec(ModelView modelView, String modelName, boolean useUniqueNames) {
 		Graph g = modelView.getGraph();
 
-		if (g.isMultiGroup()) return "Error! Multigroup models cannot be exported yet!";
-		if (modelView.hasDefinitionEdges()) return "Error! Definition variables in lavaan are not supported!";
+		if (g.isMultiGroup()) return "エラー！マルチグループモデルの書き出しにはまだ対応していません。";
+		if (modelView.hasDefinitionEdges()) return "エラー！ lavaanでの定義変数には対応していません。";
 
 		
 		resetNames();
@@ -130,7 +130,7 @@ public class MplusExport extends StringExport {
 		//variablenames+="";
 		
 		// create all regressions between manifest and latent
-		model += "! regressions of latents on manifest\n";
+		model += "! 潜在変数から観測変数への回帰\n";
 		for (Edge edge : g.getEdges()) {
 			if (edge.getSource().isLatent() && 
 					edge.getTarget().isObserved() && !edge.isDoubleHeaded()
@@ -153,20 +153,20 @@ public class MplusExport extends StringExport {
 		}
 		
 		
-        // create all regressions between manifest and manifest
-        model += "! regressions of manifest on manifest\n";
-        for (Edge edge : g.getEdges()) {
-            if (edge.getSource().isObserved() && 
-                    (edge.getTarget().isObserved() || edge.getTarget().isLatent()) && !edge.isDoubleHeaded()
-                    && !edge.getSource().isMeanTriangle())
-            {
-                model+= inset+ createEdgeString(edge, "ON", startingValues);
-            }
-        }
+		// create all regressions between manifest and manifest
+		model += "! 観測変数間の回帰\n";
+		for (Edge edge : g.getEdges()) {
+			if (edge.getSource().isObserved() && 
+					(edge.getTarget().isObserved() || edge.getTarget().isLatent()) && !edge.isDoubleHeaded()
+					&& !edge.getSource().isMeanTriangle())
+			{
+				model+= inset+ createEdgeString(edge, "ON", startingValues);
+			}
+		}
 		
 		
 		// create all regressions of latent on latent
-		model += "! regressions of latents on latents or manifests\n";
+		model += "! 潜在変数間または潜在－観測変数間の回帰\n";
 		for (Edge edge : g.getEdges()) {
 			if (edge.getSource().isLatent() && 
 					(edge.getTarget().isLatent() ) && !edge.isDoubleHeaded()
@@ -180,7 +180,7 @@ public class MplusExport extends StringExport {
 		}
 		
 		// create all variances and covariances
-		model +="! residuals, variances and covariances\n";
+		model +="! 残差・分散・共分散\n";
 		for (Edge edge : g.getEdges()) {
 		
 			if (!edge.isDoubleHeaded()) continue;
@@ -243,7 +243,7 @@ public class MplusExport extends StringExport {
 		if (g.getMeanTreatment() == Graph.MeanTreatment.explicit) {
 		List<Node> meanNodes = new ArrayList<Node>();
 		
-		model += "! means\n";
+		model += "! 平均\n";
 		for (Edge edge : g.getEdges()) {
 			if (edge.getSource().isMeanTriangle()) {
 				meanNodes.add(edge.getTarget());

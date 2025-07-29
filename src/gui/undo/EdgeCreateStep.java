@@ -27,7 +27,7 @@ public class EdgeCreateStep extends UndoStep {
 	public EdgeCreateStep(ModelView mv, gui.graph.Edge edge)
 	{
 		super();
-		this.title = "Create edge "+edge.source.getCaption()+"->"+edge.target.getCaption()+".";
+		this.title = edge.source.getCaption() + "→" + edge.target.getCaption() + " のエッジを作成";
 		this.mv = mv;
 		this.edge = edge;
 	}

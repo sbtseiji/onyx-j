@@ -36,7 +36,7 @@ public class NodeStateChangedStep extends UndoStep {
 	public NodeStateChangedStep(ModelView mv, gui.graph.Node node)
 	{
 		super();
-		this.title = "Change node";
+		this.title = "ノードの状態を変更";
 		this.mv = mv;
 		this.oldNode = (Node)node.clone();
 		this.newNode = node;

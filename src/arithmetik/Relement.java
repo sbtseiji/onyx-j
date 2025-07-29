@@ -134,10 +134,10 @@ public class Relement implements Orderd, Field, Squarerootable, Signed, DoubleCa
 	{
 		return oben.ceil();
 	}
-	// Verändert das CElement direkt. Falls die Magnitude der Nenner jeweils länger ist
-	// als durch maxMagnitudeLength erlaubt, wird der Zähler auf maxMagnitudeLength gebracht
+	// Verandert das CElement direkt. Falls die Magnitude der Nenner jeweils langer ist
+	// als durch maxMagnitudeLength erlaubt, wird der Zahler auf maxMagnitudeLength gebracht
 	// und der Nenner auf maxMagnitude. Unten wird immer ab-, oben immer aufgerundet. Die
-	// Korrektur wird nicht gemacht, wenn damit eine Grenze auf 0 gesetzt wird (d.h. in der Nähe
+	// Korrektur wird nicht gemacht, wenn damit eine Grenze auf 0 gesetzt wird (d.h. in der Nahe
 	// von 0 wird beliebige Exaktheit zugelassen).
 	public void checkSize()
 	{
@@ -216,7 +216,7 @@ public class Relement implements Orderd, Field, Squarerootable, Signed, DoubleCa
 			return new Relement(oben.multiply(arg2.unten),unten.multiply(arg2.oben));
 		}		
 		
-		// Für den Fall, dass einer der beiden Intervalle 0 enthält, eben durchgeixt:
+		// Fur den Fall, dass einer der beiden Intervalle 0 enthalt, eben durchgeixt:
 		
 		if ((exakt) || (arg2.exakt)) return new Relement();
 		Relement erg = new Relement();
@@ -318,7 +318,7 @@ public class Relement implements Orderd, Field, Squarerootable, Signed, DoubleCa
 	{
 		return new Relement();
 	}
-	// Verschenkt natürlich die Grenzen.
+	// Verschenkt naturlich die Grenzen.
 	public double doubleValue()
 	{
 		double o = oben.doubleValue(), u = unten.doubleValue();

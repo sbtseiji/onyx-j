@@ -31,8 +31,8 @@ public class CreateMeasurementInvarianceAction extends AbstractAction {
 	{
 		this.desktop = desktop;
 	
-		putValue(NAME, "Create a Measurement Invariance Model");
-		//putValue(SHORT_DESCRIPTION, "Create an LGCM on the desktop");
+		putValue(NAME, "測定不変性モデル");
+		//putValue(SHORT_DESCRIPTION, "デスクトップ上に測定不変性モデルを作成します");
 	}
 	
 	@Override

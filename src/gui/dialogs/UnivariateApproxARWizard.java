@@ -42,36 +42,36 @@ public class UnivariateApproxARWizard extends Dialog {
 
 	public UnivariateApproxARWizard(Desktop desktop)
 	{
-		super("Univariate Autoregression Wizard");
+		super("単変量自己回帰ウィザード");
 		this.desktop = desktop;
 	
 		Dimension d = new Dimension(150,30);
 		
 		// # of observations
 		 numObsInput = new JSpinner(new SpinnerNumberModel(4,2,100,1));
-		this.addElement("Observed time points",numObsInput);
+		this.addElement("観測時点",numObsInput);
 		// observation name
 		nameObsInput = new JTextArea("x");
 		nameObsInput.setSize(d);
-		this.addElement("Name of observed variable",nameObsInput);
+		this.addElement("観測変数名",nameObsInput);
 		
 		timeDelayInput = new JTextArea("1");
-		this.addElement("Time Delay", timeDelayInput);
+		this.addElement("遅延時間", timeDelayInput);
 		
 		approxOrderInput = new JSpinner(new SpinnerNumberModel(2, 1, 2, 1));
-		this.addElement("Approximation Order", approxOrderInput);
+		this.addElement("近似次数", approxOrderInput);
 		
 		// error term name
 		nameErrInput = new JTextArea("e");
 		nameErrInput.setSize(d);
-		this.addElement("Name of residual variance term ",nameErrInput);
+		this.addElement("差分散項名 ",nameErrInput);
 		
 		
 
-		uniqueResiduals = new JCheckBox("unique variances across time");
-		this.addElement("Residual variances", uniqueResiduals);
+		uniqueResiduals = new JCheckBox("時点ごとの独自分散");
+		this.addElement("残差分散", uniqueResiduals);
 		
-		this.addSendButton("Create");
+		this.addSendButton("作成");
 		
 		this.pack();
 		
@@ -108,12 +108,12 @@ public class UnivariateApproxARWizard extends Dialog {
 			model.requestAddNode(obs[i]);
 			
 			// add measurement part
-			Node err = new Node("residual");
+			Node err = new Node("残差");
 			model.requestAddNode(err);
 			err.setPosition(xOffset+i*xDist, yOffset+200);
 			
 			// add latent process
-			lat[i] = new Node("latent");
+			lat[i] = new Node("潜在");
 			lat[i].setPosition(xOffset+i*xDist, yOffset+30);
 			model.requestAddNode(lat[i]);
 			
@@ -134,7 +134,7 @@ public class UnivariateApproxARWizard extends Dialog {
 			// add autoregression
 			if (i > 0) {
 				
-				Node temp2 = new Node("order1"+i);
+				Node temp2 = new Node("次数1"+i);
 				temp2.setPosition(xOffset+i*xDist -20, yOffset+30- 30);
 				model.requestAddNode(temp2);
 				
@@ -156,9 +156,9 @@ public class UnivariateApproxARWizard extends Dialog {
 				model.requestAddEdge(edge4);
 				
 				if (approxOrder > 1) {
-					Node tempn = new Node("order2a_"+i);
+					Node tempn = new Node("次数2a_"+i);
 					tempn.setPosition(xOffset+i*xDist - xDist, yOffset+30- 60);
-					Node tempx = new Node("order2b_"+i);
+					Node tempx = new Node("次数2b_"+i);
 					tempx.setPosition(xOffset+i*xDist, yOffset+30- 60);
 					
 					model.requestAddNode(tempn);

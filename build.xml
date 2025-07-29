@@ -35,7 +35,7 @@ name="Create Runnable Jar for Project Onyx" xmlns:ivy="antlib:org.apache.ivy.ant
 				-->
 		
 	    <!-- Compile the java code from ${src} into ${build} -->
-	    <javac srcdir="${src}" destdir="${build}" debug="true" encoding="iso-8859-1" failonerror="false">
+	    <javac srcdir="${src}" destdir="${build}" debug="true" encoding="UTF-8" failonerror="false" release="21">
 			<classpath>
 			        <pathelement path="lib/gral-core-0.11.jar"/>
 					<pathelement path="lib/junit-4.13.2.jar"/>
@@ -80,7 +80,7 @@ name="Create Runnable Jar for Project Onyx" xmlns:ivy="antlib:org.apache.ivy.ant
 
             <manifest>
                 <attribute name="Built-By" value="Andreas Brandmaier"/>
-                <attribute name="Main-Class" value="Master"/>
+                <attribute name="Main-Class" value="Main"/>
                 <attribute name="Class-Path" value="."/>
                 
                 <attribute name="Implementation-Version" 

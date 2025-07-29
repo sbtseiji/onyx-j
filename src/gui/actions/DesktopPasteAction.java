@@ -38,8 +38,8 @@ public class DesktopPasteAction extends AbstractAction {
 	{
 		this.desktop = desktop;
 	
-		putValue(NAME, "Paste");
-        putValue(SHORT_DESCRIPTION, "Pastes Clipboard on the desktop");
+		putValue(NAME, "貼りつけ");
+        putValue(SHORT_DESCRIPTION, "クリップボードの内容をデスクトップに貼りつけます");
         this.x = x;
         this.y = y;
 	}

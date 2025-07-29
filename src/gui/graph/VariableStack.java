@@ -198,7 +198,7 @@ public class VariableStack implements Movable, Resizable {
 			if (ldf.dataset instanceof RawDataset) {
 				col = ((RawDataset)ldf.dataset).getColumn(ldf.columnId);
 			} else {
-				System.err.println("Non-raw dataset linked in Variable stack. Could not return raw data.");
+				System.err.println("変数スタックに加工済データセットがリンクされています。生データを返せません。");
 				return(null);
 			}
 			

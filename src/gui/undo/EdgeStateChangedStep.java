@@ -26,7 +26,7 @@ public class EdgeStateChangedStep extends UndoStep {
 	public EdgeStateChangedStep(ModelView mv, gui.graph.Edge edge)
 	{
 		super();
-		this.title = "Changed edge"+edge.getSource().getCaption()+"->"+edge.getTarget().getCaption()+".";
+		this.title = "エッジの状態を変更 "+edge.getSource().getCaption()+"->"+edge.getTarget().getCaption()+".";
 		this.mv = mv;
 		this.oldEdge = (Edge)edge.clone();
 		this.newEdge = edge;

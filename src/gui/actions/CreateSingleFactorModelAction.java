@@ -34,7 +34,7 @@ public class CreateSingleFactorModelAction extends AbstractAction {
 	{
 		this.desktop = desktop;
 	
-		putValue(NAME, "Create new single factor model");
+		putValue(NAME, "単一因子モデル");
 		//putValue(SHORT_DESCRIPTION, "Create an LGCM on the desktop");
 	}
 	

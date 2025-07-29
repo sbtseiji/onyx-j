@@ -181,7 +181,7 @@ public RingVector[] approximateKernelBasisOfSymmetric(double epsilon)
 
 	return RingVector.orthonormalize(erg);
 }
-// Gibt eine (nicht orthogonale oder normale) Basis des Kerns der Matrix zurück.
+// Gibt eine (nicht orthogonale oder normale) Basis des Kerns der Matrix zuruck.
 public RingVector[] coreBasis()
 {
 	int spalten = this.getColumns();
@@ -209,7 +209,7 @@ public RingVector[] coreBasis()
 	
 	return ergarr;	
 }
-// Gibt von einem homogenen Gleichungssystem eine Matrix zurück, die alle Vektoren auf den
+// Gibt von einem homogenen Gleichungssystem eine Matrix zuruck, die alle Vektoren auf den
 // Kern der Matrix projeziert.
 public RingMatrix coreProjectMatrix()
 {
@@ -321,13 +321,13 @@ public Ring developDeterminant()
 	return erg;
 }
 // approximiert die Eigenwerte bis epsilon mit dem QR-Verfahren. 
-// Rückgabe ist Vector mit den Eigenwerten. 
+// Ruckgabe ist Vector mit den Eigenwerten. 
 public RingVector eigenvalues(double epsilon)
 {
 	return eigenvalues(epsilon, null);
 }
 // approximiert die Eigenwerte bis epsilon mit dem QR-Verfahren. 
-// Rückgabe ist Vector mit den Eigenwerten.
+// Ruckgabe ist Vector mit den Eigenwerten.
 
 // Wenn transformationMatrix nicht null ist, wird jede Transformation dort mit eingearbeitet.
 public RingVector eigenvalues(double epsilon, RingMatrix transformationMatrix)
@@ -379,7 +379,7 @@ public RingVector eigenvalues(double epsilon, RingMatrix transformationMatrix)
 	*/
 	return erg;
 }
-// Berechnet die Eigenwerte einer 2x2 Matrix mit den mitgegebenen Einträgen; diese müssen
+// Berechnet die Eigenwerte einer 2x2 Matrix mit den mitgegebenen Eintragen; diese mussen
 // Field und Squarerootable implementieren.
 private static Ring[] eigenvalues22(Ring a11, Ring a12, Ring a21, Ring a22)
 {
@@ -395,7 +395,7 @@ private static Ring[] eigenvalues22(Ring a11, Ring a12, Ring a21, Ring a22)
 	erg[1] = vw.abs_subtract(iw);
 	return erg;
 }
-// Berechnet die Eigenwerte einer 2x2 Matrix mit den mitgegebenen Einträgen; diese müssen
+// Berechnet die Eigenwerte einer 2x2 Matrix mit den mitgegebenen Eintragen; diese mussen
 // Field und Squarerootable implementieren.
 // Ist transformationMatrix nicht null, wird dort die Transformation angegeben, um auf die Diagonalgestalt zu kommen.
 public static Ring[] eigenvalues22(Ring a11, Ring a12, Ring a21, Ring a22, RingMatrix transformationMatrix)
@@ -408,7 +408,7 @@ public static Ring[] eigenvalues22(Ring a11, Ring a12, Ring a21, Ring a22, RingM
 	Ring vw = ((Field)p).abs_divide((Field)zwei);
 	Ring iw = vw.abs_multiply(vw).abs_subtract(q);
 
-	// Für den Fall, dass wir hier mit Doubles arbeiten, werden hier noch "fast - null" Eigenwerte zugelassen
+	// Fur den Fall, dass wir hier mit Doubles arbeiten, werden hier noch "fast - null" Eigenwerte zugelassen
 	if ((eins instanceof DoubleWrapper) && (((DoubleWrapper)iw).doubleValue()<0.0))
 		iw = new DoubleWrapper(0.0);
 	iw = (Ring)((Squarerootable)iw).abs_sqrt();	
@@ -427,7 +427,7 @@ public static Ring[] eigenvalues22(Ring a11, Ring a12, Ring a21, Ring a22, RingM
 		int i,j1,j2;
 		if (eins instanceof DoubleNormable)
 		{
-			// Sortieren: Größter Wert wählen (numerisch am stabilsten)
+			// Sortieren: Grosster Wert wahlen (numerisch am stabilsten)
 			double[] n = {((DoubleNormable)linksoben1).doubleNorm(), ((DoubleNormable)a12).doubleNorm(),
 			       ((DoubleNormable)a21).doubleNorm(), ((DoubleNormable)rechtsunten1).doubleNorm()};
 			if (n[1] > n[2]) i = 1; else i = 2;
@@ -503,7 +503,7 @@ public RingVector eigenvaluesOfHessenberg(double epsilon, RingMatrix transformat
 	while (weiter)
 	{
 		/*
-		// Shifts berechnen und auswählen
+		// Shifts berechnen und auswahlen
 		Ring[] shiftKandidat = (RingMatrix.eigenvalues22(A.getValue(dim-1, dim-1), A.getValue(dim-1, dim), A.getValue(dim, dim-1), A.getValue(dim, dim)));
 		Ring[] shiftAbstand = new Ring[2];
 		shiftAbstand[0] = shiftKandidat[0].abs_subtract(A.getValue(dim,dim));
@@ -589,7 +589,7 @@ public RingVector[] eigenvectors(double epsilon)
  * Creation date: (07.08.2002 17:48:39)
  * @return arithmetik.RingVector[]
 
-	gibt numberOfEigenvectors Eigenvektoren zurück; bei geordneten Ringen automatisch die Vektoren mit den größten 
+	gibt numberOfEigenvectors Eigenvektoren zuruck; bei geordneten Ringen automatisch die Vektoren mit den grossten 
 	Eigenwerten. 
  
  */
@@ -603,7 +603,7 @@ public RingVector[] eigenvectors(double epsilon, int numberOfEigenvectors)
 		RingMatrix a = new RingMatrix(this);
 		for (int j=0; j<a.getRows(); j++) a.setValue(a.getValue(j+1,j+1).abs_subtract(wert),j+1,j+1);
 
-		// wir lösen a * x = 0 nährungsweise
+		// wir losen a * x = 0 nahrungsweise
 		a = a.findRMatrix();
 		Ring min = a.getValue(1,1);
 		int minst = 1;
@@ -701,11 +701,11 @@ public RingMatrix[] findRMatrix(RingMatrix snd)
 	RingMatrix[] erg = {R,I};
 	return erg;
 }
-// Nimmt eine (nicht notwendigerweise quadratische) Matrix und überführt sie in eine rechte
-// obere Dreiecksmatrix (d.h. in jeder Zeile ist mindestens eine führende Spalte mehr 0 als
+// Nimmt eine (nicht notwendigerweise quadratische) Matrix und uberfuhrt sie in eine rechte
+// obere Dreiecksmatrix (d.h. in jeder Zeile ist mindestens eine fuhrende Spalte mehr 0 als
 // in der vorangegangenen Zeile; es werden auch Zeilenvertauschungen vorgenommen). Ist 
-// snd != null, werden im zweitern Argument die entsprechenden Aenderungen an snd mitgeführt. 
-// Ist vec= null, so werden alle Zeilenvertauschungen auch an dem Vektor durchgeführt.
+// snd != null, werden im zweitern Argument die entsprechenden Aenderungen an snd mitgefuhrt. 
+// Ist vec= null, so werden alle Zeilenvertauschungen auch an dem Vektor durchgefuhrt.
 // in vertauschungenGeradeGlobalFlag wird gespeichert, ob eine gerade Anzahl an
 // Nachbarzeilenvertauschungen vorgenommen wurde.
 
@@ -845,7 +845,7 @@ public Ring getDiagonalProductOfRMatrix()
 // Q*this*Q.transpose() zwei Schritte  
 // des QR-Verfahrens mit Raighley-Shift ist, der sich aus den Eigenwerten der unteren 2x2
 // Matrix zusammensetzt; durch die beiden Schritte werden die Zahle reel belassen.
-// Zurückgegeben wird H' = Q*this*Q.transpose()
+// Zuruckgegeben wird H' = Q*this*Q.transpose()
 // Algorithmus nach "Numerical Recipes In Fortran 77: The Art of Scientific Computing" ISBN 0-521-43064-X)
 public RingMatrix getNextHessenbergOfQR()
 {
@@ -855,7 +855,7 @@ public RingMatrix getNextHessenbergOfQR()
 // Q*this*Q.transpose() zwei Schritte  
 // des QR-Verfahrens mit Raighley-Shift ist, der sich aus den Eigenwerten der unteren 2x2
 // Matrix zusammensetzt; durch die beiden Schritte werden die Zahle reel belassen.
-// Zurückgegeben wird H' = Q*this*Q.transpose()
+// Zuruckgegeben wird H' = Q*this*Q.transpose()
 // Algorithmus nach "Numerical Recipes In Fortran 77: The Art of Scientific Computing" ISBN 0-521-43064-X)
 
 // ist transformationMatrix nicht null, wird Q mit dieser Matrix multipliziert. 
@@ -879,7 +879,7 @@ public RingMatrix getNextHessenbergOfQR(RingMatrix transformationMatrix)
 	{
 		s = (Field) ((Squarerootable)(p.abs_multiply(p)).abs_add(q.abs_multiply(q)).abs_add(r.abs_multiply(r))).abs_sqrt();
 		s = (Field)s.abs_multiply((Field)((Signed)p).abs_ringSignum());
-		// spalt * zeil repräsentiert die 3x3 Matrix P_i an den Zeilen und Spalten i,i+1,i+2
+		// spalt * zeil reprasentiert die 3x3 Matrix P_i an den Zeilen und Spalten i,i+1,i+2
 		Field[] spalt = new Field[3];
 		Field[] zeil = new Field[3];
 		Field ps = (Field)p.abs_add(s);
@@ -942,7 +942,7 @@ public int getRows()
  * Creation date: (08.05.2003 15:36:49)
  * @return int
 
-	Berechnet die Eigenwerte der Matrix und gibt Anzahl der positivien minus Anzahl der negativen Eigenwerte zurück.
+	Berechnet die Eigenwerte der Matrix und gibt Anzahl der positivien minus Anzahl der negativen Eigenwerte zuruck.
  
  */
 public int getSignature() 
@@ -1290,7 +1290,7 @@ public boolean isSymetric()
 			if (!getValue(i,j).abs_isEqual(getValue(j,i))) return false;
 	return true;
 }
-// TVO: Erweitert auf Multiplikation von 2 Matrizen verschiedener Größen.
+// TVO: Erweitert auf Multiplikation von 2 Matrizen verschiedener Grossen.
 // Forderung: Zahl der Spalten von this = Zahl der Zeilen von A.
 public RingMatrix matrixMultiply(RingMatrix A) 
 {
@@ -1381,8 +1381,8 @@ public RingMatrix pow(long exp)
 
 	return erg;			
 }
-// gibt eine obere Dreiecksmatrix R zurück, und eine Matrix U, deren Spaltenvektoren
-// u_i jeweils für eine Matrix Q_I = u_i transpose(u_i) stehen, deren Produkt
+// gibt eine obere Dreiecksmatrix R zuruck, und eine Matrix U, deren Spaltenvektoren
+// u_i jeweils fur eine Matrix Q_I = u_i transpose(u_i) stehen, deren Produkt
 // Q wiederum eine orthogonale Matrix ist, so dass QR = this.
 public RingMatrix[] qRDecomposition()
 {	
@@ -1734,12 +1734,12 @@ public RingVector solveRightUpperTriangleMatrix(RingVector b)
 {
 	return solveRightUpperTriangleMatrix(b, -1);
 }
-// Erwaretet oberer rechte Dreiecksmatrix (d.h. jede Zeile hat mindestens eine führende Null
-// mehr als die darüberliegenden). Setzt bei Freiheiten immer 0 ein, außer bei useFree, dort 1.
-// Gibt null zurück, falls keine Lösung existiert.
+// Erwaretet oberer rechte Dreiecksmatrix (d.h. jede Zeile hat mindestens eine fuhrende Null
+// mehr als die daruberliegenden). Setzt bei Freiheiten immer 0 ein, ausser bei useFree, dort 1.
+// Gibt null zuruck, falls keine Losung existiert.
 
-// Die Methode läuft nicht richtig, wenn die oben genannte Bedingung (anstieg der führenden Nullen) 
-// nicht streng erfüllt ist.
+// Die Methode lauft nicht richtig, wenn die oben genannte Bedingung (anstieg der fuhrenden Nullen) 
+// nicht streng erfullt ist.
 
 public RingVector solveRightUpperTriangleMatrix(RingVector b, int useFree)
 {
@@ -1959,7 +1959,7 @@ public RingVector solveWithUFromQRDecomposition(RingVector b)
 	return y;
 }
 // Beide Grenzen jeweils eingeschlossen.		
-// Änderung tvo 26.11.00
+// Anderung tvo 26.11.00
 public RingMatrix subMatrix(int startRow, int endRow, int startCol, int endCol)
 {
 	int newRows = endRow-startRow+1;
@@ -2075,7 +2075,7 @@ public Ring trace()
 		erg = erg.abs_add(getValue(i,i));
 	return erg;
 }
-// Benötigt ein Feld mit Quadratwurzeln.
+// Benotigt ein Feld mit Quadratwurzeln.
 // Transformiert mit Orthogonalen Matrizen (Householder) in die Hessenbergform, d.h. 
 // eine rechte obere Dreiecksmatrix, in der die Elemente unterhalb der Diagonalen 
 // noch besetzt sind. Eventuell gegebene Symetrie bleibt erhalten.
@@ -2083,7 +2083,7 @@ public RingMatrix transformSimilarToHessenberg()
 {
 	return transformSimilarToHessenberg(null);
 }
-// Benötigt ein Feld mit Quadratwurzeln.
+// Benotigt ein Feld mit Quadratwurzeln.
 // Transformiert mit Orthogonalen Matrizen (Householder) in die Hessenbergform, d.h. 
 // eine rechte obere Dreiecksmatrix, in der die Elemente unterhalb der Diagonalen 
 // noch besetzt sind. Eventuell gegebene Symetrie bleibt erhalten.
@@ -2128,7 +2128,7 @@ public RingMatrix transformSimilarToHessenberg(RingMatrix transformationMatrix)
 	}
 	return erg;
 }
-// Transponiert die Matrix; falls die Einträge Complex implementieren, werden sie konjugiert.
+// Transponiert die Matrix; falls die Eintrage Complex implementieren, werden sie konjugiert.
 public RingMatrix transpose()
 {
 	RingMatrix erg = new RingMatrix(entry[0][0],getColumns(),getRows());

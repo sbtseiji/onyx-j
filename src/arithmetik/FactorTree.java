@@ -66,14 +66,14 @@ public class FactorTree
 		Stack erg = (f.monomialMultiply(inverse,0)).factorize();
 		int number = erg.size();
 		FactorTree[] nodes = new FactorTree[number];
-		// die Bl„tter des Baumes sind die irreduziblen Faktoren
+		// die Bloter des Baumes sind die irreduziblen Faktoren
 		for (int i = 0; i < number ; i++ )
 		{
 			nodes[i] = new FactorTree((RemainderRingPolynomial)erg.pop(),null,null,null,null,modulo);
 //			System.out.println("true factor " + nodes[i].value);
 		}
 		
-		// Nun mssen wir die Knoten induktiv erzeugen, bis wir die Wurzel erzeugt haben.
+		// Nun musen wir die Knoten induktiv erzeugen, bis wir die Wurzel erzeugt haben.
 		
 		for (int j = 1 ; j<number ; j *= 2 )
 		{
@@ -96,7 +96,7 @@ public class FactorTree
 	 */
 	public String toString()
 	{
-		/* geändert TvO
+		/* geandert TvO
 		String erg = "Root ";
 		erg = erg + root;
 		erg = erg + " Modulo: ";
@@ -148,7 +148,7 @@ public class FactorTree
 	}
 	
 	/**
-	 * Liefert die Blätter des Faktorbaumes als RemainderRingPolynomial-Array
+	 * Liefert die Blatter des Faktorbaumes als RemainderRingPolynomial-Array
 	 */
 	public RemainderRingPolynomial[] getLeaves()
 	{

@@ -33,9 +33,9 @@ public class GroupConnectDialog extends JDialog implements ActionListener {
 	
 	public GroupConnectDialog(ModelView mv, Node n1, Node n2)
 	{
-		b1 = new JButton("One to Group");
-		b2 = new JButton("Group to One");
-		b3 = new JButton("Group to Group");
+		b1 = new JButton("1対グループ");
+		b2 = new JButton("グループ対1");
+		b3 = new JButton("グループ対グループ");
 	
 		this.mv = mv;
 		this.source = n1;

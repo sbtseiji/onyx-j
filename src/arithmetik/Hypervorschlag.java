@@ -19,8 +19,8 @@ import java.util.*;
 import java.math.*;
 
 // Im Gegensatz zum Vorschlag kann diese Klasse eine beliebige Zahl von Punkten nehmen.
-// Für den jeweils untergeordneten Vorschlag sucht sie dann eine Zweierpotenz-Anzahl
-// von Punkten heraus, die die zusätzliche Bedingung erfüllen, dass sowohl ihre Summe
+// Fur den jeweils untergeordneten Vorschlag sucht sie dann eine Zweierpotenz-Anzahl
+// von Punkten heraus, die die zusatzliche Bedingung erfullen, dass sowohl ihre Summe
 // als auch ihr Produkt nahe einer ganzen Zahl sind.
 
 public class Hypervorschlag
@@ -33,7 +33,7 @@ public class Hypervorschlag
 	private Ausdruck naechsterVorschlag;
 	private Vorschlag subvorschlag;
 	private boolean fertig;
-	private Vector schonGegeben;			// zerstört ein bisschen die Idee vom Platzsparen.
+	private Vector schonGegeben;			// zerstort ein bisschen die Idee vom Platzsparen.
 	
 	public Hypervorschlag() {this(new Celement[1]);}
 	public Hypervorschlag(Celement[] punkte)

@@ -33,7 +33,7 @@ public class MPlusFileFilter extends FileFilter {
 
 	@Override
 	public String getDescription() {
-		return "Mplus File";
+		return "Mplusファイル";
 	}
 
 }

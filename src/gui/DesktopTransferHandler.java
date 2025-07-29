@@ -86,7 +86,7 @@ public class DesktopTransferHandler extends TransferHandler {
             // Don't return; try next flavor.
           }
         } catch (IOException ex) {
-          System.err.println("IOError getting data: " + ex);
+          System.err.println("IOエラー データが取得できません： " + ex);
         } catch (UnsupportedFlavorException e) {
         }
       }

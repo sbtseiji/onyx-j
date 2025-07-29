@@ -74,7 +74,7 @@ public class QMonomial
 		if (identifierNr >= exp.length) return 0;
 		else return exp[identifierNr];
 	}
-	// liefert den höchsten vorkommenden Index (i.A. die Anzahl der Variablen).
+	// liefert den hochsten vorkommenden Index (i.A. die Anzahl der Variablen).
 	public int getHighestIndex()
 	{
 		for (int i=exp.length-1; i>=0; i--)
@@ -243,8 +243,8 @@ public boolean equals(Object o)
  * @return arithmetik.QMonomial[]
  * @param ideal arithmetik.QMonomial[]
 
-	erwartet die (minimalen) Erzeuger eines Monom-Ideals und liefert alle Monom zurück, die nicht in dem Ideal
-	sind, falls dies endlich viele sind; ansonsten wird null zurückgegeben.
+	erwartet die (minimalen) Erzeuger eines Monom-Ideals und liefert alle Monom zuruck, die nicht in dem Ideal
+	sind, falls dies endlich viele sind; ansonsten wird null zuruckgegeben.
  
  */
 public static QMonomial[] getRemainderOfIdeal(QMonomial[] ideal) 

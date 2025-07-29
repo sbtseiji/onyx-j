@@ -44,13 +44,13 @@ public class CheckForUpdates implements Runnable
 			
 			if (latestVersion > MainFrame.MINOR_VERSION)
 			{
-				MainFrame.getContextHelpPanel().setText("Your version of "+WelcomeFrame.OMEGA + "nyx is out of date! Please download a new version on our website!");
-				MainFrame.getContextHelpPanel().setVisible(true);
+			   MainFrame.getContextHelpPanel().setText("ご利用中の"+WelcomeFrame.OMEGA + "nyxは最新版ではありません。新しいバージョンをウェブサイトからダウンロードしてください。");
+			   MainFrame.getContextHelpPanel().setVisible(true);
 			}
 			
-		} catch (Exception e) {
-			System.err.println("Cannot access latest version number!");
-		}
+	   } catch (Exception e) {
+		   System.err.println("最新版のバージョン番号にアクセスできません！");
+	   }
 		
 		
 		

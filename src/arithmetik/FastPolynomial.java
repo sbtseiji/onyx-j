@@ -28,7 +28,7 @@ public class FastPolynomial
 	private static boolean datenbankAktiv = true;
 	
 	public Qelement factor;
-	public Vector<QPolynomial> member;				// mit QPolynomials; die Identität der Polynome wird
+	public Vector<QPolynomial> member;				// mit QPolynomials; die Identitat der Polynome wird
 										// getestet (mit ==), die Pointer also als Verweise 
 										// auf die Datenbank.
 	
@@ -100,8 +100,8 @@ public class FastPolynomial
 		}
 		return erg;
 	}
-	// schaut nach, unter welcher Nummer das übergebene Polynom gespeichert ist.
-	// Falls es noch nicht aufgenommen ist, wird NOT_FOUND (=-1) zurückgegeben.
+	// schaut nach, unter welcher Nummer das ubergebene Polynom gespeichert ist.
+	// Falls es noch nicht aufgenommen ist, wird NOT_FOUND (=-1) zuruckgegeben.
 	public static QPolynomial databaseLookup(QPolynomial candidate)
 	{
 		if (!datenbankAktiv) return candidate;
@@ -144,7 +144,7 @@ public class FastPolynomial
 		return (faks[0].expand()).equals(faks[1].expand());
 	}
 	// Nimmt ein Array von doubles, dass alle vorkommenden
-	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zurück.
+	// Variablen mit einem Wert belegt, und liefert das ausgewertete Polynom zuruck.
 	public double evaluate(double[] value)
 	{
 		return expand().evaluate(value);
@@ -161,7 +161,7 @@ public class FastPolynomial
 			erg = erg.multiply((QPolynomial)member.elementAt(i));
 		return erg;
 	}
-	// liefert den höchsten vorkommenden Index (i.A. die Anzahl der Variablen).
+	// liefert den hochsten vorkommenden Index (i.A. die Anzahl der Variablen).
 	public int getHighestIndex()
 	{
 		int erg = 0;
@@ -241,9 +241,9 @@ public class FastPolynomial
 		}
 		return erg;
 	}
-	// Berechnet die gemeinsamen Mitglieder aller in der Liste übergebenen FastPolynomial.
+	// Berechnet die gemeinsamen Mitglieder aller in der Liste ubergebenen FastPolynomial.
 	// Der factor ist der ggT aller Qelemente.
-	// Listenlänge muss mindestens 2 sein.
+	// Listenlange muss mindestens 2 sein.
 	public static FastPolynomial lazyGcdOfList(FastPolynomial[] in)
 	{
 		if (in.length == 0) return new FastPolynomial(Qelement.ONE);
@@ -254,7 +254,7 @@ public class FastPolynomial
 
 		return erg;
 	}
-	// Gibt eine Liste zurück, mit welchem FastPolynomial man jeweils den "ggT"
+	// Gibt eine Liste zuruck, mit welchem FastPolynomial man jeweils den "ggT"
 	// multiplizieren muss, um auf das Argument zu kommen, wobei die
 	// factoren der Elemente nach der ggT-Definition aus Qelement gebildet werden.
 	public static FastPolynomial[] lazyGcdRemaindersOfList(FastPolynomial[] in)
@@ -265,7 +265,7 @@ public class FastPolynomial
 			erg[i] = in[i].lazyDivide(t);
 		return erg;
 	}
-	// Gibt eine Liste zurück, mit welchem FastPolynomial man die jeweiligen
+	// Gibt eine Liste zuruck, mit welchem FastPolynomial man die jeweiligen
 	// Argumente multiplizieren muss, um auf das "kgV" zu kommen.
 	// Der factor des kgV ist das Produkt der factoren aller Komponenten, und somit 
 	// haben die Ergebnisse als factoren das Produkt aller factoren der anderen Komponenten.
@@ -401,7 +401,7 @@ public FastPolynomial[] divideAndRemainder(FastPolynomial snd)
 }
 
 /**
- * Setzt für die angegegebenen Variablennummern die angegebenen Werte val ein.
+ * Setzt fur die angegegebenen Variablennummern die angegebenen Werte val ein.
  * Creation date: (19.06.2002 11:12:25)
  * @return arithmetik.FastPolynomial
  * @param varnr int[]

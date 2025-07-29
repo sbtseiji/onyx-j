@@ -101,16 +101,16 @@ public class ModelRun extends Thread {
     private void restart() {
         runUnits.clear(); convergedUnits.clear();
 
-        userStartingValueUnit = new ModelRunUnit(modelWorkCopy.startingValues, "ML with user starting values.", modelWorkCopy.getParameterNames(),
+        userStartingValueUnit = new ModelRunUnit(modelWorkCopy.startingValues, "ユーザー指定開始値による最尤推定", modelWorkCopy.getParameterNames(),
                 modelWorkCopy.getVariableNames(), modelWorkCopy.getObservedVariables(), MINRUNS, false, this);
         userStartingValueUnit.populateDescriptives(model);
-        arbitraryStartingValuesUnit = new ModelRunUnit(modelWorkCopy.getArbitraryStartingValues(), "ML with arbitrary values.", modelWorkCopy.getParameterNames(), 
+        arbitraryStartingValuesUnit = new ModelRunUnit(modelWorkCopy.getArbitraryStartingValues(), "任意の開始値による最尤推定", modelWorkCopy.getParameterNames(), 
                 modelWorkCopy.getVariableNames(), modelWorkCopy.getObservedVariables(), MINRUNS, false, this);
         arbitraryStartingValuesUnit.populateDescriptives(model);
-        userLSUnit = new ModelRunUnit(modelWorkCopy.startingValues, "LS with user starting values.", modelWorkCopy.getParameterNames(), 
+        userLSUnit = new ModelRunUnit(modelWorkCopy.startingValues, "ユーザー指定開始値による最小二乗推定", modelWorkCopy.getParameterNames(), 
                 modelWorkCopy.getVariableNames(), modelWorkCopy.getObservedVariables(), true, MINRUNS, false, this);
         userLSUnit.populateDescriptives(model);
-        arbitraryLSUnit = new ModelRunUnit(modelWorkCopy.getArbitraryStartingValues(), "LS with arbitrary starting values.", modelWorkCopy.getParameterNames(), 
+        arbitraryLSUnit = new ModelRunUnit(modelWorkCopy.getArbitraryStartingValues(), "任意の開始値による最小二乗推定", modelWorkCopy.getParameterNames(), 
                 modelWorkCopy.getVariableNames(), modelWorkCopy.getObservedVariables(), true, MINRUNS, false, this);
         arbitraryLSUnit.populateDescriptives(model);
         try {addRunUnit(userStartingValueUnit);} catch (Exception e) {System.out.println("Warning: User Starting value runner couldn't be initiated."); e.printStackTrace(System.out); userStartingValueUnit = null;}
@@ -334,7 +334,7 @@ public class ModelRun extends Thread {
         } else ru = userStartingValueUnit;
 
         if ((steps+1) % STEPSUNTILNEXTRANDOMUNIT == 0 && getAnzNotConverged() < MAXNONCONVERGEDUNITS && runUnits.size() < MAXRUNUNITS) {
-            ModelRunUnit newRu = new ModelRunUnit(modelWorkCopy.getRandomStartingValues(), "ML for random starting values ("+(anzRandomUnits+1)+").", 
+            ModelRunUnit newRu = new ModelRunUnit(modelWorkCopy.getRandomStartingValues(), "ランダムな開始値を用いた最尤推定（"+(anzRandomUnits+1)+"）", 
                     modelWorkCopy.getParameterNames(), modelWorkCopy.getVariableNames(), modelWorkCopy.getObservedVariables(), MINRUNS, true, this);
             newRu.populateDescriptives(model);
             addRunUnit(newRu);
@@ -355,7 +355,7 @@ public class ModelRun extends Thread {
                     ModelRunUnit newRu = new ModelRunUnit(ru);
                     Statik.copy(ru.position, newRu.starting);
                     newRu.objective = Objective.MAXIMUMLIKELIHOOD;
-                    newRu.name = "ML using "+ru.name;
+                    newRu.name = "ML using " + ru.name;
                     addRunUnit(newRu);
                 }
                 convergedUnits.add(ru);

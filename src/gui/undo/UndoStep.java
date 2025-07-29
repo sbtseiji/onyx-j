@@ -21,7 +21,7 @@ public abstract class UndoStep {
 	
 	public abstract void undo();
 	public void redo() throws Exception {
-		throw new Exception("Not implemented yet!");//TODO needs to be abstract eventually
+		throw new Exception("まだ実装されていません！");//TODO needs to be abstract eventually
 	}
 
 	public String toString() { return title; }

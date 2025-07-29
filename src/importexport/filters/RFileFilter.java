@@ -33,7 +33,7 @@ public class RFileFilter extends FileFilter {
 
 	@Override
 	public String getDescription() {
-		return "OpenMx File for R";
+		return "R用OpenMxファイル";
 	}
 
 }

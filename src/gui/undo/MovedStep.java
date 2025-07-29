@@ -36,7 +36,7 @@ public class MovedStep extends UndoStep {
 	
 	public MovedStep(View modelView, Movable movable, int x, int y) {
 		super();
-		this.title="Moved node from"+x+","+y;
+		this.title = x + "," + y + " から移動したノード";
 		this.modelView = modelView;
 		this.movable = movable;
 		
@@ -71,6 +71,6 @@ public class MovedStep extends UndoStep {
 
 	public String toString()
 	{
-		return "moved "+movable.toString()+" from "+x+","+y;
+		return movable.toString()+" を "+x+","+y+" から移動しました";
 	}
 }

@@ -240,7 +240,7 @@ public class SPSSImport extends Import {
 					// case 0 is ignored
 					continue;
 					case 252:	//EOF
-						throw new Exception("Compressed data is corrupted. Data ends partway through a case.");
+							throw new Exception("圧縮データが破損しています。データがケースの途中で終了しています。");
 					case 253:	//values are stored explicitly following the instruction byte
 						String app=readNextString(8); 
 						System.out.println("Read additional String elements "+app);
@@ -547,7 +547,7 @@ public class SPSSImport extends Import {
 			fPrep = FPrep[readNextInteger()-1];
 			
 			//System.out.println(fPrep);
-			if (!fPrep.equals("IEEE")) throw new Exception("Cannot read non-IEEE numeric format in SPSS file");
+					if (!fPrep.equals("IEEE")) throw new Exception("IEEE以外の数値フォーマットのSPSSファイルは読み込めません。");
 			
 			compressionScheme = readNextInteger();
 			endianCode = endian[readNextInteger()-1];
@@ -560,7 +560,7 @@ public class SPSSImport extends Import {
 			// 65001 is UTF-8
 
 		} else {
-			throw new Exception("Cannot read machine-specific description of SPSS file.");
+				throw new Exception("SPSSファイルのマシン固有の記述を読み込めません。");
 		}
 	}
 	
@@ -620,7 +620,7 @@ public class SPSSImport extends Import {
 				if (debug) System.out.println("Concerning variable with index"+labelIndex+"\n");
 			}
 		} else {
-			throw new Exception("Invalud subtype!");
+			throw new Exception("不正なサブタイプです！");
 		}
 
 	}

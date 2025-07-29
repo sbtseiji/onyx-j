@@ -58,7 +58,7 @@ public class SingleFactorModelWizard extends Dialog implements ChangeListener {
 	
 	public SingleFactorModelWizard(Desktop desktop)
 	{
-		super("Single Factor Model Wizard");
+		super("単一因子モデルウィザード");
 		this.desktop = desktop;
 	
 		Dimension d = new Dimension(150,30);
@@ -66,26 +66,26 @@ public class SingleFactorModelWizard extends Dialog implements ChangeListener {
 		// # of observations
 		 numObsInput = new JSpinner(new SpinnerNumberModel(5,2,100,1));
 		 numObsInput.addChangeListener(this);
-		this.addElement("Observed variables",numObsInput);
+		this.addElement("観測変数",numObsInput);
 		
 		
 		// observation name
 		nameObsInput = new JTextArea("x");
 		nameObsInput.setSize(d);
-		this.addElement("Name of observed variable",nameObsInput);
+		this.addElement("観測変数名",nameObsInput);
 		
 		// error term name
 		nameErrInput = new JTextArea("e");
 		nameErrInput.setSize(d);
-		this.addElement("Name of residual variance term ",nameErrInput);
+		this.addElement("残差分散項名",nameErrInput);
 		
 		// icept - slope correlation
-		nameSlopeInput = new JTextArea("factor");
+		nameSlopeInput = new JTextArea("因子");
 		nameSlopeInput.setSize(d);
-		this.addElement("Name of factor ",nameSlopeInput);
+		this.addElement("因子名 ",nameSlopeInput);
 	
 		
-		this.addSendButton("Create");
+		this.addSendButton("作成");
 		
 		this.pack();
 		

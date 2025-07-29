@@ -605,7 +605,7 @@ public class Graph {
 	public void removeNode(Node node) {
 		
 		if (node.isConnected()) {
-			System.err.println("ERROR! Removing connected edge!");
+			System.err.println("エラー！ 接続されたノードを削除しようとしています！");
 		} else {
 			MainFrame.undoStack.add( new NodeDeleteStep(this.parent, node) );
 			this.nodes.remove(node);

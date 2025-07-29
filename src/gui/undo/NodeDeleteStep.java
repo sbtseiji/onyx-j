@@ -31,7 +31,7 @@ public class NodeDeleteStep extends UndoStep {
 	public NodeDeleteStep(ModelView mv, gui.graph.Node node)
 	{
 		super();
-		this.title="delete node "+node.getCaption();
+		this.title = "ノード「" + node.getCaption() + "」を削除";
 		this.mv = mv;
 		this.node = node;
 		//groupingContainer = Desktop.getLinkHandler().getDatasetField(node.getGroupingVariableContainer());

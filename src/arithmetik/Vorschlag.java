@@ -18,8 +18,8 @@ package arithmetik;
 import java.util.*;
 import java.math.*;
 
-// Diese Klasse ist eine Aufzählung von Ausdrücken, die die mitgegebenen Nährungen von 
-// Nullstellen durch Wurzel ausdrücken könnten. Die Rückgabe erfolgt in Objekten 
+// Diese Klasse ist eine Aufzahlung von Ausdrucken, die die mitgegebenen Nahrungen von 
+// Nullstellen durch Wurzel ausdrucken konnten. Die Ruckgabe erfolgt in Objekten 
 // der Klasse *Ausdruck* mit BigIntegers als Boden.
 
 public class Vorschlag implements Enumeration
@@ -34,7 +34,7 @@ public class Vorschlag implements Enumeration
 	private boolean fertig;
 	private int einsgradZaehler;
 	private BigInteger einsgradBigInteger[];
-//	private Vector schonGegeben;			// zerstört ein bisschen die Idee vom Platzsparen.
+//	private Vector schonGegeben;			// zerstort ein bisschen die Idee vom Platzsparen.
 	
 	public boolean zeigeFortschritt;
 	

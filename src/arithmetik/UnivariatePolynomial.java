@@ -652,8 +652,8 @@ public class UnivariatePolynomial implements Ring, GcdAble
 //		System.out.println("Prime choosen : " + p);
 
 
-		// TvO: Die Grenzberechnung mit doubles ist unnötig ungenau, wir testen, ob der modulus
-		// des Faktortrees über 2B + 1 hinauswächst.
+		// TvO: Die Grenzberechnung mit doubles ist unnotig ungenau, wir testen, ob der modulus
+		// des Faktortrees uber 2B + 1 hinauswachst.
 		/*
         double l = Math.ceil( Math.log(2*B.doubleValue()+1)/Math.log(p.doubleValue()));
         double d = Math.ceil( Math.log(l)/Math.log(2) );

@@ -107,10 +107,10 @@ public double[] autoCorrelationFunction(int spur, int dim)
  * @return double
 
 	diese Methode nimmt die Spuren als Dimensionen und die Zeitpunkte als Punkte in diesem Raum. Von
-	n zufällig gewählten Punkten aus wird auf einer doppelt logarithmischen Skala der Radius einer Kugel
+	n zufallig gewahlten Punkten aus wird auf einer doppelt logarithmischen Skala der Radius einer Kugel
 	gegen die Anzahl der Punkte in dieser Kugel abgetragen. Die ersten m Punkte werden linear approximiert;
-	so lange der höchste Punkt am weitesten von der Kurve entfernt liegt, wird die Anzahl der Punkte verringert.
-	Die durchschnittliche Steigung der so erhaltenen Werte wird zurückgegeben.
+	so lange der hochste Punkt am weitesten von der Kurve entfernt liegt, wird die Anzahl der Punkte verringert.
+	Die durchschnittliche Steigung der so erhaltenen Werte wird zuruckgegeben.
  
  */
 public double dimensionality() 
@@ -133,7 +133,7 @@ public double dimensionality()
  * @param spur int
  * @param wavelet double[]
 
-	Faltet die Spur entlang dem wavelet. Ränder werden halb hinzugenommen; Die Passung ist jeweils
+	Faltet die Spur entlang dem wavelet. Rander werden halb hinzugenommen; Die Passung ist jeweils
 	in der Mitte des angepassten Bereiches.
  
  */
@@ -222,7 +222,7 @@ public void medialize(int spur)
  * @param spur int
  * @param anzpunkte int
 
-	Führt für jeden Punkt eine Mittelung von anzpunkte vielen Stellen um den Punkt herum aus und zieht diese
+	Fuhrt fur jeden Punkt eine Mittelung von anzpunkte vielen Stellen um den Punkt herum aus und zieht diese
 	Mittelung vom Wert ab.
  
  */
@@ -256,7 +256,7 @@ public void normalize()
  * @param spur int
  * @param anzpunkte int
 
-	Führt für jeden Punkt eine Mittelung von anzpunkte vielen Stellen um den Punkt herum aus und zieht diese
+	Fuhrt fur jeden Punkt eine Mittelung von anzpunkte vielen Stellen um den Punkt herum aus und zieht diese
 	Mittelung vom Wert ab.
  
  */
@@ -276,7 +276,7 @@ public void normalize(int spur)
  * @param spur int
  * @param anzpunkte int
 
-	Führt für jeden Punkt eine Mittelung von anzpunkte vielen Stellen um den Punkt herum aus und zieht diese
+	Fuhrt fur jeden Punkt eine Mittelung von anzpunkte vielen Stellen um den Punkt herum aus und zieht diese
 	Mittelung vom Wert ab. Danach wird durch die Varianz in diesem Bereich geteilt.
 
 	(Varianz richtig berechnet? Quadratsumme / (n-1) ?

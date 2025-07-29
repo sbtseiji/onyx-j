@@ -716,7 +716,7 @@ public class Desktop extends JLayeredPane
 				}
 			}
 
-			JMenu create = new JMenu("Create new model");
+			JMenu create = new JMenu("新規モデルを作成");
 			menu.add(create);
 
 			create.add(new CreateEmptyModelAction(this, arg0.getX(), arg0.getY()));
@@ -730,7 +730,7 @@ public class Desktop extends JLayeredPane
 			create.add(new CreateLDEAction(this, arg0.getX(), arg0.getY()));
 			create.add(new CreateMeasurementInvarianceAction(this, arg0.getX(), arg0.getY()));
 
-			JMenu loadTutorial = new JMenu("Load tutorial data");
+			JMenu loadTutorial = new JMenu("チュートリアルデータを読み込み");
 
 			loadTutorialX = new JMenuItem[MainFrame.tutorialNum];
 			for (int i = 0; i < MainFrame.tutorialNum; i++) {
@@ -748,7 +748,7 @@ public class Desktop extends JLayeredPane
 			menu.add(new DesktopPasteAction(this, arg0.getX(), arg0.getY()));
 
 			if (menuSaveWorkspace == null) {
-				menuSaveWorkspace = new JMenuItem("Save workspace");
+				menuSaveWorkspace = new JMenuItem("ワークスペースの保存");
 				menuSaveWorkspace.addActionListener(this);
 			}
 			menu.addSeparator();
@@ -756,7 +756,7 @@ public class Desktop extends JLayeredPane
 			menu.addSeparator();
 
 			if (closeAll == null) {
-				closeAll = new JMenuItem("Close all panels");
+				closeAll = new JMenuItem("すべてのパネルを閉じる");
 				closeAll.addActionListener(this);
 			}
 
@@ -910,7 +910,7 @@ public class Desktop extends JLayeredPane
 		try {
 			return loadData(new FileInputStream(string), name, x, y);
 		} catch (Exception e) {
-			System.out.println("Error reading from file: " + e.getMessage());
+			System.out.println("ファイルの読み込みエラーです：" + e.getMessage());
 			e.printStackTrace();
 			return null;
 		}
@@ -1024,8 +1024,8 @@ public class Desktop extends JLayeredPane
 			Vector<String> vrow = vec.get(rowi);
 
 			if (vrow.size() != firstRow.size()) {
-				throw new FileLoadingException("Inconsistent column sizes in row " + rowi + ". Header has "
-						+ firstRow.size() + " columns and row " + rowi + " has " + vrow.size() + " columns");
+        throw new FileLoadingException(
+        "行" + rowi + " で列数が一致しません。ヘッダーは " + firstRow.size() + " 列ですが、行" + rowi + " は " + vrow.size() + " 列です");
 			}
 
 			for (int j = 0; j < numColumns; j++) {
@@ -1167,48 +1167,40 @@ public class Desktop extends JLayeredPane
 			mv.setAtomicOperationInProgress(false);
 
 		} catch (SAXParseException e) {
-			System.err.println("Fehler beim Parsen!");
-			e.printStackTrace();
+            System.err.println("パース中にエラーが発生しました！");
+            e.printStackTrace();
 
-			Reader rs = inputSource.getCharacterStream();
+            Reader rs = inputSource.getCharacterStream();
 
-			BufferedReader br = new BufferedReader(rs);
-			String text;
-			try {
-				text = br.readLine();
-			} catch (IOException e1) {
+            BufferedReader br = new BufferedReader(rs);
+            String text;
+            try {
+                text = br.readLine();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
 
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+            JOptionPane.showMessageDialog(this,
+                    "モデルを読み込めませんでした。ファイルの解析に失敗しました:\n"
+                            + inputSource.toString(),
+                    "インポート／読み込みエラー", JOptionPane.ERROR_MESSAGE);
 
-			// catch (SAXParseException e) {
+            mv.dispose();
 
-			// JOptionPane.showMessageDialog(null, "An error occured during the exection of
-			// your R script: "+output);
-			// }
-
-			JOptionPane.showMessageDialog(this,
-					"The model could not be loaded. The file could not be parsed successfully:\n"
-							+ inputSource.toString(),
-					"Import/Load Error", JOptionPane.ERROR_MESSAGE);
-
-			mv.dispose();
-
-			return (null);
-		} catch (SAXException e) {
-			JOptionPane.showMessageDialog(this,
-					"The model could not be loaded. The file could not be parsed successfully.", "Import/Load Error",
-					JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-			mv.dispose();
-			return (null);
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, "The file could not be loaded.", "Import/Load Error",
-					JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-			mv.dispose();
-			return (null);
+            return (null);
+        } catch (SAXException e) {
+            JOptionPane.showMessageDialog(this,
+                    "モデルを読み込めませんでした。ファイルの解析に失敗しました。", "インポート／読み込みエラー",
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            mv.dispose();
+            return (null);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ファイルを読み込めませんでした。", "インポート／読み込みエラー",
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            mv.dispose();
+            return (null);
 
 		}
 
@@ -1537,7 +1529,7 @@ public class Desktop extends JLayeredPane
 
 	public void importString(String s) {
 		Point p = getLocationOfMouseRelativeToDesktop();
-		importString(s, null, "Anonymous Dataset", p.x, p.y, ImportType.UNKNOWN);
+		importString(s, null, "匿名データセット", p.x, p.y, ImportType.UNKNOWN);
 	}
 
 	public void importString(String s, String name) {
@@ -1571,7 +1563,7 @@ public class Desktop extends JLayeredPane
 
 		if (type == ImportType.RAWDATA) {
 			if (name == null)
-				initiateDataView(fileContent, "Anonymous Dataset", x, y);
+				initiateDataView(fileContent, "匿名データセット", x, y);
 			else
 				initiateDataView(fileContent, name, x, y);
 		} else if (type == ImportType.OPENMX) {
@@ -1603,7 +1595,7 @@ public class Desktop extends JLayeredPane
 					ZipEntry entry = (ZipEntry) entries.nextElement();
 
 					System.out.println(
-							"Loading " + entry.getName() + " Size: " + entry.getSize() + " From " + entry.getTime());
+							"読み込み中 " + entry.getName() + " サイズ：" + entry.getSize() + " 日時：" + entry.getTime());
 
 					if (entry.getName().endsWith(".csv")) {
 
@@ -1625,7 +1617,7 @@ public class Desktop extends JLayeredPane
 
 							Integer id = Integer.parseInt(idstr);
 
-							System.out.println("Loading " + id + " / " + idstr);
+							System.out.println("読み込み中 " + id + " / " + idstr);
 
 							bufimgList.add(img);
 							bufimgidList.add(id);
@@ -1635,7 +1627,7 @@ public class Desktop extends JLayeredPane
 						}
 
 					} else if (entry.getName().endsWith(".xml")) {
-						System.out.println("Model " + entry.getName());
+						System.out.println("モデル " + entry.getName());
 						// String xmlContent = IOUtils.toString(sourceFile);
 
 						/*
@@ -1726,7 +1718,7 @@ public class Desktop extends JLayeredPane
 				this.initiateDataView(ds, x, y);
 			}
 
-			ds.setName((file == null ? "Anonymous Dataset" : file.getName()));
+			ds.setName((file == null ? "匿名データセット" : file.getName()));
 		}
 
 	}
@@ -1843,11 +1835,10 @@ public class Desktop extends JLayeredPane
 	public boolean clear() {
 
 		if (views.size() > 0) {
-			String[] options = { "Yes", "No" };
-			int n = JOptionPane.showOptionDialog(this,
-					"Starting the tutorial requires an empty desktop. If you proceed, all models and datasets are closed now. Do you like to continue and clear the desktop?",
-					"Clear desktop", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
-
+			String[] options = { "はい", "いいえ" };
+      int n = JOptionPane.showOptionDialog(this,
+      "チュートリアルを開始するにはデスクトップが空である必要があります。続行すると、すべてのモデルとデータセットが閉じられます。デスクトップをクリアして続行しますか？",
+      "デスクトップのクリア", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
 			if (n == 1) {
 				return false;
 			}
@@ -1941,7 +1932,7 @@ public class Desktop extends JLayeredPane
 			OpenMxExport.createFile(file, content);
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, "The estimate could not be saved: \n" + e.toString(), "Export Error",
+			JOptionPane.showMessageDialog(this, "推定値を保存できませんでした： \n" + e.toString(), "エクスポートエラー",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}

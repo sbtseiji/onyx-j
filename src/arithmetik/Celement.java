@@ -112,7 +112,7 @@ public Complex abs_fromDouble(double reel, double imag)
 		return new Celement(reel.add(z.reel),imag.add(z.imag));
 	}
 	// liefert wahr falls beide Grenzen beider Zahlen (Imaginaer- und 
-	// Realteil) höchstens epsilon voneinander entfernt sind.
+	// Realteil) hochstens epsilon voneinander entfernt sind.
 	public boolean bordersClose(Celement z, Qelement epsilon)
 	{
 		return (   (this.reel.getHigher().subtract(z.reel.getHigher()).abs().compareTo(epsilon)==-1)

@@ -60,7 +60,7 @@ public class LatexEdgeLabel extends PlainEdgeLabel
 		super.updateFontMetrics();
 		
 		if (g== null) {
-			System.err.println("Graphics context not available in LatexEdgeLabel!");
+			System.err.println("LatexEdgeLabelでグラフィックスコンテキストが利用できません！");
 			return;
 		}
 		

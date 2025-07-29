@@ -86,7 +86,7 @@ public class Statik {
 
 	public static final double SQRTTWOPI = Math.sqrt(2*Math.PI);
 	
-	// Flag f�r Anzahl der Iterationen
+	// Flag fur Anzahl der Iterationen
 	public static int tries;
 	
 	// some methods store the log of their result here
@@ -96,8 +96,8 @@ public class Statik {
 	/**
 	 *
 	
-		Berechnet den Abstand von *praefix* zum Pr�fix von Wort. Ein Abstand von 0 zeigt an, dass praefix tats�chlich
-		pr�fix von wort ist.
+		Berechnet den Abstand von *praefix* zum Prafix von Wort. Ein Abstand von 0 zeigt an, dass praefix tatsachlich
+		prafix von wort ist.
 	
 	 * Creation date: (02.10.2002 23:38:41)
 	 * @return int
@@ -107,25 +107,25 @@ public class Statik {
 	public static int bestimmePraefixAbstand(String wort, String praefix) 
 	{
 		final int LOESCHENEINFUEGEN = 10, DOPPEL = 5, ERSETZEN = 15;
-		// LOESCHENEINFUEGEN sind die Kosten f�r L�sch- oder Einf�geoperationen, Doppel die Kosten, falls der
+		// LOESCHENEINFUEGEN sind die Kosten fur Losch- oder Einfugeoperationen, Doppel die Kosten, falls der
 		// Buchstabe direkt folgt (z.B. ee = e)
-		final Object[][] regel = {{"ae"		,"�"	,new Integer(3)		}, 			// Umlaut und �
-							 	  {"oe"		,"�"	,new Integer(3)		},
-							 	  {"ue"		,"�"	,new Integer(3)		},
-							 	  {"ss"		,"�"	,new Integer(3)		},
-							 	  {"ue"		,"�"	,new Integer(3)		},
-							 	  {"ck"		,"k"	,new Integer(5)		},			// Schreibweisen f�r den selben Laut
-							 	  {"�u"		,"eu"	,new Integer(5)		},
+		final Object[][] regel = {{"ae"		,"ä"	,new Integer(3)		}, 			// Umlaut und 
+							 	  {"oe"		,"ö"	,new Integer(3)		},
+							 	  {"ue"		,"ü"	,new Integer(3)		},
+							 	  {"ss"		,"ß"	,new Integer(3)		},
+							 	  {"ue"		,"ë"	,new Integer(3)		},
+							 	  {"ck"		,"k"	,new Integer(5)		},			// Schreibweisen fur den selben Laut
+							 	  {"eu"		,"eu"	,new Integer(5)		},
 							 	  {"ai"		,"ei"	,new Integer(3)		},
 							 	  {"c"		,"k"	,new Integer(3)		},
 							 	  {"st"		,"scht"	,new Integer(5)		},			// sch -> s
 							 	  {"sp"		,"schp"	,new Integer(5)		},
-							 	  {"�"		,"e"	,new Integer(5)		},			// �hnliche Vokallaute
-							 	  {"�"		,"i"	,new Integer(7)		},
+							 	  {"e"		,"e"	,new Integer(5)		},			// Ahnliche Vokallaute
+							 	  {"i"		,"i"	,new Integer(7)		},
 							 	  {"e"		,"i"	,new Integer(7) 	},
 							 	  {"o"		,"u"	,new Integer(7) 	},
-							 	  {"y"		,"�"	,new Integer(5)		},
-							 	  {"b"		,"p"	,new Integer(7)		},			// �hnliche Konsonanten
+							 	  {"y"		,"y"	,new Integer(5)		},
+							 	  {"b"		,"p"	,new Integer(7)		},			// Ahnliche Konsonanten
 							 	  {"d"		,"t"	,new Integer(7) 	},
 							 	  {"c"		,"z"	,new Integer(7) 	},		
 							 	  {"g"		,"k"	,new Integer(7) 	},
@@ -146,9 +146,9 @@ public class Statik {
 							 	  {"cow"	,"kau"	,new Integer(6)		},			// cow (Sonderfall zu cowboy)
 							 	  {"pf"		,"f"	,new Integer(3) 	},			// pf -> f
 							 	  {"ch"		,"sch"	,new Integer(6)		},			// Umlaut-Punkte weggelassen
-							 	  {"�"		,"a"	,new Integer(7) 	},
-							 	  {"�"		,"o"	,new Integer(7) 	},
-							 	  {"�"		,"u"	,new Integer(7) 	}
+							 	  {"a"		,"a"	,new Integer(7) 	},
+							 	  {"o"		,"o"	,new Integer(7) 	},
+							 	  {"u"		,"u"	,new Integer(7) 	}
 							 	 };
 	
 		if (praefix.length()==0) return 0;
@@ -271,8 +271,8 @@ public class Statik {
 	 * TvO, 16.10: Something's wrong with the special characters, translation problem on SVN?
 	
 	// Vergleich von 2 Strings. Zeichen werden ignoriert, wenn sie nicht entweder alphanummerisch oder 
-	// Character.MINVALUE oder Character.MAXVALUE sind (letzteren beiden f�r Suchen von Bereichen).
-	// Klein- und Gro�buchstaben werden gleich behandelt (nach toLowerString). �,� und � werden als A, O und U 
+	// Character.MINVALUE oder Character.MAXVALUE sind (letzteren beiden fur Suchen von Bereichen).
+	// Klein- und Grossbuchstaben werden gleich behandelt (nach toLowerString). A,O und U werden als A, O und U 
 	// gelesen.
 	public static int vergleich(String eins, String zwei)
 	{
@@ -324,30 +324,30 @@ public class Statik {
 	public static String zuSGML(String in)
 	{
 		String erg = in;
-		erg = ersetzeString(erg, "�", "&Auml;");
-		erg = ersetzeString(erg, "�", "&Ouml;");
-		erg = ersetzeString(erg, "�", "&Uuml;");
-		erg = ersetzeString(erg, "�", "&auml;");
-		erg = ersetzeString(erg, "�", "&ouml;");
-		erg = ersetzeString(erg, "�", "&uuml;");
+		erg = ersetzeString(erg, "Ä", "&Auml;");
+		erg = ersetzeString(erg, "Ö", "&Ouml;");
+		erg = ersetzeString(erg, "Ü", "&Uuml;");
+		erg = ersetzeString(erg, "ä", "&auml;");
+		erg = ersetzeString(erg, "ö", "&ouml;");
+		erg = ersetzeString(erg, "ü", "&uuml;");
 		erg = ersetzeString(erg, "<", "&lt;");
 		erg = ersetzeString(erg, ">", "&rt;");
-		erg = ersetzeString(erg, "�", "&szlig;");
+		erg = ersetzeString(erg, "ß", "&szlig;");
 		return erg;
 	}
 	
     public static String vonSGML(String in)
     {
         String erg = in;
-        erg = ersetzeString(erg, "&Auml;", "�");
-        erg = ersetzeString(erg, "&Ouml;", "�");
-        erg = ersetzeString(erg, "&Uuml;", "�");
-        erg = ersetzeString(erg, "&auml;", "�");
-        erg = ersetzeString(erg, "&ouml;", "�");
-        erg = ersetzeString(erg, "&uuml;", "�");
+        erg = ersetzeString(erg, "&Auml;", "Ä");
+        erg = ersetzeString(erg, "&Ouml;", "Ö");
+        erg = ersetzeString(erg, "&Uuml;", "Ü");
+        erg = ersetzeString(erg, "&auml;", "ä");
+        erg = ersetzeString(erg, "&ouml;", "ö");
+        erg = ersetzeString(erg, "&uuml;", "ü");
         erg = ersetzeString(erg, "&lt;","<");
         erg = ersetzeString(erg, "&rt;",">");
-        erg = ersetzeString(erg, "&szlig;","�");
+        erg = ersetzeString(erg, "&szlig;","ß");
         return erg;
     }
 	
@@ -511,7 +511,7 @@ public class Statik {
      * @return double
      * @param matrix double[][]
 
-    	Liefert die Determinante zur�ck, wenn die Matrix positive Definit ist, oder -1.0 sonst.
+    	Liefert die Determinante zuruck, wenn die Matrix positive Definit ist, oder -1.0 sonst.
      
      */
     public static double determinantOfPositiveDefiniteMatrix(double[][] matrix) 

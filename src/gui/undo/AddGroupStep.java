@@ -25,7 +25,7 @@ public class AddGroupStep extends UndoStep {
 	public AddGroupStep(ModelView mv, gui.graph.Node node)
 	{
 		super();
-		this.title = "Add grouping to "+node.getCaption();
+		this.title = node.getCaption() + "にグループ変数を追加";
 		this.mv = mv;
 		this.node = node;
 	}

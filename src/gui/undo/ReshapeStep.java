@@ -28,7 +28,7 @@ public class ReshapeStep extends UndoStep {
 	
 	public ReshapeStep(View modelView, Resizable movable) {
 		super();
-		this.title="Resized ";
+		this.title = "サイズ変更";
 		this.modelView = modelView;
 		this.movable = movable;
 		
@@ -41,7 +41,7 @@ public class ReshapeStep extends UndoStep {
 	
 	public ReshapeStep(View modelView, Resizable movable, int x, int y, int w, int h) {
 		super();
-		this.title="Resized ";
+		this.title = "サイズ変更";
 		this.modelView = modelView;
 		this.movable = movable;
 		

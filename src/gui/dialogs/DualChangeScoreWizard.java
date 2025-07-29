@@ -56,7 +56,7 @@ public class DualChangeScoreWizard  extends Dialog implements ChangeListener {
 
 	public DualChangeScoreWizard(Desktop desktop)
 	{
-		super("Dual Change Score Model Wizard");
+		super("二重変化スコアモデル（DCSM）ウィザード");
 		this.desktop = desktop;
 	
 	Dimension d = new Dimension(150,30);
@@ -64,38 +64,38 @@ public class DualChangeScoreWizard  extends Dialog implements ChangeListener {
 		// # of observations
 		 numObsInput = new JSpinner(new SpinnerNumberModel(5,2,100,1));
 		 numObsInput.addChangeListener(this);
-		this.addElement("Observed time points",numObsInput);
+		this.addElement("観測時点",numObsInput);
 		
 		centerModel = new SpinnerNumberModel(1,1,5,1);
 		numCenter = new JSpinner(centerModel);
-		this.addElement("Observation centered at ", numCenter);
+		this.addElement("観測の中心時点 ", numCenter);
 		
 		// observation name
 		nameObsInput = new JTextArea("x");
 		nameObsInput.setSize(d);
-		this.addElement("Name of observed variable",nameObsInput);
+		this.addElement("観測変数名",nameObsInput);
 		
 		// error term name
 		nameErrInput = new JTextArea("$\\sigma^2_{e}");
 		nameErrInput.setSize(d);
-		this.addElement("Name of residual variance term ",nameErrInput);
+		this.addElement("残差分散項名 ",nameErrInput);
 		
 		// icept - slope correlation
 		nameSlopeInput = new JTextArea("\\etaS");
 		nameSlopeInput.setSize(d);
-		this.addElement("Name of slope term ",nameSlopeInput);
+		this.addElement("傾き項名 ",nameSlopeInput);
 		nameIceptInput = new JTextArea("\\eta0");
 		nameIceptInput.setSize(d);
-		this.addElement("Name of intercept term ",nameIceptInput);
+		this.addElement("切片項名 ",nameIceptInput);
 
-		uniqueResiduals = new JCheckBox("unique variances across time");
-		this.addElement("Residual variances", uniqueResiduals);
+		uniqueResiduals = new JCheckBox("時点ごとの独自分散");
+		this.addElement("残差分散", uniqueResiduals);
 		
-		latentCovariance = new JCheckBox("estimate covariance");
-		this.addElement("covariance between icept and slope", latentCovariance);
+		latentCovariance = new JCheckBox("共分散を推定");
+		this.addElement("切片と傾きの共分散", latentCovariance);
 		latentCovariance.setSelected(true);
 		
-		this.addSendButton("Create");
+		this.addSendButton("作成");
 		
 		this.pack();
 		

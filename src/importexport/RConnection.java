@@ -36,24 +36,24 @@ public class RConnection {
 	{
 	        BufferedWriter writer = null;
 
-	        try {
-	            tempFile = File.createTempFile("rscript",".R");
-	        } catch (Exception e) {
-	            throw new Exception("Cannot open tempopary file: " + e.toString());
-	        }
+			try {
+				tempFile = File.createTempFile("rscript",".R");
+			} catch (Exception e) {
+			throw new Exception("一時ファイルを開けません: " + e.toString());
+			}
 
-	        try {
-	            writer = new BufferedWriter(new FileWriter(tempFile));
-	            writer.write(content);
-	            writer.flush();
-	        } catch (Exception e) {
-	            throw new Exception("Cannot write to temporary file: " + e.toString());
-	        } finally {
-	            try {
-	                writer.close();
-	            } catch (Exception einner) {
-	            }
-	        }
+			try {
+				writer = new BufferedWriter(new FileWriter(tempFile));
+				writer.write(content);
+				writer.flush();
+			} catch (Exception e) {
+			throw new Exception("一時ファイルに書き込めません: " + e.toString());
+			} finally {
+				try {
+					writer.close();
+				} catch (Exception einner) {
+				}
+			}
 		
 	}
 	
@@ -66,24 +66,24 @@ public class RConnection {
             
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 //            String err = brerr.readLine();
-            String output = "";
-            while (true) {
-                String line = br.readLine();
-                if (line != null) {
-                    output+=line+"\r\n";
-                } else {
-                    break;
-                }
-            }
-            System.out.println("Ausgabe der Konsole: "+output);
-            if ((!output.startsWith("R version")) 
-            	&& (!output.startsWith("R Under development")))
-            	return false;
-            return true;
-            
-        } catch (Exception e) {
-        	e.printStackTrace();
-        	return false;}
+			String output = "";
+			while (true) {
+				String line = br.readLine();
+				if (line != null) {
+					output+=line+"\r\n";
+				} else {
+					break;
+				}
+			}
+			System.out.println("Output from Console: "+output);
+			if ((!output.startsWith("R version")) 
+				&& (!output.startsWith("R Under development")))
+				return false;
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;}
 	}
 	
 	public static String getPathToRExecutable(Component parent) {
@@ -101,27 +101,27 @@ public class RConnection {
         System.out.println("RPath "+pathToRExecutable);
         if (rPathIsValid()) return;
 //        JOptionPane.showMessageDialog(parent, "Onyx does not know where your local R installation is located. Please locate the exectuable R program (likely it is called R.exe, R, R32, or R64) on your harddrive in the following dialog." );
-        JOptionPane.showMessageDialog(parent, "Please locate the exectuable R program (usually called R.exe, R, R32, or R64) on your harddrive in the following dialog." );
-        
-        final JFileChooser fc = new JFileChooser();
-        fc.setVisible(true);
-        //In response to a button click:
-        int returnVal = fc.showOpenDialog(parent);
-        
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
-            
-          
-          /*  if (!testRPath(file.getAbsolutePath()))
-            {
-                JOptionPane.showMessageDialog(null, "Invalid R interpreter! Please see the manual!");
-            }*/
-            
-            Preferences.set("RPath", file.getAbsolutePath());
-            pathToRExecutable = file.getAbsolutePath();
-        } 
-    	
-    }
+		JOptionPane.showMessageDialog(parent, "Rの実行ファイル（通常はR.exe、R、R32、R64など）をハードドライブから選択してください。" );
+		
+		final JFileChooser fc = new JFileChooser();
+		fc.setVisible(true);
+		//In response to a button click:
+		int returnVal = fc.showOpenDialog(parent);
+		
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = fc.getSelectedFile();
+			
+		  
+		  /*  if (!testRPath(file.getAbsolutePath()))
+			{
+				JOptionPane.showMessageDialog(null, "Invalid R interpreter! Please see the manual!");
+			}*/
+			
+			Preferences.set("RPath", file.getAbsolutePath());
+			pathToRExecutable = file.getAbsolutePath();
+		} 
+		
+	}
 
 	static boolean testRPath(String pathToRExecutable) {
 		try {
@@ -143,7 +143,7 @@ public class RConnection {
 				}
 			}
 			
-			System.out.println("Ausgabe der Konsole: "+output);
+			System.out.println("Output of Console: "+output);
 		// Read Input
 			
 			// send it to the XML parser

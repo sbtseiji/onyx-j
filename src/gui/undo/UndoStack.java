@@ -59,28 +59,27 @@ public class UndoStack
 		queueLocked=false;
 	}
 	
-	public synchronized void undo()		//AB: 17.11.2015 added synchronized to avoid concurrent modification with runners
+	public synchronized void undo()
 	{
-		if (collect) {
-			System.err.println("Dangling Undo Multistep!");
-			endCollectSteps();
-		}
-		
-		queueLocked = true;
-		if (queue.size() > 0) {
-			UndoStep step = queue.remove( queue.size()-1 );
-//			System.out.println("Undo "+step.title);
-			try {
-				if (step != null) {
-					step.undo();
-					redo.add(step);
-				}
-			} catch (Exception e) {
-				System.err.println("Problem with undo step "+step.title);
-				e.printStackTrace();
-			}
-		}
-		queueLocked = false;
+	    if (collect) {
+	        System.err.println("未処理の複数ステップがあります！");
+	        endCollectSteps();
+	    }
+	    
+	    queueLocked = true;
+	    if (queue.size() > 0) {
+	        UndoStep step = queue.remove( queue.size()-1 );
+	        try {
+	            if (step != null) {
+	                step.undo();
+	                redo.add(step);
+	            }
+	        } catch (Exception e) {
+	            System.err.println("元に戻すステップで問題が発生しました: " + step.title);
+	            e.printStackTrace();
+	        }
+	    }
+	    queueLocked = false;
 	}
 
 	
@@ -112,10 +111,10 @@ public class UndoStack
 	
 	public void startCollectSteps()
 	{
-		multiStep = new MultiStep();	
-		collect = true;
+	    multiStep = new MultiStep();	
+	    collect = true;
 	}
-	
+
 	public void endCollectSteps()
 	{
 		collect = false;
@@ -125,32 +124,28 @@ public class UndoStack
 
 	public void redo()
 	{
-		if (collect) {
-			System.err.println("Dangling Undo Multistep!");
-			endCollectSteps();
-		}
-		
-		queueLocked = true;
-		
-		if (redo.size() > 0) {
-			UndoStep step = redo.remove( redo.size()-1 );
-//			System.out.println("Undo "+step.title);
-			try {
-				step.redo();
-				
-				queue.add(step);
-			} catch (Exception e) {
-				System.err.println("Problem with redo step "+step.title);
-				e.printStackTrace();
-			}			
-			
-			
-		} else {
-			System.err.println("Empty redo stack.");
-		}
-		
-		
-		queueLocked = false;
+	    if (collect) {
+	        System.err.println("複数ステップの取り消しが完了していません！");
+	        endCollectSteps();
+	    }
+	    
+	    queueLocked = true;
+	    
+	    if (redo.size() > 0) {
+	        UndoStep step = redo.remove( redo.size()-1 );
+	        try {
+	            step.redo();
+	            queue.add(step);
+	        } catch (Exception e) {
+	            System.err.println("やり直しステップで問題が発生しました: " + step.title);
+	            e.printStackTrace();
+	        }			
+	        
+	    } else {
+	        System.err.println("やり直しスタックが空です。");
+	    }
+	    
+	    queueLocked = false;
 	}
 
 	

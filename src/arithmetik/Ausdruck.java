@@ -146,7 +146,7 @@ public class Ausdruck
 		bodenIstFastPolynomial = false;
 		this.bigIntegerWert = bigIntegerWert;
 	}
-	// Diese Methode gibt ein Inorder-Feld der Bodenelemente als BigInteger zurück, falls das geht;
+	// Diese Methode gibt ein Inorder-Feld der Bodenelemente als BigInteger zuruck, falls das geht;
 	// ansonste null.
 	public BigInteger[] BigIntegerInorder()
 	{
@@ -166,7 +166,7 @@ public class Ausdruck
 			erg[e1.length+i] = e2[i];
 		return erg;
 	}
-	// Diese Methode gibt ein Inorder-Feld der Bodenelemente als FastPolynomiale zurück.
+	// Diese Methode gibt ein Inorder-Feld der Bodenelemente als FastPolynomiale zuruck.
 	public FastPolynomial[] inorder()
 	{
 		if (this.istBoden) 
@@ -185,7 +185,7 @@ public class Ausdruck
 			erg[e1.length+i] = e2[i];
 		return erg;
 	}
-	// null als Rückgabewert: Interpolation war unmöglich.
+	// null als Ruckgabewert: Interpolation war unmoglich.
 	public static Ausdruck interpolarisation(Datenmatrix ausdruecke, int bezeichnernr)
 	{
 		Datenmatrix feldmatrix = new Datenmatrix(ausdruecke.dimgroesse);
@@ -247,9 +247,9 @@ public class Ausdruck
 		}
 		return new Ausdruck((FastPolynomial[])(feldmatrix.elementBeiStelle(0)));
 	}
-	// vorsicht: Verändert die Übergabe-*FastPolynomiale* stuetz!
+	// vorsicht: Verandert die Ubergabe-*FastPolynomiale* stuetz!
 	// Verfahren nach Newton-Interpolaristationsverfahren.
-	// Falls die Ganzzahligkeit verletzt wird, gibt die Routine sofort null zurück.
+	// Falls die Ganzzahligkeit verletzt wird, gibt die Routine sofort null zuruck.
 	private static FastPolynomial interpoliereSingulaer(FastPolynomial[] stuetz, int bezeichnernr)
 	{
 		Qelement fak = new Qelement(1);

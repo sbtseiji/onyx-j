@@ -154,7 +154,7 @@ public class Rough extends JFrame {
 		while (!pi.isDone()) {
 			int type = pi.currentSegment(coords); pi.next();
 		
-			System.out.println("Path Segment" + type+" ");
+			System.out.println("パスのセグメント" + type+" ");
 			
 			//line(coords[0]);
 		//	System.out.println(coords[0]+","+coords[1]+","+coords[2]+","+coords[3]+ " type: "+type);

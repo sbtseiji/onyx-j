@@ -319,7 +319,7 @@ public class Node implements Cloneable, FillColorable, LineColorable, Movable, R
 
 	public void setCaption(String caption) {
 		if (isMeanTriangle())
-			throw new RuntimeException("Attempt to set caption of mean triangle");
+			throw new RuntimeException("平均三角形のキャプションは変更できません。");
 
 		this.caption = Edge.renderText(caption);
 		captionValid = false;

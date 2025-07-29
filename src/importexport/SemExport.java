@@ -50,7 +50,7 @@ public class SemExport extends RExport {
     @Override
     public String createModelSpec(ModelView modelView, String modelName, boolean useUniqueNames) {
         Graph g = modelView.getGraph();
-        if (!checkModel(g)) return "Model is not valid for export to "+getHeader()+".";
+        if (!checkModel(g)) return getHeader()+"へのエクスポートに適したモデルではありません。";
         List<Edge> edges = g.getEdges();
         List<String[]> entries = new ArrayList<String[]>();
         boolean meanTriangleExists = false;

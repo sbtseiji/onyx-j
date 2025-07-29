@@ -131,7 +131,7 @@ public class RemainderRingPolynomial implements Ring, GcdAble
 
 	
 	/**
-	 * liefert zu einem univariaten Polynom das zugehörige Polynom modulo m
+	 * liefert zu einem univariaten Polynom das zugehorige Polynom modulo m
 	 */
 	public RemainderRingPolynomial(UnivariatePolynomial f,Modulus m)
 	{
@@ -165,7 +165,7 @@ public class RemainderRingPolynomial implements Ring, GcdAble
 	}
 	
 	/**
-	 *  Erzeugt ein zufälliges Polynom modulo mod vom Grad höchstens deg.
+	 *  Erzeugt ein zufalliges Polynom modulo mod vom Grad hochstens deg.
 	 */
 	public static RemainderRingPolynomial rndPolynomial(int deg, Modulus mod)
 	{
@@ -412,7 +412,7 @@ public class RemainderRingPolynomial implements Ring, GcdAble
 	}
 	
 	/**
-	 * Generiert einen String, der das momentane Polynom repräsentiert
+	 * Generiert einen String, der das momentane Polynom reprasentiert
 	 */
 	public String toString()
 	{
@@ -509,7 +509,7 @@ public class RemainderRingPolynomial implements Ring, GcdAble
 	}
 	
 	/**
-	 * liefert die normalisierte Form von this zurück.
+	 * liefert die normalisierte Form von this zuruck.
 	 */
 	public RemainderRingPolynomial normalize()
 	{
@@ -720,7 +720,7 @@ public class RemainderRingPolynomial implements Ring, GcdAble
 	}
 	
 	/** Zerlegt ein quadratfreies Polynom in Faktoren, die das Produkt aller irreduziblen
-	 * Faktoren gleichen Grades sind und liefert die Faktoren zusammen mit dem Grad zurück
+	 * Faktoren gleichen Grades sind und liefert die Faktoren zusammen mit dem Grad zuruck
 	 * Zuerst wird der Faktor auf den Stack gepusht und dann der Grad...
 	 */
 	private Stack distinctDegreeFactors()
@@ -751,7 +751,7 @@ public class RemainderRingPolynomial implements Ring, GcdAble
 	}
 	
 	/**
-	 * Liefert einen echten Faktor zurück, wenn bekannt ist, das alle Faktoren genau Grad degree
+	 * Liefert einen echten Faktor zuruck, wenn bekannt ist, das alle Faktoren genau Grad degree
 	 * besitzen...
 	 */
 	private RemainderRingPolynomial splitEqualDegree(int degree)
@@ -773,7 +773,7 @@ public class RemainderRingPolynomial implements Ring, GcdAble
 	}
 	
 	/**
-	 * Liefert alle irreduziblen Faktoren des Polynoms zurück
+	 * Liefert alle irreduziblen Faktoren des Polynoms zuruck
 	 */
 	public Stack factorize()
 	{
@@ -781,7 +781,7 @@ public class RemainderRingPolynomial implements Ring, GcdAble
 		if ( !(modulo.isPrime) ) throw new NotPrimeException(modulo);
 		RemainderRingPolynomial tmp1 = new RemainderRingPolynomial(this);
 		RemainderRingPolynomial tmp2;
-		RemainderRing leitkoeffizient = tmp1.coef[deg];							// TvO: Wird später hinzugefügt.
+		RemainderRing leitkoeffizient = tmp1.coef[deg];							// TvO: Wird spater hinzugefugt.
 		tmp1.makeMonic();
 		if (tmp1.deg<=1) {
 			Stack erg = new Stack();

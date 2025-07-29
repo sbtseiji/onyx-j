@@ -103,11 +103,11 @@ public class ParallelProcessView extends View implements ActionListener
 		super.setResizable(false); // AB?
 
 		progressBar = new JProgressBar(0,100);
-		terminateButton = new JButton("Terminate");
-		pauseResumeButton = new JButton("Pause");
+		terminateButton = new JButton("停止");
+		pauseResumeButton = new JButton("一時停止");
 		terminateButton.addActionListener(this);
 		pauseResumeButton.addActionListener(this);
-		processLabel = new JLabel("Initialization");
+		processLabel = new JLabel("初期化中");
 		//processLabel.setOpaque(true);
 		
 		this.minimal_height = 50;
@@ -138,7 +138,7 @@ public class ParallelProcessView extends View implements ActionListener
         buttonPanel.add(pauseResumeButton);
         buttonPanel.add(terminateButton);
 		
-        this.setToolTipText("Progress Report");
+		this.setToolTipText("進捗状況");
 		setOpaque(false);
 
 		buttonPanel.setOpaque(false);
@@ -176,7 +176,7 @@ public class ParallelProcessView extends View implements ActionListener
 	public ParallelProcessView(Desktop desktop, ParallelProcess process) {
 		this(desktop);
 		this.process = process;
-		processLabel.setText("Creating "+process.getTargetName());
+		processLabel.setText(process.getTargetName()+" を作成中");
 		process.setMainParallelProcessView(this);
 	}
 	
@@ -188,16 +188,16 @@ public class ParallelProcessView extends View implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-        if (arg0.getSource() == pauseResumeButton) {
-            if (process.getStatus() == ProcessStatus.RUNNING) {
-                process.requestTransferToStatus(ProcessStatus.PAUSED);
-                pauseResumeButton.setText("Resume");
-            } 
-            else if (process.getStatus() == ProcessStatus.PAUSED) {
-                process.requestTransferToStatus(ProcessStatus.RUNNING);
-                pauseResumeButton.setText("Pause");
-            } 
-        }
+		if (arg0.getSource() == pauseResumeButton) {
+			if (process.getStatus() == ProcessStatus.RUNNING) {
+				process.requestTransferToStatus(ProcessStatus.PAUSED);
+				pauseResumeButton.setText("再開");
+			} 
+			else if (process.getStatus() == ProcessStatus.PAUSED) {
+				process.requestTransferToStatus(ProcessStatus.RUNNING);
+				pauseResumeButton.setText("一時停止");
+			} 
+		}
 
         if (arg0.getSource() == terminateButton) {
             process.requestTransferToStatus(ProcessStatus.RUNNING);

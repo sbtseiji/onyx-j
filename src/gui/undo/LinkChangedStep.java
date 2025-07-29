@@ -34,7 +34,7 @@ public class LinkChangedStep extends UndoStep {
 	private ModelRequestInterface mri;
 
 	public LinkChangedStep(VariableContainer container, ModelRequestInterface mri) {
-		this.title = "link changed";
+		this.title = "変更されたリンク";
 		this.container = container;
 		this.mri = mri;
 

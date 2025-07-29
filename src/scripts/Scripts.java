@@ -76,8 +76,8 @@ public class Scripts {
             out[k][5] = model.data[i][j];
             k++;
         }
-        Statik.writeMatrix(out, "skiingData.txt", '\t', "\tParticipantID\tScoreID\tEye\tSkiing\tValue");
-        Statik.writeMatrix(Statik.addRowNumber(model.data), "skiingDataSEM.txt", '\t', "\tArchery\tBiathlon\tDownhill");
+        Statik.writeMatrix(out, "skiingData.txt", '\t', "\t参加者ID\tスコアID\t目\tスキー\t値");
+        Statik.writeMatrix(Statik.addRowNumber(model.data), "skiingDataSEM.txt", '\t', "\tアーチェリー\tバイアスロン\tダウンヒル");
         
         double[] estimate = model.estimateML(model.getParameter());
         System.out.println("Direct estimates = "+Statik.matrixToString(estimate)+", ll = "+model.ll);
@@ -117,7 +117,7 @@ public class Scripts {
             }
             pb++;
         }
-        Statik.writeMatrix(out, "twinData.txt", '\t', "\tTwinPair\tParticipant\tGenetic\tValue");
+        Statik.writeMatrix(out, "twinData.txt", '\t', "\t双子ペア\t参加者\t遺伝\t値");
         
         double[][] out2 = new double[model.anzPer][4];
         k=0; 
@@ -128,7 +128,7 @@ public class Scripts {
             out2[k][3] = model.submodel[g].data[i][1];
             k++;
         }
-        Statik.writeMatrix(out2, "twinDataSEM.txt", '\t', "\tGenetic\tTwin1\tTwin2");
+        Statik.writeMatrix(out2, "twinDataSEM.txt", '\t', "\t遺伝\t双子1\t双子2");
      
 //        model.setDataDistribution();
         double[] est = model.estimateML();

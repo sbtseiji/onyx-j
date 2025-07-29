@@ -17,7 +17,7 @@ package arithmetik;
 
 import java.math.*;
 
-// Vorzeichen nur im Zähler!
+// Vorzeichen nur im Zahler!
 public class Qelement implements Field, Orderd, Signed, DoubleCastable
 {
 	BigInteger n,z;
@@ -62,7 +62,7 @@ public class Qelement implements Field, Orderd, Signed, DoubleCastable
         }       
     }
 	// Privat - Konstruktor: Eingaben werden nicht auf Richtigkeit
-	// geprüft.
+	// gepruft.
 	private Qelement (long i, long j, long no_meaning)
 	{
 		z = BigInteger.valueOf(i);
@@ -161,7 +161,7 @@ public class Qelement implements Field, Orderd, Signed, DoubleCastable
 		if (this.isNegative()) return negate().ceil().negate();
 		else return z.divide(n);
 	}
-	// Liefert den 'ggT' zweier Qelemente zurück, womit der ggT des Zählers und der ggT
+	// Liefert den 'ggT' zweier Qelemente zuruck, womit der ggT des Zahlers und der ggT
 	// des Nenners gemeint ist.
 	public static Qelement gcd(Qelement arg1, Qelement arg2)
 	{
@@ -278,8 +278,8 @@ public double doubleNorm()
  * @return arithmetik.Qelement[][]
  * @param matrix arithmetik.Qelement[][]
 
-	Liefert Arrays zurück, in denen Basiselemente des Kerns der mitgegebenen Matrix sind. Ist der Kern 0, so wird
-	kein Array zurückgegeben. Pro Basisvektor sind soviele Einträge, wie die Matrix Spalten hat, und es gibt soviele
+	Liefert Arrays zuruck, in denen Basiselemente des Kerns der mitgegebenen Matrix sind. Ist der Kern 0, so wird
+	kein Array zuruckgegeben. Pro Basisvektor sind soviele Eintrage, wie die Matrix Spalten hat, und es gibt soviele
 	Basisvektoren, wie die Dimension des Kerns.
  
  */
@@ -291,11 +291,11 @@ public static Qelement[][] findCoreBasis(Qelement[][] matrix)
 	Qelement[][] m = new Qelement[zeilen][spalten];
 	for (int i=0; i<zeilen; i++)
 		for (int j=0; j<spalten; j++)
-			m[i][j] = matrix[i][j];							// Elemente an sich werden nicht geändert.
+			m[i][j] = matrix[i][j];							// Elemente an sich werden nicht geandert.
 
 	boolean[] zeileGestrichen = new boolean[zeilen];
 	for (int i=0; i<zeilen; i++) zeileGestrichen[i] = false;
-	int[] pivotNr = new int[spalten];						// enthält für jede Spalte die Nummer der relevanten Zeile,
+	int[] pivotNr = new int[spalten];						// enthalt fur jede Spalte die Nummer der relevanten Zeile,
 														    // oder -1, wenn leer.
 	int dimKern = 0;
 	
@@ -366,7 +366,7 @@ public int getBitLength()
  * @return arithmetik.Qelement
  * @param d double
 
-	errät eine rationale Zahl, die durch d angenähert wird, durch Partialbruchzerlegung
+	errat eine rationale Zahl, die durch d angenahert wird, durch Partialbruchzerlegung
  
  */
 public static Qelement guessFromDouble(double d) 
@@ -423,8 +423,8 @@ public boolean isUnit()
 
 	Wird von CK benutzt;
 
-	liefert eine zufällige positive ganze Zahl
-	zwischen 0 und bound ausschließlich.
+	liefert eine zufallige positive ganze Zahl
+	zwischen 0 und bound ausschliesslich.
 
  * Insert the method's description here.
  * Creation date: (05.01.2003 18:07:47)

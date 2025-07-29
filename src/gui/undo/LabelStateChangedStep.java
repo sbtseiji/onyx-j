@@ -30,7 +30,7 @@ public class LabelStateChangedStep extends UndoStep {
 	public LabelStateChangedStep(ModelView mv, Edge edge)
 	{
 		super();
-		this.title = "Changed edge";
+		this.title = "変更されたエッジ";
 		this.mv = mv;
 		this.oldLabel = (LatexEdgeLabel)edge.getLabel().clone();
 		this.edge = edge;

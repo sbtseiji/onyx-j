@@ -64,9 +64,9 @@ public class LavaanExport extends RExport {
 	public String createModelSpec(ModelView modelView, String modelName, boolean useUniqueNames) {
 		Graph g = modelView.getGraph();
 		parameterSlotNames.clear();
-	    
-		if (g.isMultiGroup()) return "Error! Multigroup models cannot be exported yet!";
-		if (modelView.hasDefinitionEdges()) return "Error! Definition variables in lavaan are not supported!";
+		
+		if (g.isMultiGroup()) return "エラー！ マルチグループモデルの書き出しにはまだ対応していません。";
+		if (modelView.hasDefinitionEdges()) return "エラー！ lavaanでは定義変数はサポートされていません。";
 		
 		resetNames();
 		
@@ -92,7 +92,7 @@ public class LavaanExport extends RExport {
 		HashSet<Node> latentsWithOutgoing = new HashSet<>();
 
 		// create all regressions between manifest and latent
-		model += "! regressions \n";
+		model += "! 回帰パス\n";
 		for (Edge edge : g.getEdges()) {
 			if (edge.getSource().isLatent() && 
 					edge.getTarget().isObserved() && !edge.isDoubleHeaded()
@@ -135,7 +135,7 @@ public class LavaanExport extends RExport {
 		}
 		
 		// create all variances and covariances
-		model +="! residuals, variances and covariances\n";
+		model +="! 残差・分散・共分散\n";
 		for (Edge edge : g.getEdges()) {
 		
 			if (!edge.isDoubleHeaded()) continue;
@@ -195,49 +195,49 @@ public class LavaanExport extends RExport {
 		// create all means
 		//if (graph.)
 		if (g.getMeanTreatment()==Graph.MeanTreatment.explicit) {
-    		List<Node> meanNodes = new ArrayList<Node>();
-    		
-    		model += "! means\n";
-    		for (Edge edge : g.getEdges()) {
-    			if (edge.getSource().isMeanTriangle()) {
-    				meanNodes.add(edge.getTarget());
-    				
-    				double value;
-    				if (useStartingValues && edge.isFree()) {
-    					value = startingValues.getParameterValue(edge.getParameterName());
-    				} else {
-    					value = edge.getValue();
-    				}
-    				
-    				String name = "";
-    				if (!edge.isAutomaticNaming() && edge.isFree()) {
-    					name = ""+makeSaveString(edge.getParameterName())+"*";
-    				}
-    				
-    				if (edge.isFixed()) {
-    					model += inset+""+
-    							makeSaveString(edge.getTarget().getUniqueName(useUniqueNames), edge.getTarget().getObservedVariableContainer())+name+"~"+
-    							value+"*1;\n";
-    					parameterSlotNames.add("fixed");
-    				} else {
-    					model += inset+""+makeSaveString(edge.getTarget().getCaption(), edge.getTarget().getObservedVariableContainer())+
-    							 "~"+name+"1\n";
-    					parameterSlotNames.add(edge.getParameterName());
-    				}
-    			}
-    		}	
-    		
-    		// fix zero means for remaining nodes
-    		for (Node node : g.getNodes())
-    		{
-    			if (!meanNodes.contains(node) && !node.isMeanTriangle()) {
-    				model += inset+""+makeSaveString(node.getCaption(), node.getObservedVariableContainer())+"~0*1;\n";
-    				parameterSlotNames.add("fixed");
-    			}
-    		}
+			List<Node> meanNodes = new ArrayList<Node>();
+			
+			model += "! 平均\n";
+			for (Edge edge : g.getEdges()) {
+				if (edge.getSource().isMeanTriangle()) {
+					meanNodes.add(edge.getTarget());
+					
+					double value;
+					if (useStartingValues && edge.isFree()) {
+						value = startingValues.getParameterValue(edge.getParameterName());
+					} else {
+						value = edge.getValue();
+					}
+					
+					String name = "";
+					if (!edge.isAutomaticNaming() && edge.isFree()) {
+						name = ""+makeSaveString(edge.getParameterName())+"*";
+					}
+					
+					if (edge.isFixed()) {
+						model += inset+""+
+								makeSaveString(edge.getTarget().getUniqueName(useUniqueNames), edge.getTarget().getObservedVariableContainer())+name+"~"+
+								value+"*1;\n";
+						parameterSlotNames.add("fixed");
+					} else {
+						model += inset+""+makeSaveString(edge.getTarget().getCaption(), edge.getTarget().getObservedVariableContainer())+
+								 "~"+name+"1\n";
+						parameterSlotNames.add(edge.getParameterName());
+					}
+				}
+			}	
+			
+			// fix zero means for remaining nodes
+			for (Node node : g.getNodes())
+			{
+				if (!meanNodes.contains(node) && !node.isMeanTriangle()) {
+					model += inset+""+makeSaveString(node.getCaption(), node.getObservedVariableContainer())+"~0*1;\n";
+					parameterSlotNames.add("fixed");
+				}
+			}
 		
 		} else {
-			model += "! observed means\n";
+		   model += "! 観測変数の平均\n";
 			// add explicit free estimation of observed
 			for (Node node : g.getNodes())
     		{
@@ -245,15 +245,15 @@ public class LavaanExport extends RExport {
 
     				model += inset+""+makeSaveString(node.getCaption(), node.getObservedVariableContainer())+"~1;\n";
 				}
-    		}
-            // intercept at the end need parameterSlots "fixed"
-            for (Node node : g.getNodes()) parameterSlotNames.add("fixed");
+			}
+			// intercept at the end need parameterSlots "fixed"
+			for (Node node : g.getNodes()) parameterSlotNames.add("fixed");
 		}
 		
 		if (fullcode) {
 			
-			String prefix = "#\r\n# This model specification was automatically generated by Onyx\r\n#\r\n"; 
-			        
+		   String prefix = "#\r\n# このモデル記述はOnyxによって自動生成されました\r\n#\r\n"; 
+					
 			model = prefix+"library(lavaan);\r\nmodelData <- read.table("+DATAFILENAME+", header = TRUE) ;"
 			+"\r\n model<-\"\r\n"+model+"\"\r\nresult<-lavaan(model, data=modelData, fixed.x=FALSE, missing=\"FIML\")\r\nsummary(result, fit.measures=TRUE)";
 			

@@ -38,14 +38,14 @@ public class LaTeXParserTree {
 			String tabs = "";
 			for (int j=0; j<i;j++) tabs+="\t";
 			
-			String s =  tabs+"Content:"+content+"\n";
+			String s =  tabs+"内容:"+content+"\n";
 			if (next != null)
-				s+=tabs+"Next:\n"+next.toStringRec(i+1)+"\n";
-		
+				s+=tabs+"次へ:\n"+next.toStringRec(i+1)+"\n";
+
 			if (up != null)
-				s+=tabs+"Up:"+up.content+"\n";
+				s+=tabs+"上:"+up.content+"\n";
 			if (down != null)
-				s+=tabs+"Down:"+down.content+"\n";
+				s+=tabs+"下:"+down.content+"\n";
 			
 			return s;
 		}

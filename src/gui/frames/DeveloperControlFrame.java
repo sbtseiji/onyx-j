@@ -52,17 +52,17 @@ public class DeveloperControlFrame extends Dialog implements ChangeListener
 		//numCenter = new JSpinner(centerModel);
 		
 		edgepad = new JSlider();
-		this.addElement("Edge Padding", edgepad);
+		this.addElement("エッジ余白", edgepad);
 		edgepad.setMinimum(0);
 		edgepad.setMaximum(20);
 		edgepad.addChangeListener(this);
 		//numCenter.addChangeListener(this);
 		
-		drawLinks = new JCheckBox("Draw Links");
+		drawLinks = new JCheckBox("リンクを描画");
 		drawLinks.addChangeListener(this);
 		
 	//	this.addElement("Curvature of covariance paths", numCenter);
-		this.addElement("Draw links", drawLinks);
+		this.addElement("リンクを描画", drawLinks);
 		
 		this.pack();
 		this.setVisible(true);
@@ -79,7 +79,7 @@ public class DeveloperControlFrame extends Dialog implements ChangeListener
 			Desktop.DRAW_LINKS_ON_DESKTOP = drawLinks.isSelected();
 	//		Edge.Curvature = Integer.parseInt(numCenter.getValue().toString());
 			
-			EdgeProxy.ARROW_PAD = edgepad.getValue();
+			// EdgeProxy.ARROW_PAD = edgepad.getValue();
 			desktop.repaint();
 	}
 	

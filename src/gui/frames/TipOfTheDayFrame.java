@@ -49,20 +49,18 @@ public class TipOfTheDayFrame extends JDialog implements ActionListener, MouseLi
     JLabel dontshowlabel;
     
     String[] tips = {
-    	"Right-click to open context menus anywhere in Onyx (e.g.,on the desktop, on edges, or nodes). If you don't have a mouse with right-click, hold down CONTROL and left-click." +
-    	"Latent variables can be created with a double-click on a model panel. SHIFT + Double-click creates observed variables.",
-    	"Paths between variables can be created by right-dragging (press mouse button and hold down while moving the mouse) from one variable to another.",
-    	"Datasets and models can be loaded by dragging them from your file browser directly onto the Onyx desktop.",
-    	"Manifests variables can be created by dragging a variable from a dataset onto a model panel.",
-    	"Labels on paths can be moved with the mouse by dragging them along the edge.",
-    	"Model estimation is started as soon as all observed variables are connected to a dataset. To connect variables, drag them from the dataset onto the corresponding observed variable in the model.",
-    	"Graphical models in Onyx can be exported to various other formats, including bitmap images (JPEG, PNG), vector formats (EPS, PDF), or script languages (OpenMx, Mplus, lavaan).",
-//    	"Creating all possible edges between two sets of variables is easy, if you use node groups. Create a node group from a set of selected variables by holding"
-//    	"Once all variables in your model are connected to a dataset, model fitting"
-    	"Use CONTROL-Z (or CMD-Z on Mac) to undo your last action.",
-    	"Right-dragging from one variable to a second variable, creates a regression path. If you hold down SHIFT while dragging, a covariance path will be created",
-    	"The curvature of covariance paths can be flexibly controlled by two control points. Select <manual edge control> in an edge's context menu to show the control points.",
-    	"The appearance of paths can be altered in different ways, including line color, stroke width and font size of the label."
+    "デスクトップ、エッジ、ノードなど、Onyxのどこでも右クリックでコンテキスト・メニューを開けます。右クリックがない場合はコントロールキーを押しながら左クリックしてください。"
+    + "潜在変数はモデルパネル上でダブルクリック、観測変数はシフトキー＋ダブルクリックで作成できます。",
+    "変数間のパスは、1つの変数から別の変数へ右ドラッグ（マウスボタンを押したまま移動）で作成できます。",
+    "データセットやモデルは、ファイルブラウザからOnyxデスクトップへドラッグ＆ドロップで読み込めます。",
+    "データセット内の変数をモデルパネルへドラッグすると観測変数を作成できます。",
+    "パス上のラベルは、マウスでドラッグすればエッジに沿って移動できます。",
+    "すべての観測変数にデータがセットされると、モデル推定が自動で始まります。変数にデータをセットするには、データセットからモデル内の観測変数へドラッグしてください。",
+    "Onyxのグラフィカルモデルは、ビットマップ画像（JPEG, PNG）、ベクター形式（EPS, PDF）、スクリプト言語（OpenMx, Mplus, lavaan）など様々な形式で書き出せます。",
+    "コントロールキー＋Z（Macでは⌘+Z）で直前の操作を元に戻せます。",
+    "1つの変数から別の変数へ右ドラッグすると回帰パスが作成されます。シフトキーを押しながらドラッグすると共分散パスが作成されます。",
+    "共分散パスの曲率は2つのコントロールポイントで柔軟に調整できます。エッジのコンテキストメニューで「手動エッジ制御」を選択するとコントロールポイントが表示されます。",
+    "パスの見た目は、線の色、太さ、ラベルのフォントサイズなどさまざまな方法で変更できます。"
     };
 	private Image image;
 	private JLabel imageLabel;
@@ -77,9 +75,9 @@ public class TipOfTheDayFrame extends JDialog implements ActionListener, MouseLi
 		 	image = Utilities.resizeImage(new ImageIcon(url).getImage(),24,24 );
 		 }	
 		
-		nextTip = new JButton("Next Tip");
-		close = new JButton("Close");
-		dontshow = new JCheckBox("Show tips at startup");
+		nextTip = new JButton("次のヒント");
+		close = new JButton("閉じる");
+		dontshow = new JCheckBox("起動時にヒントを表示");
 		
 		nextTip.addActionListener(this);
 		close.addActionListener(this);
@@ -135,13 +133,13 @@ public class TipOfTheDayFrame extends JDialog implements ActionListener, MouseLi
 	}
 	
 	private void nextTip() {
-		tipCounter++;
-		tipCounter %= tips.length;
-		
-		this.tipText.setText(
-				"<html>"+
-		"<h2>Did you know...</h2><hr>"+tips[tipCounter]+
-		"</html>");
+    tipCounter++;
+    tipCounter %= tips.length;
+
+    this.tipText.setText(
+        "<html>"+
+        "<h2>ご存知でしたか？</h2><hr>"+tips[tipCounter]+
+        "</html>");
 		
 //		this.tipText.setAlignmentY(0);
 		this.tipText.setVerticalTextPosition(SwingConstants.TOP);
@@ -178,7 +176,7 @@ public class TipOfTheDayFrame extends JDialog implements ActionListener, MouseLi
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (Utilities.isRightMouseButton(e)) {
-			JOptionPane.showMessageDialog(this, "You caught us. This is really the only place where we do not provide a context menu. We should have known.");
+			JOptionPane.showMessageDialog(this, "ここだけはコンテキストメニューがありません。ごめんなさい。");
 		}
 		
 	}

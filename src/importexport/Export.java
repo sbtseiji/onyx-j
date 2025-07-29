@@ -63,7 +63,7 @@ public abstract class Export {
         this.defaultExtensions = defaultExtensions;
     }
 
-    public String getHeader() {return "Export";}	
+    public String getHeader() {return "書き出し";}	
 
     public String getMissingDataString() {return ""+Model.MISSING;}
     
@@ -201,7 +201,7 @@ public abstract class Export {
 			fc.setAcceptAllFileFilterUsed(true);
 			
 			
-			fc.setDialogTitle("Export model");
+			fc.setDialogTitle("モデルの書き出し");
 			//In response to a button click:
 			int returnVal = fc.showSaveDialog(modelView );
 
@@ -227,8 +227,8 @@ public abstract class Export {
 
 				boolean ok = true;
 				if (file.exists()) {
-					int result = JOptionPane.showConfirmDialog(this.modelView, "Warning: File exists!",
-							"A file with the selected name already exists. Do you want to overwrite the existing file?",
+					int result = JOptionPane.showConfirmDialog(this.modelView, "警告: ファイルが存在します！",
+							"指定した名前のファイルはすでに存在します。上書きしてもよろしいですか？",
 							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null);
 					if (result == JOptionPane.CANCEL_OPTION || (result == JOptionPane.NO_OPTION)) {
 						ok = false;
@@ -238,7 +238,7 @@ public abstract class Export {
 
 				if (ok) {
 					if (modelView != null)
-				    if (modelView.getName().equals("Unnamed Model")) {
+				    if (modelView.getName().equals("名称未設定モデル")) {
 				        String name = file.getName(); 
 				        if (name.indexOf('.') != -1) name = name.substring(0, name.indexOf('.'));
 				        modelView.setName(name);
@@ -255,7 +255,7 @@ public abstract class Export {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(this.modelView, "An error has occured!");
+			JOptionPane.showMessageDialog(this.modelView, "エラーが発生しました！");
 		}
 		
 		return null;
@@ -293,7 +293,7 @@ public abstract class Export {
 	            writer.write(content);
 	            writer.flush();
 	        } catch (Exception e) {
-	            throw new Exception("Cannot write to temporary file: " + e.toString());
+	            throw new Exception("一時ファイルに書き込めません：" + e.toString());
 	        } finally {
 	            try {
 	                writer.close();

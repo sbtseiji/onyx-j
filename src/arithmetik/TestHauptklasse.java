@@ -35,7 +35,7 @@ public class TestHauptklasse implements Printable
 			testHenselFactorization();
 			
 			long etime = System.currentTimeMillis();
-			System.out.println(etime-btime +" Millisekunden benötigt");
+			System.out.println(etime-btime +" Millisekunden benotigt");
 
 /*			UnivariatePolynomial f = new UnivariatePolynomial(2);
 			UnivariatePolynomial g = new UnivariatePolynomial(1);
@@ -78,7 +78,7 @@ public class TestHauptklasse implements Printable
 
 //		long[][] l = {{9,0,0},{23,0,2},{13,2,1},{6,0,1},{7,0,3},{13,2,2},{1,4,0},{6,4,1},{1,6,0}};
 //		long[][] l = {{135,0,0},{5,3,4},{27,0,1},{1,3,5},{27,2,0},{1,5,4}};
-		// Folgender läuft nicht, wenn mans nicht quadratfrei macht.
+		// Folgender lauft nicht, wenn mans nicht quadratfrei macht.
 		//		long[][] l = {{4,6,4},{1,6,3},{16,3,3},{64,3,2},{12,4,2},{3,4,1},{12,1,1},{3,1,0},{4,5,5},{21,5,4},{4,2,4},{21,2,3},{12,0,2},{63,0,1},{5,5,3},{5,2,2},{15,3,1},{15,0,0}};
 //		long[][] l = {{1,1,1},{1,0,2},{1,1,0},{1,0,1}};
 //		long[][] l = {{1,3,1},{2,2,2},{1,2,1},{3,1,2},{1,1,1},{1,0,2},{1,0,1}};
@@ -547,7 +547,7 @@ public class TestHauptklasse implements Printable
 //		System.out.println("gcd = "+gcd);
 /*
 		for (int i=0; i<lsg.length; i++)
-			System.out.println("Lösung "+i+": "+lsg[i]);
+			System.out.println("Losung "+i+": "+lsg[i]);
 
 
 		QPolynomial p1 = new QPolynomial("X0^2*X1+2*X2-3");

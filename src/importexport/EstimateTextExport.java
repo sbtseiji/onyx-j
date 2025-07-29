@@ -44,7 +44,7 @@ public class EstimateTextExport extends StringExport {
 		super(modelView, new TextFileFilter(),new String[] {"txt","dat"});
 	}
 	
-	public String getHeader() {return "Estimate Summary";}
+	public String getHeader() {return "推定の要約";}
 
 	public boolean isValid() {return true;}
 
@@ -65,7 +65,7 @@ public class EstimateTextExport extends StringExport {
     	ParameterReader se = modelView.getShowingEstimate();
         if (se != null)
             return se.getDescription();
-        return "No Estimate to show.";
+        return "表示できる推定はありません。";
     }
 
 	

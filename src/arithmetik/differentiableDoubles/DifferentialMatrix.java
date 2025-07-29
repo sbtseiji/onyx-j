@@ -185,7 +185,7 @@ public abstract class DifferentialMatrix extends DifferentialObject {
                 for (int i=0; i<scalarChild.length; i++) erg.scalarChild[i] = scalarChild[i].copy();
             }
             return erg;
-        } catch (Exception e) {throw new RuntimeException("Problems creating a copy of "+this+".");}
+        } catch (Exception e) {throw new RuntimeException("このオブジェクト（" + this + "）のコピー作成中に問題が発生しました。");}
     }
     
     public DifferentialMatrix substitute(int[] pnr, DifferentialDouble[] vals) {

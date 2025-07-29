@@ -38,7 +38,7 @@ public class XMLFileFilter extends FileFilter {
 
 	@Override
 	public String getDescription() {
-		return("Onyx model (*.xml)");
+		return("Onyxモデルファイル（*.xml）");
 	}
 
 }

@@ -24,10 +24,10 @@ public class ViewCreateStep extends UndoStep {
 	private View view;
 	//private Desktop desktop;
 
-	public ViewCreateStep( View view)
+	public ViewCreateStep(View view)
 	{
 		super();
-		this.title = "Create view "+view.getName();
+		this.title = "ビュー「" + view.getName() + "」を作成";
 		this.view = view;
 		//this.desktop = desktop;
 	}

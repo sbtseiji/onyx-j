@@ -335,9 +335,9 @@ public class Edge implements Cloneable, LineColorable, VariableContainerListener
 		} else {
 			// label = edge.source.getCaption()+"<->"+edge.target.getCaption();
 			if (source == target) {
-				parName = "VAR" + SPACE + source.getCaption();
+				parName = "分散" + SPACE + source.getCaption();
 			} else {
-				parName = "COV" + SPACE + source.getCaption() + SPACE + target.getCaption();
+				parName = "共分散" + SPACE + source.getCaption() + SPACE + target.getCaption();
 			}
 		}
 		return parName;

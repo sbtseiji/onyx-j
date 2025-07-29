@@ -82,7 +82,7 @@ public class CSVExport {
 			
 			//if (cd.hasMean()) {
 				double[] matrix2 = cd.getMean();
-				w.write("Means\n");
+				w.write("平均値\n");
 				for (int j=0; j<matrix2.length; j++)
                     w.write(""+matrix2[j]+(j==matrix2.length-1?"":separator));
                 w.write("\r\n");
@@ -100,7 +100,7 @@ public class CSVExport {
 		} else {
 			JOptionPane
 			.showMessageDialog(null,
-					"Writing this type of dataset is not implemented yet!");
+					"この種類のデータセットの書き出しにはまだ対応していません。");
 		}
 		
 		

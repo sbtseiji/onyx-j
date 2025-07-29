@@ -33,7 +33,7 @@ public class TextFileFilter extends FileFilter {
 
 	@Override
 	public String getDescription() {
-		return "Textfile";
+		return "テキストファイル";
 	}
 
 }

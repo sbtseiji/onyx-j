@@ -34,8 +34,8 @@ public class CreateDCSMAction extends AbstractAction {
 	{
 		this.desktop = desktop;
 	
-		putValue(NAME, "Create new DCSM");
-		putValue(SHORT_DESCRIPTION, "Create a DCSM on the desktop");
+		putValue(NAME, "二重変化スコアモデル（DCSM）");
+		putValue(SHORT_DESCRIPTION, "デスクトップ上に二重変化スコアモデル（DCSM）を作成しますCreate a DCSM on the desktop");
 	}
 	
 	public CreateDCSMAction(Desktop desktop, int x, int y)

@@ -50,7 +50,7 @@ public class EstimateHistoryExport extends StringExport {
 	public void setExplicitRunner(ParameterReader reader) {this.explicitRunner = reader;}
 	public ParameterReader getExplicParameterReader() {return explicitRunner;}
 	
-	public String getHeader() {return "Estimate History";}
+	public String getHeader() {return "推定履歴";}
 	
 	public boolean isValid() {return true;}
 	
@@ -59,7 +59,7 @@ public class EstimateHistoryExport extends StringExport {
     	ParameterReader se = (explicitRunner==null?modelView.getShowingEstimate():explicitRunner);
         if (se != null)
             return se.getHistoryString();
-        return "No History to show.";
+        return "表示できる履歴はありません。";
     }
 
 	

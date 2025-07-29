@@ -33,8 +33,8 @@ public class CreateLGCMAction extends AbstractAction {
 	{
 		this.desktop = desktop;
 	
-		putValue(NAME, "Create new LGCM");
-		putValue(SHORT_DESCRIPTION, "Create an LGCM on the desktop");
+		putValue(NAME, "潜在成長曲線モデル（LGCM）");
+		putValue(SHORT_DESCRIPTION, "デスクトップ上に潜在成長曲線モデル（LGCM）を作成します");
 	}
 	
 	public CreateLGCMAction(Desktop desktop, int x, int y)

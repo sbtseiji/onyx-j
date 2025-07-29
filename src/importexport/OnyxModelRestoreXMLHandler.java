@@ -79,7 +79,7 @@ public class OnyxModelRestoreXMLHandler implements ContentHandler {
 		}
 */
 		if (warningMeanInconsistency) {
-			JOptionPane.showMessageDialog(this.mv, "Warning! This model has a saturated mean structure. The explicit mean structure in the model is currently ignored.");
+			JOptionPane.showMessageDialog(this.mv, "警告！このモデルは飽和平均構造を持っています。モデル内の明示的な平均構造は現在無視されます。");
 			mv.getGraph().setMeanTreatment(MeanTreatment.implicit); mv.getModelRequestInterface().setMeanTreatment(mv.getGraph().getMeanTreatment());
 		}
 	}
@@ -143,69 +143,69 @@ public class OnyxModelRestoreXMLHandler implements ContentHandler {
 			
 			if (localname.equalsIgnoreCase( "Model")) {
 				if (attrs != null)
-		        {
-		            int length = attrs.getLength();
-		            for (int i = 0; i < length; i++)
-		            {
-		            	if (attrs.getLocalName(i) == "name") {
-		            		this.mv.getModelRequestInterface().requestChangeModelName(attrs.getValue(i));
-		            	}
-		            	
-		            	if (attrs.getLocalName(i).equals("specificationVersion")) {
-		            		try {
-		            			String[] tokens = attrs.getValue(i).split("-|\\.");
-		            			
-		            			int major = Integer.parseInt(tokens[0]);
-		            			int minor = Integer.parseInt(tokens[1]);
-		            			
-		            			int svn = 0;
-		            			if (tokens.length > 2)
-		            				svn = Integer.parseInt(tokens[2]);
-		            			
-		            			if (MainFrame.MINOR_VERSION < svn) {
-		            				JOptionPane.showMessageDialog(this.mv, "Warning! The model was saved with a newer version of Onyx than the one you are using. Likely, not all features of the model will be loaded correctly.");
-		            			}
-		            			
-		            		} catch (Exception e) {
-		            			//e.printStackTrace();
-		            			System.err.println("Could not parse version number in file: "+attrs.getValue(i));
-		            		}
-		            	}
-		            }
-		        }
+				{
+					int length = attrs.getLength();
+					for (int i = 0; i < length; i++)
+					{
+						if (attrs.getLocalName(i) == "name") {
+							this.mv.getModelRequestInterface().requestChangeModelName(attrs.getValue(i));
+						}
+						
+						if (attrs.getLocalName(i).equals("specificationVersion")) {
+							try {
+								String[] tokens = attrs.getValue(i).split("-|\\.");
+								
+								int major = Integer.parseInt(tokens[0]);
+								int minor = Integer.parseInt(tokens[1]);
+								
+								int svn = 0;
+								if (tokens.length > 2)
+									svn = Integer.parseInt(tokens[2]);
+								
+								if (MainFrame.MINOR_VERSION < svn) {
+									JOptionPane.showMessageDialog(this.mv, "警告！ このモデルは現在ご利用中のOnyxより新しいバージョンで保存されています。一部の機能が正しく読み込まれない可能性があります。");
+								}
+								
+							} catch (Exception e) {
+								//e.printStackTrace();
+								System.err.println("ファイル内のバージョン番号を解析できませんでした: "+attrs.getValue(i));
+							}
+						}
+					}
+				}
 			}
 			
 		if (localname.equalsIgnoreCase( "Graph")) {
 			if (attrs != null)
-	        {
-	            int length = attrs.getLength();
-	            for (int i = 0; i < length; i++)
-	            {
-	            	if (attrs.getLocalName(i) == "width") {
-	            		int w = Integer.parseInt(attrs.getValue(i));
-	            		this.mv.setSize(w, mv.getSize().height);
-	            	}
-	            	
-	            	if (attrs.getLocalName(i) == "height") {
-	            		int h = Integer.parseInt(attrs.getValue(i));
-	            		this.mv.setSize(mv.getSize().width, h);
-	            	}
-	            	
-	            	if (attrs.getLocalName(i) == "backgroundColor") {
-	            		Color c = Color.decode(attrs.getValue(i));
-	            		this.mv.getGraph().backgroundColor = c;
-	            	}
-	            	
-	            	if (attrs.getLocalName(i) == "meanTreatment") {
-	            		try {
-	            		this.mv.getGraph().setMeanTreatment(MeanTreatment.valueOf(attrs.getValue(i)));
-	                    this.mv.getModelRequestInterface().setMeanTreatment(this.mv.getGraph().getMeanTreatment());
-	            		} catch (Exception e) {
-	            			e.printStackTrace();
-	            		}
-	            	}
-	            }
-	        }
+			{
+				int length = attrs.getLength();
+				for (int i = 0; i < length; i++)
+				{
+					if (attrs.getLocalName(i) == "width") {
+						int w = Integer.parseInt(attrs.getValue(i));
+						this.mv.setSize(w, mv.getSize().height);
+					}
+					
+					if (attrs.getLocalName(i) == "height") {
+						int h = Integer.parseInt(attrs.getValue(i));
+						this.mv.setSize(mv.getSize().width, h);
+					}
+					
+					if (attrs.getLocalName(i) == "backgroundColor") {
+						Color c = Color.decode(attrs.getValue(i));
+						this.mv.getGraph().backgroundColor = c;
+					}
+					
+					if (attrs.getLocalName(i) == "meanTreatment") {
+						try {
+						this.mv.getGraph().setMeanTreatment(MeanTreatment.valueOf(attrs.getValue(i)));
+						this.mv.getModelRequestInterface().setMeanTreatment(this.mv.getGraph().getMeanTreatment());
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
 			
 			//this.mv.setSize(width, height)
 		}
@@ -214,101 +214,101 @@ public class OnyxModelRestoreXMLHandler implements ContentHandler {
 			
 			Edge newEdge = new Edge();
 			if (attrs != null)
-	        {
-	            int length = attrs.getLength();
-	            for (int i = 0; i < length; i++)
-	            {
-	            	if (attrs.getLocalName(i) == "fixed") {
-	            		newEdge.setFixed(Boolean.parseBoolean(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i) == "doubleHeaded") {
-	            		newEdge.setDoubleHeaded(Boolean.parseBoolean(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i) == "parameterName") {
-	            		newEdge.setParameterName(attrs.getValue(i));
-	            		newEdge.setAutomaticNaming(false);
-	            	} else if (attrs.getLocalName(i) == "automaticNaming") {
-	            		newEdge.setAutomaticNaming(Boolean.parseBoolean(attrs.getValue(i)));	       	            
-	            	} else if (attrs.getLocalName(i) == "sourceNodeId") {
-	            		int sourceId = Integer.parseInt(attrs.getValue(i));
-	            		newEdge.setSource( mv.getGraph().getNodeById(sourceId));
-	            	} else if (attrs.getLocalName(i) == "targetNodeId") {
-	            		int targetId = Integer.parseInt(attrs.getValue(i));
-	            		Node node = mv.getGraph().getNodeById(targetId);
-	            		if (node==null) {
-	            			System.err.println("Error! Undefined node!");
-	            		}
-	            		newEdge.setTarget( node );	            		
-	            	} else if (attrs.getLocalName(i) == "value") {
-	            		newEdge.setValue( Double.parseDouble(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i) == "definitionVariable") {
-	            		boolean defvar = Boolean.parseBoolean(attrs.getValue(i));
+			{
+				int length = attrs.getLength();
+				for (int i = 0; i < length; i++)
+				{
+					if (attrs.getLocalName(i) == "fixed") {
+						newEdge.setFixed(Boolean.parseBoolean(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i) == "doubleHeaded") {
+						newEdge.setDoubleHeaded(Boolean.parseBoolean(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i) == "parameterName") {
+						newEdge.setParameterName(attrs.getValue(i));
+						newEdge.setAutomaticNaming(false);
+					} else if (attrs.getLocalName(i) == "automaticNaming") {
+						newEdge.setAutomaticNaming(Boolean.parseBoolean(attrs.getValue(i)));	       	            
+					} else if (attrs.getLocalName(i) == "sourceNodeId") {
+						int sourceId = Integer.parseInt(attrs.getValue(i));
+						newEdge.setSource( mv.getGraph().getNodeById(sourceId));
+					} else if (attrs.getLocalName(i) == "targetNodeId") {
+						int targetId = Integer.parseInt(attrs.getValue(i));
+						Node node = mv.getGraph().getNodeById(targetId);
+						if (node==null) {
+							System.err.println("エラー！ 未定義のノードです！");
+						}
+						newEdge.setTarget( node );	            		
+					} else if (attrs.getLocalName(i) == "value") {
+						newEdge.setValue( Double.parseDouble(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i) == "definitionVariable") {
+						boolean defvar = Boolean.parseBoolean(attrs.getValue(i));
 
-	            		//if (defvar) {
-	            			//newEdge.setDefinitionVariable(null, -1, true);
-	            			newEdge.getDefinitionVariableContainer().setActive(defvar);
-	            	//	} else {	            			
-	            			//newEdge.setDefinitionVariable(null, -1, false);
-	            		//}
-	            		
-	            	} else if (attrs.getLocalName(i).equals("lineColor")) {
-	            		newEdge.setLineColor( Color.decode(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i) == "relativeLabelPosition") {
-	            		newEdge.edgeLabelRelativePosition = (Double.parseDouble(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i) == "curvature") {
-	            		newEdge.setCurvature ( Integer.parseInt(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i).equals("arrowHead")) {
-	            		newEdge.setArrowStyle(Integer.parseInt(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i).equals("strokeWidth")) { 
-	            		//newEdge.setStroke(new BasicStroke(Float.parseFloat(attrs.getValue(i)), BasicStroke.CAP_BUTT, 
-	            	     //       BasicStroke.JOIN_BEVEL));
-	            		newEdge.setLineWidth(Float.parseFloat(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i).equals("labelFontSize")) {
-	            		newEdge.getLabel().setFontSize( Float.parseFloat(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i).equals("labelFontColor")) {
-	            		newEdge.getLabel().setColor(Color.decode(attrs.getValue(i)) );	            		
-	            	} else if (attrs.getLocalName(i).equals("relativeControlPoints")) {
-	            		String[] pairs = attrs.getValue(i).split(";");
-	            		int cnt=0;
-	            		for (String pair : pairs)
-	            		{
-	            			String[] coords = pair.split(",");
-	            			double x = Double.parseDouble(coords[0]);
-	            			double y = Double.parseDouble(coords[1]);
-	            			//if (cnt==0) {
-	            			//	newEdge.ctrlx1 = x;
-	            				//newEdge.ctrly1 = y;
-	            				newEdge.setRelativeCtrlPoint(cnt, x, y);
-	            			//} else if (cnt==1) {
+						//if (defvar) {
+							//newEdge.setDefinitionVariable(null, -1, true);
+							newEdge.getDefinitionVariableContainer().setActive(defvar);
+					//	} else {	            			
+							//newEdge.setDefinitionVariable(null, -1, false);
+						//}
+						
+					} else if (attrs.getLocalName(i).equals("lineColor")) {
+						newEdge.setLineColor( Color.decode(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i) == "relativeLabelPosition") {
+						newEdge.edgeLabelRelativePosition = (Double.parseDouble(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i) == "curvature") {
+						newEdge.setCurvature ( Integer.parseInt(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i).equals("arrowHead")) {
+						newEdge.setArrowStyle(Integer.parseInt(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i).equals("strokeWidth")) { 
+						//newEdge.setStroke(new BasicStroke(Float.parseFloat(attrs.getValue(i)), BasicStroke.CAP_BUTT, 
+						 //       BasicStroke.JOIN_BEVEL));
+						newEdge.setLineWidth(Float.parseFloat(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i).equals("labelFontSize")) {
+						newEdge.getLabel().setFontSize( Float.parseFloat(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i).equals("labelFontColor")) {
+						newEdge.getLabel().setColor(Color.decode(attrs.getValue(i)) );	            		
+					} else if (attrs.getLocalName(i).equals("relativeControlPoints")) {
+						String[] pairs = attrs.getValue(i).split(";");
+						int cnt=0;
+						for (String pair : pairs)
+						{
+							String[] coords = pair.split(",");
+							double x = Double.parseDouble(coords[0]);
+							double y = Double.parseDouble(coords[1]);
+							//if (cnt==0) {
+							//	newEdge.ctrlx1 = x;
+								//newEdge.ctrly1 = y;
+								newEdge.setRelativeCtrlPoint(cnt, x, y);
+							//} else if (cnt==1) {
 	//            				newEdge.ctrlx2 = x;
 //	            				newEdge.ctrly2 = y;
-	            				//newEdge.setCtrlPoint(cnt, x, y);
-	            			//} else {
-	            				// IGNORE
-	            			//}
-	            			cnt+=1;
-	            		}
-	            	
-	            	} else if (attrs.getLocalName(i).equals("dash")) {
-	            		try {
-	            			String[] tokens = attrs.getValue(i).split(";");
-	            			float[] f = new float[tokens.length];
-	            			for (int j=0; j < f.length; j++)
-	            			{
-	            				f[j] = Float.parseFloat(tokens[j]);
-	            			}
-	            			newEdge.setDashStyle(f);
-	            		} catch (Exception e) {
-	            			e.printStackTrace();
-	            		}
-	            	} else if (attrs.getLocalName(i).equals("automaticControlPoints")) {
-	            		newEdge.ctrlAutomatic = Boolean.parseBoolean(attrs.getValue(i));
-	            	} else if (attrs.getLocalName(i).equals("arcPosition")) {
-	            		newEdge.arcPosition = Double.parseDouble(attrs.getValue(i));
-	            	} else if (attrs.getLocalName(i).equals("arcPositionAutoLayout")) {
-	            		newEdge.arcPositionAutoLayout = Boolean.parseBoolean(attrs.getValue(i));
-	            	}
-	            			
-	            }
-	        }
+								//newEdge.setCtrlPoint(cnt, x, y);
+							//} else {
+								// IGNORE
+							//}
+							cnt+=1;
+						}
+					
+					} else if (attrs.getLocalName(i).equals("dash")) {
+						try {
+							String[] tokens = attrs.getValue(i).split(";");
+							float[] f = new float[tokens.length];
+							for (int j=0; j < f.length; j++)
+							{
+								f[j] = Float.parseFloat(tokens[j]);
+							}
+							newEdge.setDashStyle(f);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					} else if (attrs.getLocalName(i).equals("automaticControlPoints")) {
+						newEdge.ctrlAutomatic = Boolean.parseBoolean(attrs.getValue(i));
+					} else if (attrs.getLocalName(i).equals("arcPosition")) {
+						newEdge.arcPosition = Double.parseDouble(attrs.getValue(i));
+					} else if (attrs.getLocalName(i).equals("arcPositionAutoLayout")) {
+						newEdge.arcPositionAutoLayout = Boolean.parseBoolean(attrs.getValue(i));
+					}
+							
+				}
+			}
 			
 			
 			boolean ok = false;
@@ -320,7 +320,7 @@ public class OnyxModelRestoreXMLHandler implements ContentHandler {
 				e.printStackTrace();
 			}
 			if (!ok) {
-				System.err.println("Could not add edge "+newEdge);
+				System.err.println("エッジを追加できませんでした: "+newEdge);
 			} else {
 				//System.out.println(newEdge);
 			}
@@ -330,93 +330,93 @@ public class OnyxModelRestoreXMLHandler implements ContentHandler {
 		{
 			Node newNode = new Node();
 			if (attrs != null)
-	        {
-	            int length = attrs.getLength();
-	            for (int i = 0; i < length; i++)
-	            {
+			{
+				int length = attrs.getLength();
+				for (int i = 0; i < length; i++)
+				{
 //	            	System.out.println(attrs.get)
-	            	if (attrs.getLocalName(i) == "x") {
-	            		newNode.setX(Integer.parseInt(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i)=="y") {
-	            		newNode.setY(Integer.parseInt(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i)=="width") {
-	            		newNode.setWidth(Integer.parseInt(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i)=="value") {
-	            		newNode.setCaption(attrs.getValue(i));
-	            	} else if (attrs.getLocalName(i)=="id") {
-	            		newNode.setId(Integer.parseInt(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i)=="latent")
-	            	{
-	            		newNode.setIsLatent( Boolean.parseBoolean(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i)=="height") {
-	            		newNode.setHeight(Integer.parseInt(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i)=="caption") {
-	            		newNode.setCaption(attrs.getValue(i));
-	            	}else if (attrs.getLocalName(i)=="constant") {
-	            		newNode.setTriangle(Boolean.parseBoolean(attrs.getValue(i)));
-	            		
-	            		if (newNode.isMeanTriangle() && mv.getGraph().getMeanTreatment()==MeanTreatment.implicit ) {
-	            			warningMeanInconsistency = true;
-	            		}
-	            	} else if (attrs.getLocalName(i).equals("roughness")) {
-	            		newNode.setRough( Double.parseDouble(attrs.getValue(i))>0.0);
-	            	} else if (attrs.getLocalName(i).equals("lineColor")) {
-	           
-	            		newNode.setLineColor( Color.decode(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i).equals("fontColor")) {	     	           
-	            		newNode.setFontColor( Color.decode(attrs.getValue(i)));
-	            	}else if (attrs.getLocalName(i).equals("fillColor")) {
-	            		newNode.setFillColor( Color.decode(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i).equals("fillStyle")) {
-	            		try {
-	            			newNode.setFillStyle(FillStyle.valueOf(attrs.getValue(i)));
-	            		} catch (Exception e) {
-	            			e.printStackTrace();
-	            		}
-	            	/*} else if (attrs.getLocalName(i).equals("imageBase64Width")) {
-	            			
-	            		this.img64width = Integer.parseInt(attrs.getValue(i));
-	            		
-	            		imageReady(newNode);
-	            	} else if (attrs.getLocalName(i).equals("imageBase64Height")) {
-            			
-	            		this.img64height = Integer.parseInt(attrs.getValue(i));
-	            			       
-	            		imageReady(newNode);
-	            	} else if (attrs.getLocalName(i).equals("imageBase64")) {
-	            		
+					if (attrs.getLocalName(i) == "x") {
+						newNode.setX(Integer.parseInt(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i)=="y") {
+						newNode.setY(Integer.parseInt(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i)=="width") {
+						newNode.setWidth(Integer.parseInt(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i)=="value") {
+						newNode.setCaption(attrs.getValue(i));
+					} else if (attrs.getLocalName(i)=="id") {
+						newNode.setId(Integer.parseInt(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i)=="latent")
+					{
+						newNode.setIsLatent( Boolean.parseBoolean(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i)=="height") {
+						newNode.setHeight(Integer.parseInt(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i)=="caption") {
+						newNode.setCaption(attrs.getValue(i));
+					}else if (attrs.getLocalName(i)=="constant") {
+						newNode.setTriangle(Boolean.parseBoolean(attrs.getValue(i)));
+						
+						if (newNode.isMeanTriangle() && mv.getGraph().getMeanTreatment()==MeanTreatment.implicit ) {
+							warningMeanInconsistency = true;
+						}
+					} else if (attrs.getLocalName(i).equals("roughness")) {
+						newNode.setRough( Double.parseDouble(attrs.getValue(i))>0.0);
+					} else if (attrs.getLocalName(i).equals("lineColor")) {
+			   
+						newNode.setLineColor( Color.decode(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i).equals("fontColor")) {	     	           
+						newNode.setFontColor( Color.decode(attrs.getValue(i)));
+					}else if (attrs.getLocalName(i).equals("fillColor")) {
+						newNode.setFillColor( Color.decode(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i).equals("fillStyle")) {
+						try {
+							newNode.setFillStyle(FillStyle.valueOf(attrs.getValue(i)));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					/*} else if (attrs.getLocalName(i).equals("imageBase64Width")) {
+							
+						this.img64width = Integer.parseInt(attrs.getValue(i));
+						
+						imageReady(newNode);
+					} else if (attrs.getLocalName(i).equals("imageBase64Height")) {
+						
+						this.img64height = Integer.parseInt(attrs.getValue(i));
+								   
+						imageReady(newNode);
+					} else if (attrs.getLocalName(i).equals("imageBase64")) {
+						
 
-	            		this.img64data = attrs.getValue(i);
-	            		
-	            		imageReady(newNode);
-	            		*/
-	            	} else if (attrs.getLocalName(i).equals("groupValue")) {
-	            		newNode.groupingVariable = true;
-	            		newNode.groupValue = Double.parseDouble(attrs.getValue(i));
-	            	} else if (attrs.getLocalName(i).equals("groupName")) {
-	            		newNode.groupingVariable = true;
-	            		newNode.groupName =(attrs.getValue(i));
-	            	} else if (attrs.getLocalName(i).equals("labelFontSize")) {
-	            		newNode.setFontSize(Integer.parseInt(attrs.getValue(i)));
-	            	} else if (attrs.getLocalName(i).equals("strokeWidth")) {
-	            		Float f = Float.parseFloat(attrs.getValue(i));
-	            		if (f < 0) f = 2.0f;
-	            		newNode.setStrokeWidth(f);
-	            	} else if (attrs.getLocalName(i).equals("normalized")) {
-	            		Boolean b = Boolean.parseBoolean(attrs.getValue(i));
-	            		if (b) {
-	            			newNode.setNormalized(true);
-	            			 //warningNormalizedDeprecated = true;
-	            		}
-                    } else if (attrs.getLocalName(i).equals("multiplicative")) {
-                        Boolean b = Boolean.parseBoolean(attrs.getValue(i));
-                        if (b) {
-                            newNode.setAsMultiplication(true);
-                        }
-                    }
-	            	
-	            }
-	        }
+						this.img64data = attrs.getValue(i);
+						
+						imageReady(newNode);
+						*/
+					} else if (attrs.getLocalName(i).equals("groupValue")) {
+						newNode.groupingVariable = true;
+						newNode.groupValue = Double.parseDouble(attrs.getValue(i));
+					} else if (attrs.getLocalName(i).equals("groupName")) {
+						newNode.groupingVariable = true;
+						newNode.groupName =(attrs.getValue(i));
+					} else if (attrs.getLocalName(i).equals("labelFontSize")) {
+						newNode.setFontSize(Integer.parseInt(attrs.getValue(i)));
+					} else if (attrs.getLocalName(i).equals("strokeWidth")) {
+						Float f = Float.parseFloat(attrs.getValue(i));
+						if (f < 0) f = 2.0f;
+						newNode.setStrokeWidth(f);
+					} else if (attrs.getLocalName(i).equals("normalized")) {
+						Boolean b = Boolean.parseBoolean(attrs.getValue(i));
+						if (b) {
+							newNode.setNormalized(true);
+							 //warningNormalizedDeprecated = true;
+						}
+					} else if (attrs.getLocalName(i).equals("multiplicative")) {
+						Boolean b = Boolean.parseBoolean(attrs.getValue(i));
+						if (b) {
+							newNode.setAsMultiplication(true);
+						}
+					}
+					
+				}
+			}
 			//System.out.println(newNode);
 			this.mv.getModelRequestInterface().requestAddNode(newNode);
 		}

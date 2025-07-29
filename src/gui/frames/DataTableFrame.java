@@ -61,7 +61,7 @@ public class DataTableFrame extends JInternalFrame implements DatasetChangedList
 		
 		if (dataset.getNumRows()*dataset.getNumColumns()==0)
 		{
-			this.getContentPane().add(new JLabel("Empty Dataset"),BorderLayout.CENTER);
+			this.getContentPane().add(new JLabel("空のデータセット"),BorderLayout.CENTER);
 		} else {
 			this.getContentPane().add(scrollPane, BorderLayout.CENTER);
 

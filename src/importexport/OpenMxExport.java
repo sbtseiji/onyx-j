@@ -52,8 +52,8 @@ public class OpenMxExport extends RExport {
 	@Override
 	public String createModelSpec(ModelView modelView, String modelName, boolean useUniqueNames)
 	{
-	    Graph g = modelView.getGraph();
-		if (g.isMultiGroup()) return "Error! Multigroup models cannot be exported yet!";
+		Graph g = modelView.getGraph();
+		if (g.isMultiGroup()) return "エラー！ マルチグループモデルの書き出しにはまだ対応していません。";
 		
 		resetNames();
 		

@@ -81,8 +81,8 @@ public class PraMaApplet extends Applet implements ActionListener, WindowListene
 	public void aufgabe1a(int n, int strategie)
 	{
 		gap();
-		println("Blatt 2, Aufgabe 5: Vorgegebenes Gleichungssystem lösen.");
-		println("Matrix - Größe: "+n);
+		println("Blatt 2, Aufgabe 5: Vorgegebenes Gleichungssystem losen.");
+		println("Matrix - Grosse: "+n);
 		println("Pivot - Strategie: "+strategie);
 
 		RingMatrix A = new RingMatrix(new DoubleWrapper(0.0),n,n);
@@ -120,7 +120,7 @@ public class PraMaApplet extends Applet implements ActionListener, WindowListene
 	{
 		gap();
 		println("Blatt 2, Aufgabe 5: Invertieren einer vorgegebenen Matrix.");
-		println("Matrix - Größe: 10");
+		println("Matrix - Grosse: 10");
 		println("Pivot - Strategie: Spalten-Pivoting.");
 
 		int n=10;
@@ -155,7 +155,7 @@ public class PraMaApplet extends Applet implements ActionListener, WindowListene
 	{
 		gap();
 		println("Blatt 4, Aufgabe 5:  QR - Zerlegung.");
-		println("Matrix - Größe: 3 (Matrix aus Aufabe 2)");
+		println("Matrix - Grosse: 3 (Matrix aus Aufabe 2)");
 		
 		RingMatrix A = new RingMatrix(new DoubleWrapper(0.0),3,3);
 		RingVector b = new RingVector(new DoubleWrapper(0.0), 3);
@@ -189,8 +189,8 @@ public class PraMaApplet extends Applet implements ActionListener, WindowListene
 	public void aufgabe2b(int n)
 	{
 		gap();
-		println("Blatt 4, Aufgabe 5: Vorgegebenes Gleichungssystem lösen.");
-		println("Matrix - Größe: "+n);
+		println("Blatt 4, Aufgabe 5: Vorgegebenes Gleichungssystem losen.");
+		println("Matrix - Grosse: "+n);
 
 		RingMatrix A = new RingMatrix(new DoubleWrapper(0.0),n,n);
 		for (int i=1; i<=n; i++)
@@ -209,7 +209,7 @@ public class PraMaApplet extends Applet implements ActionListener, WindowListene
 		
 		println ("Beginne QR-Zerlegung (bitte warten)...");
 		RingMatrix[] res = A.qRDecomposition();
-		println ("...fertig. Beginne Gleichungslösung...");
+		println ("...fertig. Beginne Gleichungslosung...");
 		RingVector y = res[1].solveWithUFromQRDecomposition(b);
 		RingVector x = res[0].solveRightUpperTriangleMatrix(y);
 		println ("...fertig.");
@@ -228,7 +228,7 @@ public class PraMaApplet extends Applet implements ActionListener, WindowListene
 	{
 		gap();
 		println("Blatt 4, Aufgabe 5: Invertieren einer vorgegebenen Matrix.");
-		println("Matrix - Größe: 10");
+		println("Matrix - Grosse: 10");
 
 		int n=10;
 		RingMatrix A = new RingMatrix(new DoubleWrapper(0.0),n,n);
@@ -242,7 +242,7 @@ public class PraMaApplet extends Applet implements ActionListener, WindowListene
 				
 		println ("Beginne QR-Zerlegung (bitte warten)...");
 		RingMatrix[] res = A.qRDecomposition();
-		println ("...fertig. Beginne Gleichungslösen...");
+		println ("...fertig. Beginne Gleichungslosen...");
 		for (int k=1; k<=n; k++)
 		{
 			RingVector b = new RingVector(new DoubleWrapper(0.0),n);
@@ -264,7 +264,7 @@ public class PraMaApplet extends Applet implements ActionListener, WindowListene
 	public void aufgabe4a(boolean preconditioning)
 	{
 		gap();
-		println("Blatt 8, Aufgabe 4: Lösung eines Gleichungssystem mit cg-Verfahren.");
+		println("Blatt 8, Aufgabe 4: Losung eines Gleichungssystem mit cg-Verfahren.");
 		println("Gleichungssystem aus Aufgabe 1");
 		if (preconditioning) println("Mit Vorkonditionierung");
 		else println("Ohne Vorkonditionierung");
@@ -302,7 +302,7 @@ public class PraMaApplet extends Applet implements ActionListener, WindowListene
 	public void aufgabe4b(boolean preconditioning, int n)
 	{
 		gap();
-		println("Blatt 8, Aufgabe 4: Lösung eines Gleichungssystem mit cg-Verfahren.");
+		println("Blatt 8, Aufgabe 4: Losung eines Gleichungssystem mit cg-Verfahren.");
 		println("Gleichungssystem von Blatt 6, n = "+n);
 		if (preconditioning) println("Mit Vorkonditionierung");
 		else println("Ohne Vorkonditionierung");
@@ -321,7 +321,7 @@ public class PraMaApplet extends Applet implements ActionListener, WindowListene
 		}
 
 		println(); 
-		println("Matrixgröße: "+n);
+		println("Matrixgrosse: "+n);
 		println(); 
 		
 		println("Vector b: "+b);
@@ -339,7 +339,7 @@ public class PraMaApplet extends Applet implements ActionListener, WindowListene
 		gap();
 		println("Blatt 10, Aufgabe 5: Eigenwerte der Hilbertmatrix.");
 		println(); 
-		println("Matrixgröße: "+n);
+		println("Matrixgrosse: "+n);
 		println(); 
 
 		RingMatrix A = new RingMatrix(new DoubleWrapper(0.0),n,n);
