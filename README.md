@@ -7,7 +7,7 @@
 ![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)
 <!-- badges: end -->
 
-# Onyx-J Ωnyx日本語版
+# Onyx-J　Ωnyx日本語版
 
 このリポジトリは[brandmaier/onyx](https://github.com/brandmaier/onyx)を日本語化したフォークです。
 本リポジトリではメニューやメッセージ等を日本語化しています。以下は、オリジナルレポジトリのReadMeの和訳です。
