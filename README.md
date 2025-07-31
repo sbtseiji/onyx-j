@@ -7,56 +7,59 @@
 ![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)
 <!-- badges: end -->
 
-# Onyx
+# Onyx-J Ωnyx日本語版
 
-Onyx is a free software environment for creating and estimating structural equation models (SEM). It provides a graphical user interface that facilitates an intuitive creation of models, and a powerful back end for performing maximum likelihood estimation of parameters. Path diagrams in Onyx can be exported to OpenMx, lavaan, and Mplus to allow an easy transition to script-based SEM software. Onyx was written by Timo von Oertzen and [Andreas M. Brandmaier](https://www.brandmaier.de) and is freely distributed under the Apache 2.0 license.
+このリポジトリは[brandmaier/onyx](https://github.com/brandmaier/onyx)を日本語化したフォークです。
+本リポジトリではメニューやメッセージ等を日本語化しています。以下は、オリジナルレポジトリのReadMeの和訳です。
 
-# Download
+# 概要
 
-You can download the current (unstable) version of Onyx from this repository. The most recent version is automatically regularly built and deployed [here](https://github.com/brandmaier/onyx/tree/master/dist). 
-Download the JAR-file and run it. Note that Onyx requires a recent JAVA runtime environment, such as OpenJDK.
+Onyxは、構造方程式モデリング（SEM）の作成と推定のためのフリーソフトウェア環境です。
+直感的にモデルを作成できるグラフィカルユーザーインターフェースと、パラメータの最尤推定を実行する強力なバックエンドを備えています。Onyxで作成したパス図は、OpenMx、lavaan、Mplus形式にエクスポートでき、スクリプトベースのSEMソフトウェアへの移行も容易です。OnyxはTimo von Oertzenと[Andreas M. Brandmaier](https://www.brandmaier.de)によって開発され、Apache 2.0ライセンスのもとで無償公開されています。
 
-# Build
+# ダウンロード
 
-This section is only for developers. As an Onyx user, you can safely ignore this information. 
-If you want to build Onyx from sources, download the sources, make sure that you have a Java development kit ready (including a Java compiler) and the Apache ant build tool. Then, compile the source code using
+Onyxの最新（不安定）バージョンは、このリポジトリからダウンロードできます。最新版は自動的かつ定期的にビルドされ、[こちら](https://github.com/sbtseiji/onyx-j/tree/master/dist)に配置されています。JARファイルをダウンロードして実行してください。なお、Onyxの利用にはOpenJDKなどの最新のJAVA実行環境が必要です。
+
+# ビルド
+
+このセクションは開発者向けです。Onyxをユーザーとして利用するだけであれば、この情報は無視して構いません。もしOnyxをソースからビルドしたい場合は、ソースコードをダウンロードし、Java開発キット（Javaコンパイラを含む）とApache Antビルドツールを用意してください。その上で、ソースコードを次のコマンドでコンパイルします。
+
 
 ```{bash}
 ant compile
 ````
 
-Then, package all compiled classes into a single jar file by issuing:
+次に、すべてのコンパイル済みクラスを1つのjarファイルにまとめるには、以下のコマンドを実行してください。
 
 ```{bash}
 ant dist
 ```
 
-This creates a single file `onyx.jar` in subfolder `dist`.
+これにより、`dist`サブフォルダ内に`onyx.jar`というファイルが作成されます。
 
-# Run
+# 実行
 
-After you have successfully created the distributable jar file, you can run
-it from the command line:
+jarファイルが正常に作成できたら、コマンドラインから実行できます。
 
 ```{bash}
 cd dist
 java -jar onyx.jar
 ```
 
-# License
+# ライセンス
 
-Onyx is made available under the Apache 2.0 license.
+OnyxはApache 2.0ライセンスのもとで提供されています。
 
-Onyx uses various (unmodified) libraries, which are here redistributed under their original licenses:
+Onyxは、以下のような（改変されていない）各種ライブラリを利用しており、それぞれ元のライセンスのもとで再配布されています。
 
-- vectorgraphics2d by Erich Seifert is distributed under the LGPL
-- Diff Match and Patch by Google Inc is distributed under the Apache License 2.0
-- GRAL by Erich Seifert is distributed under the LGPL
-- jtouchbar by Thizzer is distributed under the MIT license
-- jUnit by junit.org is distributed under the Eclipse Public License 1.0
+-  Erich Seifertによるvectorgraphics2d（LGPLライセンス）
+-  Google IncによるDiff Match and Patch（Apache License 2.0）
+-  Erich SeifertによるGRAL（LGPLライセンス）
+-  Thizzerによるjtouchbar（MITライセンス）
+-  junit.orgによるjUnit（Eclipse Public License 1.0）
 
-Furthermore, Onyx uses the following resources:
+さらに、Onyxは以下のリソースも利用しています。
 
-- the mono icons by https://icons.mono.company/ distributed under the MIT
-  license
+-  https://icons.mono.company/ のmonoアイコン（MITライセンス）
 
