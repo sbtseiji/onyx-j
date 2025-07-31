@@ -143,7 +143,7 @@ public class Edge implements Cloneable, LineColorable, VariableContainerListener
 	// label coordinates
 	public int lx, ly;
 
-	Font font = new Font("Arial", Font.PLAIN, DEFAULT_LABEL_FONTSIZE);
+	Font font = new Font("Meiryo", Font.PLAIN, DEFAULT_LABEL_FONTSIZE);
 	FontMetrics fm;
 
 	public int scx, scy, tcx, tcy; // centers of sources and targets

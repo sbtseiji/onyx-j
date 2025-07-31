@@ -123,7 +123,7 @@ public class WelcomeFrame extends JFrame implements MouseListener {
 		} catch (Exception e) {}
 		
 		lab.setHorizontalTextPosition(JLabel.RIGHT);
-		lab.setFont( new Font("Arial", Font.PLAIN, 82));
+		lab.setFont( new Font("Meiryo", Font.PLAIN, 82));
 		lab.setBackground(Color.white);
 		lab.setOpaque(true);
 		

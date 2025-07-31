@@ -36,7 +36,7 @@ public class VariableView extends View
 	private int iColumn;
 	private BasicStroke stroke;
 	
-	Font font = new Font("Arial", Font.PLAIN, 10);
+	Font font = new Font("Meiryo", Font.PLAIN, 10);
 	FontMetrics fm;
 
 	public VariableView(RawDataset dataset, int iColumn)

@@ -111,7 +111,7 @@ public class Node implements Cloneable, FillColorable, LineColorable, Movable, R
 
 	VariableContainer observedVariableContainer;
 
-	Font font = new Font("Arial", Font.PLAIN, DEFAULT_LABEL_FONTSIZE);
+	Font font = new Font("Meiryo", Font.PLAIN, DEFAULT_LABEL_FONTSIZE);
 	FontMetrics fm;
 
 	public boolean isHidden() {
@@ -1157,7 +1157,7 @@ public class Node implements Cloneable, FillColorable, LineColorable, Movable, R
 	}
 
 	public void setFontSize(int newValue) {
-		this.font = new Font("Arial", Font.PLAIN, newValue);
+		this.font = new Font("Meiryo", Font.PLAIN, newValue);
 		fm = null;
 		valid = false;
 	}
